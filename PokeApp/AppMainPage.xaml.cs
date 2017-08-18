@@ -15,48 +15,18 @@ namespace PokeApp
         public int Id { get; set; }
     }
 
-    public class PokemonViewModel : System.ComponentModel.INotifyPropertyChanged
+    public class PokemonViewModel
     {
-        string name;
-        string id;
-
         public PokemonViewModel() { }
         public PokemonViewModel(PokemonModel m)
         {
             this.Name = m.Name;
             this.Id = $"#{m.Id}";
         }
-        public string Name
-        {
-            get { return name; }
-            set
-            {
-                name = value;
-                OnPropertyChanged("Name");
-            }
-        }
-        public string Id
-        {
-            get
-            {
-                return id;
-            }
-            set
-            {
-                id = value;
-                OnPropertyChanged("Id");
-            }
-        }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            var changed = PropertyChanged;
-            if (changed != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+        public string Name { get; set; }
+        public string Id { get; set; }
+
     }
 
 
@@ -81,13 +51,13 @@ namespace PokeApp
 
         private async void fetchDataz()
         {
-            const string url = "https://pokeapi.co/api/v2/pokemon/2/";
+            const string url = "https://pokeapi.co/api/v2/pokemon/3/";
 
             var uri = new Uri(url);
+            System.Diagnostics.Debug.WriteLine($"querying={uri}");
             var response = await client.GetAsync(uri);
             if (response.IsSuccessStatusCode)
             {
-                System.Diagnostics.Debug.WriteLine($"querying={uri}");
                 var content = await response.Content.ReadAsStringAsync();
                 System.Diagnostics.Debug.WriteLine($"content={content}");
                 PokemonItem = Newtonsoft.Json.JsonConvert.DeserializeObject<PokemonModel>(content);

@@ -3,10 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:PokeApp"
     x:Class="PokeApp.AppMainPage">
-    <ContentPage.Padding>
-        <OnPlatform x:TypeArguments="Thickness"
-            iOS="0, 20, 0, 0" />
-    </ContentPage.Padding>
     <ContentPage.Content>
         <local:PokemonListView />
     </ContentPage.Content>

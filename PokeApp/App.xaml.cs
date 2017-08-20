@@ -8,7 +8,7 @@ namespace PokeApp
         {
             InitializeComponent();
 
-            MainPage = new AppMainPage();
+            MainPage = new NavigationPage(new AppMainPage());
         }
 
         protected override void OnStart()

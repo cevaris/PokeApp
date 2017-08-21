@@ -4,6 +4,13 @@
     {
         public string Name { get; set; }
         public int Id { get; set; }
+        public string IdDisplay
+        {
+            get
+            {
+                return $"#{Id}";
+            }
+        }
         public string SpriteFront
         {
             get

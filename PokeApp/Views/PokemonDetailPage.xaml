@@ -2,14 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="PokeApp.PokemonDetailPage">
-     <ContentPage.Padding>
-        <OnPlatform x:TypeArguments="Thickness"
-            iOS="0, 20, 0, 0" />
-    </ContentPage.Padding>
     <ContentPage.Content>
-        <StackLayout Orientation="Horizontal">
+        <StackLayout Orientation="Horizontal"
+            Margin="10">
+            <Image Source="{Binding Pokemon.SpriteFront}"
+                HorizontalOptions="Start"
+                WidthRequest="100" />
+            <Image Source="{Binding Pokemon.SpriteBack}"
+                HorizontalOptions="Start"
+                WidthRequest="100" />
             <Label Text="{Binding Pokemon.Name}"
-                HorizontalOptions="StartAndExpand" />
+                HorizontalOptions="CenterAndExpand" />
             <Label Text="{Binding Pokemon.Id}"
                 HorizontalOptions="EndAndExpand" />
         </StackLayout>

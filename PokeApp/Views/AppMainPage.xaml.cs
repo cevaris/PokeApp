@@ -17,7 +17,6 @@ namespace PokeApp
         public AppMainPage()
         {
             InitializeComponent();
-
             //fetchDataz();
         }
 

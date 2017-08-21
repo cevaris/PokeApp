@@ -11,8 +11,14 @@ namespace PokeApp
             // replace with http query
             PokemonList = new ObservableCollection<PokemonModel>()
             {
-                new PokemonModel {Name="charmander", Id=4},
-                new PokemonModel {Name="charmelean", Id=5}
+                new PokemonModel {
+                    Name="charmander",
+                    Id=4
+                },
+                new PokemonModel {
+                    Name="charmelean",
+                    Id=5
+                }
             };
         }
     }

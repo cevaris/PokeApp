@@ -10,6 +10,14 @@ namespace PokeApp
         public PokemonDetailPage()
         {
             InitializeComponent();
+
+            // preview data
+            PokemonModel pokemon = new PokemonModel
+            {
+                Name = "charmander",
+                Id = 4
+            };
+            BindingContext = new PokemonDetailViewModel(pokemon);
         }
     }
 }

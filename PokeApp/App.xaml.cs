@@ -7,7 +7,6 @@ namespace PokeApp
         public App()
         {
             InitializeComponent();
-
             MainPage = new NavigationPage(new AppMainPage());
         }
 

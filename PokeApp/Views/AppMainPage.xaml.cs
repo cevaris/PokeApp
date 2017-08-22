@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Net.Http;
-using Newtonsoft.Json;
-using Xamarin.Forms;
-using System.Collections.ObjectModel;
+﻿using Xamarin.Forms;
+
 
 namespace PokeApp
 {
@@ -17,6 +12,7 @@ namespace PokeApp
         public AppMainPage()
         {
             InitializeComponent();
+            var db = PokeApp.App.Database;
             //fetchDataz();
         }
 
@@ -31,8 +27,8 @@ namespace PokeApp
         //    {
         //        var content = await response.Content.ReadAsStringAsync();
         //        System.Diagnostics.Debug.WriteLine($"content={content}");
-        //        PokemonItem = JsonConvert.DeserializeObject<PokemonModel>(content);
-        //        BindingContext = new PokemonViewModel(PokemonItem);
+        //        var pokemon = JsonConvert.DeserializeObject<PokemonModel>(content);
+        //        //BindingContext = new PokemonViewModel(PokemonItem);
         //    }
         //    else
         //    {

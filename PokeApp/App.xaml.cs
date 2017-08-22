@@ -1,13 +1,35 @@
 ﻿using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace PokeApp
 {
+    public class Constants
+    {
+        public static readonly string DatabaseName = "PokeApp.db3";
+    }
+
     public partial class App : Application
     {
+        private static PokeAppDatabase database;
+
         public App()
         {
             InitializeComponent();
             MainPage = new NavigationPage(new AppMainPage());
+        }
+
+        public static PokeAppDatabase Database
+        {
+            get
+            {
+                if (database == null)
+                {
+                    ISQLite factory = DependencyService.Get<ISQLite>();
+                    database = new PokeAppDatabase(factory);
+                }
+                return database;
+            }
         }
 
         protected override void OnStart()

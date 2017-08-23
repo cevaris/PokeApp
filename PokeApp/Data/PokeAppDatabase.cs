@@ -1,7 +1,4 @@
-﻿using System;
-using SQLitePCL;
-using SQLite;
-using Xamarin.Forms;
+﻿using SQLite;
 
 namespace PokeApp
 {
@@ -9,6 +6,7 @@ namespace PokeApp
     {
         readonly SQLiteAsyncConnection database;
         readonly ISQLite dbFactory;
+        readonly Utils.ILogger Logger = new Utils.ConsoleLogger("PokeAppDatabase");
 
         public PokeAppDatabase(ISQLite dbFactory)
         {
@@ -19,5 +17,6 @@ namespace PokeApp
             database = dbFactory.GetAsyncConnection();
             database.CreateTableAsync<PokemonModel>().Wait();
         }
+
     }
 }

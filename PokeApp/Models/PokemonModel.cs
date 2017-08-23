@@ -1,8 +1,13 @@
-﻿namespace PokeApp
+﻿using System;
+using SQLite;
+
+namespace PokeApp
 {
     public class PokemonModel
     {
         public string Name { get; set; }
+
+        [PrimaryKey]
         public int Id { get; set; }
         public string IdDisplay
         {
@@ -11,6 +16,12 @@
                 return $"#{Id}";
             }
         }
+
+        [Indexed]
+        public string URI { get; set; }
+
+        public DateTime QueriedAt { get; set; }
+
         public string SpriteFront
         {
             get

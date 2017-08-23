@@ -9,7 +9,8 @@
             Pokemon = new PokemonModel()
             {
                 Name = "Pokemon Name",
-                Id = 3
+                Id = 3,
+                URI = "https://pokeapi.co/api/v2/pokemon/4/"
             };
         }
 

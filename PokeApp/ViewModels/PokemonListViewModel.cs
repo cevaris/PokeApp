@@ -13,11 +13,13 @@ namespace PokeApp
             {
                 new PokemonModel {
                     Name="charmander",
-                    Id=4
+                    Id=4,
+                    URI = "https://pokeapi.co/api/v2/pokemon/4/"
                 },
                 new PokemonModel {
                     Name="charmelean",
-                    Id=5
+                    Id=5,
+                    URI = "https://pokeapi.co/api/v2/pokemon/5/"
                 }
             };
         }

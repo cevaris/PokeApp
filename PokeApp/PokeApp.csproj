@@ -45,7 +45,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\PokemonModel.cs" />
-    <Compile Include="ViewModels\PokemonListViewModel.cs" />
+    <Compile Include="ViewModels\PokemonIndexListViewModel.cs" />
     <Compile Include="Views\AppMainPage.xaml.cs">
       <DependentUpon>AppMainPage.xaml</DependentUpon>
     </Compile>

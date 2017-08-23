@@ -11,7 +11,7 @@ namespace PokeApp
         public PokemonListView()
         {
             InitializeComponent();
-            BindingContext = new PokemonListViewModel();
+            BindingContext = new PokemonIndexListViewModel();
         }
 
         async void OnSelectedItem(object sender, SelectedItemChangedEventArgs e)

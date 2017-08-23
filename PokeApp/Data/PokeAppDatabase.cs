@@ -1,4 +1,6 @@
-﻿using SQLite;
+﻿using PokeApp.Models;
+using PokeApp.Utils;
+using SQLite;
 
 namespace PokeApp
 {
@@ -6,7 +8,7 @@ namespace PokeApp
     {
         readonly SQLiteAsyncConnection database;
         readonly ISQLite dbFactory;
-        readonly Utils.ILogger Logger = new Utils.ConsoleLogger("PokeAppDatabase");
+        readonly ILogger Logger = new ConsoleLogger("PokeAppDatabase");
 
         public PokeAppDatabase(ISQLite dbFactory)
         {

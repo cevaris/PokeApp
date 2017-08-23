@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using PokeApp.Data;
+using PokeApp.Models;
+using System.Collections.ObjectModel;
 
 namespace PokeApp
 {
@@ -9,19 +11,10 @@ namespace PokeApp
         public PokemonListViewModel()
         {
             // replace with http query
-            PokemonList = new ObservableCollection<PokemonModel>()
-            {
-                new PokemonModel {
-                    Name="charmander",
-                    Id=4,
-                    URI = "https://pokeapi.co/api/v2/pokemon/4/"
-                },
-                new PokemonModel {
-                    Name="charmelean",
-                    Id=5,
-                    URI = "https://pokeapi.co/api/v2/pokemon/5/"
-                }
-            };
+            PokemonList = new ObservableCollection<PokemonModel>();
+            foreach(PokemonModel p in Constants.TestPokemonModels){
+                PokemonList.Add(p);
+            }
         }
     }
 }

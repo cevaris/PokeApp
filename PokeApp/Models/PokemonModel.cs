@@ -1,7 +1,7 @@
 ﻿using System;
 using SQLite;
 
-namespace PokeApp
+namespace PokeApp.Models
 {
     public class PokemonModel
     {
@@ -9,6 +9,7 @@ namespace PokeApp
 
         [PrimaryKey]
         public int Id { get; set; }
+        [Ignore]
         public string IdDisplay
         {
             get
@@ -18,23 +19,19 @@ namespace PokeApp
         }
 
         [Indexed]
-        public string URI { get; set; }
+        public string Url { get; set; }
 
         public DateTime QueriedAt { get; set; }
+        [Ignore]
+        public string QueriedAtDisplay
+        {
+            get
+            {
+                return $"QuriedAt: {QueriedAt}";
+            }
+        }
 
-        public string SpriteFront
-        {
-            get
-            {
-                return $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{Id}.png";
-            }
-        }
-        public string SpriteBack
-        {
-            get
-            {
-                return $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/{Id}.png";
-            }
-        }
+        public string SpriteFront { get; set; }
+        public string SpriteBack { get; set; }
     }
 }

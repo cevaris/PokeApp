@@ -1,27 +1,10 @@
 ﻿using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using PokeApp.Models;
 
-[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace PokeApp
 {
-    public class Constants
-    {
-        public static readonly string DatabaseName = "PokeApp.db3";
-        public static readonly List<PokemonModel> TestData = new List<PokemonModel>{
-            new PokemonModel {
-                    Name="charmander",
-                    Id=4,
-                    URI = "https://pokeapi.co/api/v2/pokemon/4/"
-            },
-            new PokemonModel {
-                Name="charmelean",
-                Id=5,
-                URI = "https://pokeapi.co/api/v2/pokemon/5/"
-            }
-        };
-
-    }
 
     public partial class App : Application
     {

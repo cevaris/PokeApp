@@ -59,6 +59,8 @@
     <Compile Include="Data\PokeAppDatabase.cs" />
     <Compile Include="Utils\Logger.cs" />
     <Compile Include="Data\ISQLite.cs" />
+    <Compile Include="Models\PokemonIndexModel.cs" />
+    <Compile Include="Data\Constants.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

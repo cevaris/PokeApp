@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PokeApp.Models;
+using System;
 using System.Collections.Generic;
 
 using Xamarin.Forms;

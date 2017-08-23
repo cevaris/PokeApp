@@ -6,6 +6,7 @@
         <Grid Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20" />
+                <RowDefinition Height="20" />
                 <RowDefinition Height="100" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -16,11 +17,18 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Orientation="Horizontal"
-                HorizontalOptions="CenterAndExpand"> 
+                HorizontalOptions="CenterAndExpand">
                 <Label Text="{Binding Pokemon.IdDisplay}" />
                 <Label Text="{Binding Pokemon.Name}" />
             </StackLayout>
             <StackLayout Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Orientation="Horizontal"
+                HorizontalOptions="CenterAndExpand">
+                <Label Text="{Binding Pokemon.QueriedAtDisplay}" />
+            </StackLayout>
+            <StackLayout Grid.Row="2"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Orientation="Horizontal"

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using PokeApp.Data;
 using PokeApp.iOS;
 using PokeApp.Utils;
 using SQLite;
@@ -20,9 +21,10 @@ namespace PokeApp.iOS
         {
             string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal); // Documents folder
             string libraryPath = Path.Combine(documentsPath, "..", "Library"); // Library folder
-            string pathFull = Path.Combine(libraryPath, PokeApp.Constants.DatabaseName);
+            string pathFull = Path.Combine(libraryPath, Constants.DatabaseName);
 
             Logger.Info($"dbpath: {pathFull}");
+
             return pathFull;
         }
 

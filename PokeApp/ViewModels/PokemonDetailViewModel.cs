@@ -1,4 +1,7 @@
-﻿namespace PokeApp
+﻿using PokeApp.Data;
+using PokeApp.Models;
+
+namespace PokeApp
 {
     public class PokemonDetailViewModel
     {
@@ -6,12 +9,7 @@
 
         public PokemonDetailViewModel()
         {
-            Pokemon = new PokemonModel()
-            {
-                Name = "Pokemon Name",
-                Id = 3,
-                URI = "https://pokeapi.co/api/v2/pokemon/4/"
-            };
+            Pokemon = Constants.TestPokemonModels[0];
         }
 
         public PokemonDetailViewModel(PokemonModel pokemon)

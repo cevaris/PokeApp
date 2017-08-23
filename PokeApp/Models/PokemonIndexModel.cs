@@ -4,15 +4,9 @@ using SQLite;
 
 namespace PokeApp.Models
 {
-
-    public class PokemonIndexModels
+    public class PokemonIndexesModel
     {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
-
-        public DateTime QueriedAt { get; set; }
-
-        public List<PokemonIndexModel> results;
+        public List<PokemonIndexModel> Results { get; set; }
 
         public string Next { get; set; }
         public string Previous { get; set; }
@@ -20,17 +14,7 @@ namespace PokeApp.Models
 
     public class PokemonIndexModel
     {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
-
         public string Name { get; set; }
-
-        [Indexed]
         public string Url { get; set; }
-
-        public DateTime QueriedAt { get; set; }
-
-        public string Next { get; set; }
-        public string Previous { get; set; }
     }
 }

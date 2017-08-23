@@ -17,7 +17,9 @@ namespace PokeApp
             SQLitePCL.Batteries_V2.Init();
 
             database = dbFactory.GetAsyncConnection();
-            database.CreateTableAsync<PokemonModel>().Wait();
+
+            // url -> json blob mapping
+            database.CreateTableAsync<ResourceModel>().Wait();
         }
 
     }

@@ -1,5 +1,4 @@
 ﻿using System;
-using SQLite;
 
 namespace PokeApp.Models
 {
@@ -7,9 +6,8 @@ namespace PokeApp.Models
     {
         public string Name { get; set; }
 
-        [PrimaryKey]
         public int Id { get; set; }
-        [Ignore]
+        
         public string IdDisplay
         {
             get
@@ -18,11 +16,9 @@ namespace PokeApp.Models
             }
         }
 
-        [Indexed]
         public string Url { get; set; }
 
         public DateTime QueriedAt { get; set; }
-        [Ignore]
         public string QueriedAtDisplay
         {
             get

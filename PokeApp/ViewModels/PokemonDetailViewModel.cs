@@ -9,7 +9,7 @@ namespace PokeApp
 
         public PokemonDetailViewModel()
         {
-            Pokemon = Constants.TestPokemonModels[0];
+            Pokemon = Constants.TestPokemonModel1;
         }
 
         public PokemonDetailViewModel(PokemonModel pokemon)

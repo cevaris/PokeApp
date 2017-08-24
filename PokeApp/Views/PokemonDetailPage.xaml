@@ -20,23 +20,24 @@
                 HorizontalOptions="CenterAndExpand">
                 <Label Text="{Binding Pokemon.IdDisplay}" />
                 <Label Text="{Binding Pokemon.Name}" />
-            </StackLayout>
+            </StackLayout>         
             <StackLayout Grid.Row="1"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Orientation="Horizontal"
                 HorizontalOptions="CenterAndExpand">
-                <Label Text="{Binding Pokemon.QueriedAtDisplay}" />
-            </StackLayout>
+                <Label Text="Weight:" />
+                <Label Text="{Binding Pokemon.Weight}" />
+            </StackLayout>         
             <StackLayout Grid.Row="2"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Orientation="Horizontal"
                 HorizontalOptions="CenterAndExpand">
-                <Image Source="{Binding Pokemon.SpriteFront}"
+                <Image Source="{Binding Pokemon.Sprites.FrontDefault}"
                     HorizontalOptions="StartAndExpand"
                     WidthRequest="100" />
-                <Image Source="{Binding Pokemon.SpriteBack}"
+                <Image Source="{Binding Pokemon.Sprites.BackDefault}"
                     HorizontalOptions="EndAndExpand"
                     WidthRequest="100" />
             </StackLayout>

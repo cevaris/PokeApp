@@ -11,11 +11,16 @@ namespace PokeApp
         public PokemonListView()
         {
             InitializeComponent();
-            BindingContext = new PokemonIndexListViewModel();
+            BindingContext = new PokemonResourceListViewModel();
         }
 
         async void OnSelectedItem(object sender, SelectedItemChangedEventArgs e)
         {
+            // Check cache for resource
+            // Fetch named resource
+            // Parse resource
+            // Push Model to be rendered
+
             //PokemonModel pokemon = (PokemonModel)e.SelectedItem;
             PokemonModel pokemon = Data.Constants.TestPokemonModel1;
             if (pokemon != null)

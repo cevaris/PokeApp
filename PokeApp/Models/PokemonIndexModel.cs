@@ -4,17 +4,11 @@ using SQLite;
 
 namespace PokeApp.Models
 {
-    public class PokemonIndexesModel
+    public class PokemonResourceList
     {
-        public List<PokemonIndexModel> Results { get; set; }
+        public List<NamedApiResource> Results { get; set; }
 
         public string Next { get; set; }
         public string Previous { get; set; }
-    }
-
-    public class PokemonIndexModel
-    {
-        public string Name { get; set; }
-        public string Url { get; set; }
     }
 }

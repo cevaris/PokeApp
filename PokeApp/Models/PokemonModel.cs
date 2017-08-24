@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace PokeApp.Models
 {
@@ -25,7 +26,9 @@ namespace PokeApp.Models
 
     public class PokemonSprite
     {
+        [JsonProperty(PropertyName = "front_default")]
         public string FrontDefault { get; set; }
+        [JsonProperty(PropertyName = "back_default")]
         public string BackDefault { get; set; }
     }
 
@@ -39,11 +42,5 @@ namespace PokeApp.Models
     {
         public int BaseStat { get; set; }
         public NamedApiResource Stat { get; set; }
-    }
-
-    public class NamedApiResource
-    {
-        public string Name { get; set; }
-        public string Url { get; set; }
     }
 }

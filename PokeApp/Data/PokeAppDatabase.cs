@@ -19,7 +19,7 @@ namespace PokeApp
 
         public PokeAppDatabase(ISQLite dbFactory)
         {
-
+            
             // https://github.com/escamoteur/TBInfrastructure/blob/7363fcab59b44654eee4fee3d89eccaae66e1c7c/FileStorage.cs#L128
 
             //Assembly assembly = typeof(PokeAppDatabase).GetType().GetTypeInfo().Assembly;

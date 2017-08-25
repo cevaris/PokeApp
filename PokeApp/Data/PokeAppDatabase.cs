@@ -2,6 +2,7 @@
 using PokeApp.Utils;
 using SQLite;
 using System.IO;
+using ICSharpCode.SharpZipLib.Core;
 using ICSharpCode.SharpZipLib.Zip;
 using System;
 using System.Reflection;
@@ -18,9 +19,27 @@ namespace PokeApp
 
         public PokeAppDatabase(ISQLite dbFactory)
         {
-            String pokedexZipPath = ResourceLoader.GetResourceStream(@"Pokedex.zip");
-            FastZip fastzip = new FastZip(new FastZipEvents());
-            fastzip.ExtractZip("zipFile", "directory to unzip", "*.csv");
+
+            // https://github.com/escamoteur/TBInfrastructure/blob/7363fcab59b44654eee4fee3d89eccaae66e1c7c/FileStorage.cs#L128
+
+            Assembly assembly = typeof(PokeAppDatabase).GetType().GetTypeInfo().Assembly;
+            //Stream stream  = assembly.GetManifestResourceStream("Resources/Pokedex.zip");
+
+            //var zipStream = new ZipInputStream(stream);
+            //var zipfile = new ZipFile("Resources/Pokedex.zip");
+
+            //var zipEntry = zipStream.GetNextEntry();
+            //Logger.Info(zipEntry.Name);
+                
+            //var test = new ZipFile(stream);
+
+            //String pokedexZipPath = Loader.GetResourceStream(@"Pokedex.zip");
+            FastZipEvents events = new FastZipEvents();
+            events.Progress += (object sender, ICSharpCode.SharpZipLib.Core.ProgressEventArgs e) => {
+                Logger.Info($"{e.Name} - {e.PercentComplete}");
+            };
+            FastZip fastzip = new FastZip(events);
+            fastzip.ExtractZip("Pokedex.zip", "extracted", @"\.csv$");
 
 
             //this.dbFactory = dbFactory;

@@ -38,8 +38,6 @@
     <EmbeddedResource Include="Views\PokemonDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pokedex.zip">
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -65,7 +63,7 @@
     <Compile Include="Data\Constants.cs" />
     <Compile Include="Models\ResourceModel.cs" />
     <Compile Include="Models\NamedApiResource.cs" />
-    <Compile Include="ResourceLoader.cs" />
+    <Compile Include="Utils\Loader.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

@@ -3,13 +3,15 @@
 set -x
 
 DATA_DIR=/git/pokedex/pokedex/data/csv
-DEST_DIR=/git/PokeApp/PokeApp/Resources/
-ZIP_NAME=pokedex.zip
+DEST_IOS_DIR=/git/PokeApp/iOS/Resources
+ZIP_NAME=Pokedex.zip
 
 # execute script in tmp
-cd /tmp
+cd $DATA_DIR
 
 # zip csv files
-zip -r -X $ZIP_NAME $DATA_DIR
+zip -r -X $ZIP_NAME .
 
-mv $ZIP_NAME $DEST_DIR
+cp $ZIP_NAME $DEST_IOS_DIR
+
+rm $ZIP_NAME

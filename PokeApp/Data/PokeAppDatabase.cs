@@ -22,7 +22,7 @@ namespace PokeApp
 
             // https://github.com/escamoteur/TBInfrastructure/blob/7363fcab59b44654eee4fee3d89eccaae66e1c7c/FileStorage.cs#L128
 
-            Assembly assembly = typeof(PokeAppDatabase).GetType().GetTypeInfo().Assembly;
+            //Assembly assembly = typeof(PokeAppDatabase).GetType().GetTypeInfo().Assembly;
             //Stream stream  = assembly.GetManifestResourceStream("Resources/Pokedex.zip");
 
             //var zipStream = new ZipInputStream(stream);
@@ -30,10 +30,10 @@ namespace PokeApp
 
             //var zipEntry = zipStream.GetNextEntry();
             //Logger.Info(zipEntry.Name);
-                
+
             //var test = new ZipFile(stream);
 
-            //String pokedexZipPath = Loader.GetResourceStream(@"Pokedex.zip");
+            
             FastZipEvents events = new FastZipEvents();
             events.Progress += (object sender, ICSharpCode.SharpZipLib.Core.ProgressEventArgs e) => {
                 Logger.Info($"{e.Name} - {e.PercentComplete}");
@@ -50,8 +50,5 @@ namespace PokeApp
             //// url -> json blob mapping
             //database.CreateTableAsync<ResourceModel>().Wait();
         }
-
-       
-
     }
 }

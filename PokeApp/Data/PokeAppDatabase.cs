@@ -1,6 +1,12 @@
 ﻿using PokeApp.Models;
 using PokeApp.Utils;
 using SQLite;
+using System.IO;
+using ICSharpCode.SharpZipLib.Zip;
+using System;
+using System.Reflection;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PokeApp
 {
@@ -12,15 +18,21 @@ namespace PokeApp
 
         public PokeAppDatabase(ISQLite dbFactory)
         {
-            this.dbFactory = dbFactory;
+            String pokedexZipPath = ResourceLoader.GetResourceStream(@"Pokedex.zip");
+            FastZip fastzip = new FastZip(new FastZipEvents());
+            fastzip.ExtractZip("zipFile", "directory to unzip", "*.csv");
 
-            SQLitePCL.Batteries_V2.Init();
 
-            database = dbFactory.GetAsyncConnection();
+            //this.dbFactory = dbFactory;
+            //SQLitePCL.Batteries_V2.Init();
 
-            // url -> json blob mapping
-            database.CreateTableAsync<ResourceModel>().Wait();
+            //database = dbFactory.GetAsyncConnection();
+
+            //// url -> json blob mapping
+            //database.CreateTableAsync<ResourceModel>().Wait();
         }
+
+       
 
     }
 }

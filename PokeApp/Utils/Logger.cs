@@ -29,7 +29,7 @@ namespace PokeApp.Utils
         {
             string now = DateTime.UtcNow.ToString("s", System.Globalization.CultureInfo.InvariantCulture);
             string scope = Scope == null ? "root" : Scope;            
-            return $"{now} - {level} - ${scope}";
+            return $"{now} - {level} - {scope}";
         }
     }
 }

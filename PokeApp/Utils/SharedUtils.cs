@@ -1,10 +1,11 @@
 ﻿using SQLite;
 
-namespace PokeApp
+namespace PokeApp.Utils
 {
-    public interface ISQLite
+    public interface SharedUtils
     {
         SQLiteAsyncConnection GetAsyncConnection();
         string GetDatabasePath();
+        string PokemonZipPath();
     }
 }

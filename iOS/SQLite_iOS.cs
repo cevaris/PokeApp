@@ -9,7 +9,7 @@ using Xamarin.Forms;
 [assembly: Dependency(typeof(SQLite_iOS))]
 namespace PokeApp.iOS
 {
-    public class SQLite_iOS : ISQLite
+    public class SQLite_iOS : SharedUtils
     {
         private static ILogger Logger = new ConsoleLogger("SQLite_Android");
 
@@ -32,7 +32,11 @@ namespace PokeApp.iOS
         {
             string dbPath = GetDatabasePath();
             return new SQLiteAsyncConnection(dbPath);
+        }
 
+        public string PokemonZipPath()
+        {
+            return "Pokedex.zip";
         }
     }
 }

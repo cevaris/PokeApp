@@ -1,26 +1,21 @@
 ﻿using System;
 using System.IO;
 using Android.Content.Res;
-using PokeApp.Data;
-using PokeApp.Droid;
 using PokeApp.Utils;
+using PokeApp.Droid;
+using PokeApp.Data;
 using SQLite;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(SQLite_Android))]
+[assembly: Dependency(typeof(SharedUtilsAndroid))]
 namespace PokeApp.Droid
 {
-    public class SQLite_Android : ISQLite
+    public class SharedUtilsAndroid : SharedUtils
     {
-        private static ILogger Logger = new ConsoleLogger("SQLite_Android");
-
-        public SQLite_Android()
-        {
-        }
+        private static ILogger Logger = new ConsoleLogger("SharedUtilsAndroid");
 
         public string GetDatabasePath()
         {
-
             string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal); // Documents folder
             string pathFull = Path.Combine(documentsPath, Constants.DatabaseName);
 
@@ -33,6 +28,20 @@ namespace PokeApp.Droid
         {
             string dbPath = GetDatabasePath();
             return new SQLiteAsyncConnection(dbPath);
+        }
+
+        public string PokemonZipPath()
+        {
+            AssetManager assets = Forms.Context.Assets;
+            string content;
+            using (StreamReader sr = new StreamReader(assets.Open("Pokedex.zip")))
+            {
+                content = sr.ReadToEnd();
+            }
+            System.Diagnostics.Debug.WriteLine(content.Length);
+
+
+            return "somepath";
         }
 
     }

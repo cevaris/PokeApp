@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using PokeApp.Models;
+using PokeApp.Utils;
 
 namespace PokeApp
 {
@@ -22,7 +23,7 @@ namespace PokeApp
             {
                 if (database == null)
                 {
-                    ISQLite factory = DependencyService.Get<ISQLite>();
+                    SharedUtils factory = DependencyService.Get<SharedUtils>();
                     System.Diagnostics.Debug.WriteLine(factory.GetDatabasePath());
                     database = new PokeAppDatabase(factory);
                 }

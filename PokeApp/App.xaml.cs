@@ -23,6 +23,7 @@ namespace PokeApp
                 if (database == null)
                 {
                     ISQLite factory = DependencyService.Get<ISQLite>();
+                    System.Diagnostics.Debug.WriteLine(factory.GetDatabasePath());
                     database = new PokeAppDatabase(factory);
                 }
                 return database;

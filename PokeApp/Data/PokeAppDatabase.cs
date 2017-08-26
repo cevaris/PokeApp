@@ -39,7 +39,7 @@ namespace PokeApp
                 Logger.Info($"{e.Name} - {e.PercentComplete}");
             };
             FastZip fastzip = new FastZip(events);
-            fastzip.ExtractZip("Pokedex.zip", "extracted", @"\.csv$");
+            //fastzip.ExtractZip("Pokedex.zip", "extracted", @"\.csv$");
 
 
             //this.dbFactory = dbFactory;

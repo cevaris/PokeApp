@@ -7,6 +7,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Android.Content.Res;
+using System.IO;
 
 namespace PokeApp.Droid
 {
@@ -21,6 +23,14 @@ namespace PokeApp.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
+            AssetManager assets = this.Assets;
+            string content;
+            using (StreamReader sr = new StreamReader(assets.Open("Pokedex.zip")))
+            {
+                content = sr.ReadToEnd();
+            }
+            System.Diagnostics.Debug.WriteLine(content.Length);
 
             LoadApplication(new App());
         }

@@ -7,12 +7,16 @@ using PokeApp.Data;
 using SQLite;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(SharedUtilsAndroid))]
+[assembly: Dependency(typeof(IShared_Droid))]
 namespace PokeApp.Droid
 {
-    public class SharedUtilsAndroid : SharedUtils
+    public class IShared_Droid : IShared
     {
-        private static ILogger Logger = new ConsoleLogger("SharedUtilsAndroid");
+        private static ILogger Logger = new ConsoleLogger("IShared_Droid");
+
+        public IShared_Droid()
+        {
+        }
 
         public string GetDatabasePath()
         {
@@ -34,12 +38,11 @@ namespace PokeApp.Droid
         {
             AssetManager assets = Forms.Context.Assets;
             string content;
-            using (StreamReader sr = new StreamReader(assets.Open("Pokedex.zip")))
+            using (StreamReader sr = new StreamReader(assets.Open(Constants.ZipName)))
             {
                 content = sr.ReadToEnd();
             }
-            System.Diagnostics.Debug.WriteLine(content.Length);
-
+            Logger.Info(content.Length);
 
             return "somepath";
         }

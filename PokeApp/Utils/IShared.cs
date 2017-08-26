@@ -2,7 +2,7 @@
 
 namespace PokeApp.Utils
 {
-    public interface SharedUtils
+    public interface IShared
     {
         SQLiteAsyncConnection GetAsyncConnection();
         string GetDatabasePath();

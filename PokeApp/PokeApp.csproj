@@ -63,7 +63,7 @@
     <Compile Include="Models\ResourceModel.cs" />
     <Compile Include="Models\NamedApiResource.cs" />
     <Compile Include="Utils\Loader.cs" />
-    <Compile Include="Utils\SharedUtils.cs" />
+    <Compile Include="Utils\IShared.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

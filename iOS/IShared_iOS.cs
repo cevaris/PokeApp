@@ -6,14 +6,14 @@ using PokeApp.Utils;
 using SQLite;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(SQLite_iOS))]
+[assembly: Dependency(typeof(IShared_iOS))]
 namespace PokeApp.iOS
 {
-    public class SQLite_iOS : SharedUtils
+    public class IShared_iOS : IShared
     {
         private static ILogger Logger = new ConsoleLogger("SQLite_Android");
 
-        public SQLite_iOS()
+        public IShared_iOS()
         {
         }
 

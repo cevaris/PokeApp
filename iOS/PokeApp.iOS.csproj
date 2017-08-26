@@ -133,7 +133,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="SQLite_iOS.cs" />
+    <Compile Include="IShared_iOS.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

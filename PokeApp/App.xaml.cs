@@ -23,7 +23,7 @@ namespace PokeApp
             {
                 if (database == null)
                 {
-                    SharedUtils factory = DependencyService.Get<SharedUtils>();
+                    IShared factory = DependencyService.Get<IShared>();
                     System.Diagnostics.Debug.WriteLine(factory.GetDatabasePath());
                     database = new PokeAppDatabase(factory);
                 }

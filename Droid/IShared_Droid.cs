@@ -21,7 +21,7 @@ namespace PokeApp.Droid
 
         public string GetDatabasePath()
         {
-            string documentsPath = Environment.GetFolderPath(Environment.Folder); // Documents folder
+            string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal); // Documents folder
             string pathFull = Path.Combine(documentsPath, Constants.DatabaseName);
 
             Logger.Info($"dbpath: {pathFull}");
@@ -37,13 +37,21 @@ namespace PokeApp.Droid
 
         public string PokemonZipPath()
         {
-            //CopyAssets("AboutAssets.txt");
+            CopyAssets("AboutAssets.txt");
             CopyAssets(Constants.ZipName);
 
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             var filePath = Path.Combine(documentsPath, Constants.ZipName);
             return filePath;
         }
+
+        public string PokemonCsvPath()
+        {
+            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            var filePath = Path.Combine(documentsPath, "extracted");
+            return filePath;
+        }
+
 
 
         // Local 
@@ -56,6 +64,7 @@ namespace PokeApp.Droid
 
             //foreach (String filename in assetManager.List(""))
             //{
+            //Logger.Info($"Looking for asset {assetName}  {assetManager.OpenFd(assetName).Length}");
             Logger.Info($"Looking for asset {assetName}");
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             var filePath = Path.Combine(documentsPath, assetName);
@@ -70,18 +79,17 @@ namespace PokeApp.Droid
             //    Logger.Info($"{filename} needs to be written");
             //}
 
-            using (var reader = new StreamReader(assetManager.Open(Constants.ZipName)))
+            //using (var reader = new StreamReader(assetManager.Open(Constants.ZipName)))
+            //{
+            using (StreamWriter writer = new StreamWriter(filePath))
             {
-                using (var writer = new StreamWriter(filePath))
+                using (Stream asset = assetManager.Open(assetName))
                 {
-                    //string content = reader.ReadToEnd();
-                    while (reader.Peek() >= 0)
-                    {
-                        writer.WriteLine(reader.ReadLine());
-                    }
-                    Logger.Info($"{filePath} has been written: {new FileInfo(filePath).Length} ");
+                    asset.CopyTo(writer.BaseStream);
+                    Logger.Info($"{assetName} written to {filePath} {new FileInfo(filePath).Length} bytes");
                 }
             }
+            //}
 
             //}
         }

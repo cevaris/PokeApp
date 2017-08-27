@@ -38,5 +38,11 @@ namespace PokeApp.iOS
         {
             return "Pokedex.zip";
         }
+
+        public string PokemonCsvPath()
+        {
+            return "extracted";
+        }
+
     }
 }

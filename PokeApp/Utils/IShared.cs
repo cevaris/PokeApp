@@ -7,5 +7,6 @@ namespace PokeApp.Utils
         SQLiteAsyncConnection GetAsyncConnection();
         string GetDatabasePath();
         string PokemonZipPath();
+        string PokemonCsvPath();
     }
 }

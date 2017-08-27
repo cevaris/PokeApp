@@ -35,14 +35,20 @@ namespace PokeApp
             //Logger.Info(zipEntry.Name);
 
             //var test = new ZipFile(stream);
-
             
             FastZipEvents events = new FastZipEvents();
             events.Progress += (object sender, ICSharpCode.SharpZipLib.Core.ProgressEventArgs e) => {
                 Logger.Info($"{e.Name} - {e.PercentComplete}");
             };
             FastZip fastzip = new FastZip(events);
-            fastzip.ExtractZip(path, "extracted", @"\.csv$");
+            fastzip.ExtractZip(path, shared.PokemonCsvPath(), @"\.csv$");
+
+            //var directories = System.IO.Directory.EnumerateDirectories(path + "/..");
+            //foreach (var directory in directories)
+            //{
+            //    Console.WriteLine(directory);
+            //    txtView.Text += directory + Environment.NewLine;
+            //}
 
 
             //this.dbFactory = dbFactory;

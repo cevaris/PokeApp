@@ -25,6 +25,16 @@ namespace PokeApp.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
+            //AssetManager assets = this.Assets;
+            //var fd = assets.Open("AboutAssets.txt");
+            //System.Diagnostics.Debug.WriteLine($"fd len {fd.}");
+            //fd.Close();
+
+            //fd = assets.Open(PokeApp.Data.Constants.ZipName);
+            //System.Diagnostics.Debug.WriteLine($"fd len {fd.Length}");
+            //fd.Close();
+
+
             LoadApplication(new App());
         }
     }

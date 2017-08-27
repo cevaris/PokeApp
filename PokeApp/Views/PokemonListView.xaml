@@ -23,7 +23,7 @@
                             <Image Source="{Binding FrontSpriteUrl}"
                                 HorizontalOptions="FillAndExpand"
                                 VerticalOptions="FillAndExpand"
-                                WidthRequest="100" />
+                                WidthRequest="30" />
                         </StackLayout>
                     </StackLayout>
                 </ViewCell>

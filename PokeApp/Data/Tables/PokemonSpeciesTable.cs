@@ -26,7 +26,9 @@ namespace PokeApp.Data
         {
             get
             {
-                return $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{Id}.png";
+                //return $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{Id}.png";
+                //return $"https://img.pokemondb.net/artwork/{Identifier}.jpg"; 
+                return $"http://www.psypokes.com/dex/regular/{Id.ToString("000")}.png";
             }
         }
 

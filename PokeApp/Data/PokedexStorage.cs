@@ -3,6 +3,7 @@ using System.IO;
 using Xamarin.Forms;
 using ICSharpCode.SharpZipLib.Zip;
 using PokeApp.Utils;
+using System.Threading.Tasks;
 
 namespace PokeApp.Data
 {
@@ -22,9 +23,12 @@ namespace PokeApp.Data
             }
             else
             {
-                Unzip();
-                // Parse CSV to *Tables
-                // Save them to DB
+                Task.Run(() =>
+                {
+                    Unzip();
+                    //Parse CSV to *Tables
+                    //Save them to DB
+                }).ConfigureAwait(false);
             }
         }
 

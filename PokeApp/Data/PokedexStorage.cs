@@ -6,6 +6,7 @@ using PokeApp.Utils;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using PokeApp.Data.Csv;
+using SQLite;
 
 namespace PokeApp.Data
 {
@@ -24,8 +25,8 @@ namespace PokeApp.Data
             else
             {
                 // Unzip, Parse, Write to DB
-                Task.Run(() =>
-                {
+                //Task.Run(() =>
+                //{
                     try
                     {
                         instance.Unzip();
@@ -38,7 +39,7 @@ namespace PokeApp.Data
                     {
                         Logger.Error("failed to init Pokedex data", e);
                     }
-                }).ConfigureAwait(false);
+                //}).ConfigureAwait(false);
             }
         }
 
@@ -63,10 +64,23 @@ namespace PokeApp.Data
             // "pokemon_habitat_names.csv" -> id, local_language_id, name
             // "generation_names.csv" -> generation_id, local_language_id, name 
 
+            SQLiteAsyncConnection conn = App.Shared.GetAsyncConnection();
+
+            conn.CreateTableAsync<PokemonSpeciesTable>().Wait();
             List<PokemonSpeciesTable> pokemonSpecies = ParseTable(new PokemonSpeciesCsv());
+            conn.InsertAllAsync(pokemonSpecies).Wait();
+
+            conn.CreateTableAsync<HabitatTable>().Wait();
             List<HabitatTable> habbits = ParseTable(new HabitatCsv());
+            conn.InsertAllAsync(habbits).Wait();
+
+            conn.CreateTableAsync<GenerationTable>().Wait();
             List<GenerationTable> generations = ParseTable(new GenerationCsv());
+            conn.InsertAllAsync(generations).Wait();
+
+            conn.CreateTableAsync<LanguageTable>().Wait();
             List<LanguageTable> languages = ParseTable(new LanguageCsv());
+            conn.InsertAllAsync(languages).Wait();
         }
 
         private List<T> ParseTable<T>(ICsvInfo<T> csvInfo) where T : PokedexTable

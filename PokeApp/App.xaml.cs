@@ -34,6 +34,14 @@ namespace PokeApp
         {
             // Handle when your app starts
             PokedexStorage.Init();
+
+            SQLite.SQLiteAsyncConnection conn = App.Shared.GetAsyncConnection();
+            var query = conn.Table<PokemonSpeciesTable>().ToListAsync();
+
+            var result = query.Result;
+
+            foreach (var species in result)
+                System.Diagnostics.Debug.WriteLine("Species: " + species.Identifier);
         }
 
         protected override void OnSleep()

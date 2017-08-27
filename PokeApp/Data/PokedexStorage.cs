@@ -12,6 +12,12 @@ namespace PokeApp.Data
     {
         readonly static ILogger Logger = new ConsoleLogger(nameof(PokedexStorage));
 
+        const string PokemonSpeciesCsvName = "pokemon_species.csv";
+        const string HabbitNamesCsvName = "pokemon_habitat_names.csv";
+        const string GenerationNamesCsvName = "generation_names.csv";
+        const string LanguagesCsvName = "languages.csv";
+
+
         public PokedexStorage()
         {
         }
@@ -24,14 +30,14 @@ namespace PokeApp.Data
             }
             else
             {
-                Task.Run(() =>
-                {
+                // Unzip, Parse, Write to DB
+                //Task.Run(() =>
+                //{
                     Unzip();
                     ParseTables();
-                    //Parse CSV to *Tables
                     //Save them to DB
                     //SaveToFile
-                }).ConfigureAwait(false);
+                //}).ConfigureAwait(false);
             }
         }
 
@@ -52,11 +58,38 @@ namespace PokeApp.Data
 
         private static List<PokedexTable> ParseTables()
         {
-            List<PokedexTable> tables = new List<PokedexTable>();
+            
             // LanguageId 9 is english
             // "pokemon_species.csv"  -> id, identifier, generation_id, evolution_chain_id, evolves_from_species_id, habitat_id, capture_rate
             // "pokemon_habitat_names.csv" -> id, local_language_id, name
             // "generation_names.csv" -> generation_id, local_language_id, name 
+
+            List<PokedexTable> pokemonSpecies = ParseTable(PokemonSpeciesCsvName, PokemonSpeciesTable.FromCsv);
+            List<PokedexTable> habbits = ParseTable(HabbitNamesCsvName, HabitatTable.FromCsv);
+            List<PokedexTable> generations = ParseTable(GenerationNamesCsvName, GenerationTable.FromCsv);
+            List<PokedexTable> languages = ParseTable(LanguagesCsvName, LanguageTable.FromCsv);
+
+            return new List<PokedexTable>();
+        }
+
+        private static List<PokedexTable> ParseTable(string filename, Func<String, PokedexTable> FromCsv)
+        {
+            List<PokedexTable> tables = new List<PokedexTable>();
+            string pokemonSpeciesPath = Path.Combine(App.Shared.PokedexCsvPath(), filename);
+            Logger.Info($"reading file {pokemonSpeciesPath}");
+
+            using (StreamReader reader = App.Shared.OpenReader(pokemonSpeciesPath))
+            {
+                reader.ReadLine(); // ignore csv headers
+                while (!reader.EndOfStream)
+                {
+                    string line = reader.ReadLine();
+                    Logger.Info($"parsing line {line}");
+
+                    PokedexTable table = FromCsv(line);
+                    tables.Add(table);
+                }
+            }
 
             return tables;
         }

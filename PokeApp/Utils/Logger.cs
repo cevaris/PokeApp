@@ -22,7 +22,7 @@ namespace PokeApp.Utils
 
         public void Error(object obj, Exception e)
         {
-            System.Diagnostics.Debug.WriteLine($"{prefix("INFO")} - {obj}\n{e.Message}");
+            System.Diagnostics.Debug.WriteLine($"{prefix("INFO")} - {obj} - {e.Message}");
         }
 
         private string prefix(string level)

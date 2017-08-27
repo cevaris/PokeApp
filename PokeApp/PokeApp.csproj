@@ -67,6 +67,10 @@
     <Compile Include="Data\PokedexStorage.cs" />
     <Compile Include="Data\Tables\PokemonSpeciesTable.cs" />
     <Compile Include="Data\Tables\PokedexTable.cs" />
+    <Compile Include="Utils\TextUtils.cs" />
+    <Compile Include="Data\Tables\HabitatTable.cs" />
+    <Compile Include="Data\Tables\GenerationTable.cs" />
+    <Compile Include="Data\Tables\LanguageTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

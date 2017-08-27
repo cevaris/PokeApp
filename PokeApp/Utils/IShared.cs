@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using System.IO;
+using SQLite;
 
 namespace PokeApp.Utils
 {
@@ -10,6 +11,8 @@ namespace PokeApp.Utils
         string PokedexZipPath();
         string PokedexCsvPath();
         bool PokedexCsvExists();
-        
+
+        StreamReader OpenReader(string filename);
+        StreamWriter OpenWriter(string filename);
     }
 }

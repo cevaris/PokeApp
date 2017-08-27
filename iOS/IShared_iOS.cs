@@ -46,8 +46,17 @@ namespace PokeApp.iOS
 
         public bool PokedexCsvExists()
         {
-            return false;
+            return File.Exists(PokedexCsvPath());
         }
 
+        public StreamReader OpenReader(string filename)
+        {
+            return new StreamReader(filename);
+        }
+
+        public StreamWriter OpenWriter(string filename)
+        {
+            return new StreamWriter(filename);
+        }
     }
 }

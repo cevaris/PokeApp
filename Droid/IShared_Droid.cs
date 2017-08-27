@@ -15,14 +15,16 @@ namespace PokeApp.Droid
     {
         private static ILogger Logger = new ConsoleLogger("IShared_Droid");
 
+        private static string ExternalDirectory =
+            Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
+
         public IShared_Droid()
         {
         }
 
         public string GetDatabasePath()
         {
-            string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal); // Documents folder
-            string pathFull = Path.Combine(documentsPath, Constants.DatabaseName);
+            string pathFull = Path.Combine(ExternalDirectory, Constants.DatabaseName);
 
             Logger.Info($"dbpath: {pathFull}");
 
@@ -40,15 +42,13 @@ namespace PokeApp.Droid
             CopyAssets("AboutAssets.txt");
             CopyAssets(Constants.ZipName);
 
-            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            var filePath = Path.Combine(documentsPath, Constants.ZipName);
+            var filePath = Path.Combine(ExternalDirectory, Constants.ZipName);
             return filePath;
         }
 
         public string PokedexCsvPath()
         {
-            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            var filePath = Path.Combine(documentsPath, "extracted");
+            var filePath = Path.Combine(ExternalDirectory, "extracted");
             return filePath;
         }
 
@@ -65,28 +65,9 @@ namespace PokeApp.Droid
         {
             AssetManager assetManager = Forms.Context.Assets;
             //Logger.Info($"checking assets {assetManager.List("").ToString()}");
-
-            //var foundAsset = assetManager.List(Constants.ZipName);
-
-            //foreach (String filename in assetManager.List(""))
-            //{
-            //Logger.Info($"Looking for asset {assetName}  {assetManager.OpenFd(assetName).Length}");
             Logger.Info($"Looking for asset {assetName}");
-            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            var filePath = Path.Combine(documentsPath, assetName);
+            var filePath = Path.Combine(ExternalDirectory, assetName);
 
-            //if (File.Exists(filePath))
-            //{
-            //    Logger.Info($"{filename} already written to {filePath} {new FileInfo(filePath).Length}");
-            //    continue; // skip if file already written
-            //}
-            //else
-            //{
-            //    Logger.Info($"{filename} needs to be written");
-            //}
-
-            //using (var reader = new StreamReader(assetManager.Open(Constants.ZipName)))
-            //{
             using (StreamWriter writer = new StreamWriter(filePath))
             {
                 using (Stream asset = assetManager.Open(assetName))
@@ -95,9 +76,6 @@ namespace PokeApp.Droid
                     Logger.Info($"{assetName} written to {filePath} {new FileInfo(filePath).Length} bytes");
                 }
             }
-            //}
-
-            //}
         }
     }
 }

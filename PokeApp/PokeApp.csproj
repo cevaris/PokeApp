@@ -71,6 +71,11 @@
     <Compile Include="Data\Tables\HabitatTable.cs" />
     <Compile Include="Data\Tables\GenerationTable.cs" />
     <Compile Include="Data\Tables\LanguageTable.cs" />
+    <Compile Include="Data\Csv\PokemonSpeciesCsv.cs" />
+    <Compile Include="Data\CSV\ICsvInfo.cs" />
+    <Compile Include="Data\Csv\GenerationCsv.cs" />
+    <Compile Include="Data\Csv\HabitatCsv.cs" />
+    <Compile Include="Data\Csv\LanguageCsv.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
@@ -110,6 +115,7 @@
     <Folder Include="Data\" />
     <Folder Include="Utils\" />
     <Folder Include="Data\Tables\" />
+    <Folder Include="Data\Csv\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

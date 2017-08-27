@@ -3,5 +3,6 @@ namespace PokeApp.Data
 {
     public class PokedexTable
     {
+        
     }
 }

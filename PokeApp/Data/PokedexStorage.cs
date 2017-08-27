@@ -5,6 +5,7 @@ using ICSharpCode.SharpZipLib.Zip;
 using PokeApp.Utils;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using PokeApp.Data.Csv;
 
 namespace PokeApp.Data
 {
@@ -12,15 +13,7 @@ namespace PokeApp.Data
     {
         readonly static ILogger Logger = new ConsoleLogger(nameof(PokedexStorage));
 
-        const string PokemonSpeciesCsvName = "pokemon_species.csv";
-        const string HabbitNamesCsvName = "pokemon_habitat_names.csv";
-        const string GenerationNamesCsvName = "generation_names.csv";
-        const string LanguagesCsvName = "languages.csv";
-
-
-        public PokedexStorage()
-        {
-        }
+        private static PokedexStorage instance = new PokedexStorage();
 
         public static void Init()
         {
@@ -31,18 +24,25 @@ namespace PokeApp.Data
             else
             {
                 // Unzip, Parse, Write to DB
-                //Task.Run(() =>
-                //{
-                    Unzip();
-                    ParseTables();
-                    //Save them to DB
-                    //SaveToFile
-                //}).ConfigureAwait(false);
+                Task.Run(() =>
+                {
+                    try
+                    {
+                        instance.Unzip();
+                        instance.ParseTables();
+                        //Save them to DB
+                        //SaveToFile
+                        Logger.Info("done init Pokedex data");
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.Error("failed to init Pokedex data", e);
+                    }
+                }).ConfigureAwait(false);
             }
         }
 
-
-        private static void Unzip()
+        private void Unzip()
         {
             var path = App.Shared.PokedexZipPath();
             Logger.Info($"found zip path {path}");
@@ -56,26 +56,26 @@ namespace PokeApp.Data
             fastzip.ExtractZip(path, App.Shared.PokedexCsvPath(), @"\.csv$");
         }
 
-        private static List<PokedexTable> ParseTables()
+        private List<PokedexTable> ParseTables()
         {
-            
+
             // LanguageId 9 is english
             // "pokemon_species.csv"  -> id, identifier, generation_id, evolution_chain_id, evolves_from_species_id, habitat_id, capture_rate
             // "pokemon_habitat_names.csv" -> id, local_language_id, name
             // "generation_names.csv" -> generation_id, local_language_id, name 
 
-            List<PokedexTable> pokemonSpecies = ParseTable(PokemonSpeciesCsvName, PokemonSpeciesTable.FromCsv);
-            List<PokedexTable> habbits = ParseTable(HabbitNamesCsvName, HabitatTable.FromCsv);
-            List<PokedexTable> generations = ParseTable(GenerationNamesCsvName, GenerationTable.FromCsv);
-            List<PokedexTable> languages = ParseTable(LanguagesCsvName, LanguageTable.FromCsv);
+            List<PokedexTable> pokemonSpecies = ParseTable(new Csv.PokemonSpeciesCsv());
+            List<PokedexTable> habbits = ParseTable(new HabitatCsv());
+            List<PokedexTable> generations = ParseTable(new GenerationCsv());
+            List<PokedexTable> languages = ParseTable(new LanguageCsv());
 
             return new List<PokedexTable>();
         }
 
-        private static List<PokedexTable> ParseTable(string filename, Func<String, PokedexTable> FromCsv)
+        private List<PokedexTable> ParseTable(ICsvInfo csvInfo)
         {
             List<PokedexTable> tables = new List<PokedexTable>();
-            string pokemonSpeciesPath = Path.Combine(App.Shared.PokedexCsvPath(), filename);
+            string pokemonSpeciesPath = Path.Combine(App.Shared.PokedexCsvPath(), csvInfo.Filename());
             Logger.Info($"reading file {pokemonSpeciesPath}");
 
             using (StreamReader reader = App.Shared.OpenReader(pokemonSpeciesPath))
@@ -86,7 +86,7 @@ namespace PokeApp.Data
                     string line = reader.ReadLine();
                     Logger.Info($"parsing line {line}");
 
-                    PokedexTable table = FromCsv(line);
+                    PokedexTable table = csvInfo.FromCsv(line);
                     tables.Add(table);
                 }
             }

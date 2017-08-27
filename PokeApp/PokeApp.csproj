@@ -76,6 +76,8 @@
     <Compile Include="Data\Csv\GenerationCsv.cs" />
     <Compile Include="Data\Csv\HabitatCsv.cs" />
     <Compile Include="Data\Csv\LanguageCsv.cs" />
+    <Compile Include="Data\Csv\PokemonSpeciesNameCsv.cs" />
+    <Compile Include="Data\Tables\PokemonSpeciesNameTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

@@ -18,7 +18,7 @@ namespace PokeApp.Utils
             }
         }
 
-        public static int? ParseNInt32(string value)
+        public static Nullable<int> ParseNInt32(string value)
         {
             int result;
             if (Int32.TryParse(value, out result))

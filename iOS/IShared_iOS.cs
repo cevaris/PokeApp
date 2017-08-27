@@ -11,7 +11,7 @@ namespace PokeApp.iOS
 {
     public class IShared_iOS : IShared
     {
-        private static ILogger Logger = new ConsoleLogger("SQLite_Android");
+        private static ILogger Logger = new ConsoleLogger(nameof(IShared_iOS));
 
         public IShared_iOS()
         {

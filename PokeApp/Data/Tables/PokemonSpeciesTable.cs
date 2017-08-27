@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using System;
+using SQLite;
 
 namespace PokeApp.Data
 {
@@ -12,11 +13,11 @@ namespace PokeApp.Data
 
         public int GenerationId { get; set; }
 
-        public int? EvolutionChainId { get; set; }
+        public Nullable<int> EvolutionChainId { get; set; }
 
-        public int? EvolvesFromSpeciesId { get; set; }
+        public Nullable<int> EvolvesFromSpeciesId { get; set; }
 
-        public int? HabitatId { get; set; }
+        public Nullable<int> HabitatId { get; set; }
 
         public int CaptureRate { get; set; }
 

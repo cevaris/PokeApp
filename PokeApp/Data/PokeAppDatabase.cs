@@ -17,8 +17,11 @@ namespace PokeApp
         readonly IShared dbFactory;
         readonly ILogger Logger = new ConsoleLogger("PokeAppDatabase");
 
-        public PokeAppDatabase(IShared dbFactory)
+        public PokeAppDatabase(IShared shared)
         {
+
+            var path = shared.PokemonZipPath();
+            Logger.Info($"found zip path {path}");
             
             // https://github.com/escamoteur/TBInfrastructure/blob/7363fcab59b44654eee4fee3d89eccaae66e1c7c/FileStorage.cs#L128
 
@@ -39,7 +42,7 @@ namespace PokeApp
                 Logger.Info($"{e.Name} - {e.PercentComplete}");
             };
             FastZip fastzip = new FastZip(events);
-            //fastzip.ExtractZip("Pokedex.zip", "extracted", @"\.csv$");
+            fastzip.ExtractZip(path, "extracted", @"\.csv$");
 
 
             //this.dbFactory = dbFactory;

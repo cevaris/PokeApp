@@ -67,21 +67,13 @@ namespace PokeApp.Data
             // "pokemon_species_names.csv" -> pokemon_species_id,local_language_id,name,genus
 
             SQLiteAsyncConnection conn = App.Shared.GetAsyncConnection();
-            SQLiteConnection connSync = new SQLiteConnection(App.Shared.GetDatabasePath());
 
             Task speciesTask = Task.Run(() =>
             {
                 conn.DropTableAsync<PokemonSpeciesTable>().Wait();
                 conn.CreateTableAsync<PokemonSpeciesTable>().Wait();
                 List<PokemonSpeciesTable> pokemonSpecies = ParseTable(new PokemonSpeciesCsv());
-                conn.InsertAllAsync(pokemonSpecies).Wait();
-                //foreach (PokemonSpeciesTable table in pokemonSpecies)
-                //{
-                //    Logger.Info($"inserting {table.Id}-{table.Identifier}");
-                //    //connSync.Insert(table);
-                //    conn.InsertAsync(table).Wait();
-                //}
-
+                conn.InsertAllAsync(pokemonSpecies).Wait();            
             });
 
             Task speciesNamesTask = Task.Run(() =>
@@ -124,12 +116,6 @@ namespace PokeApp.Data
                 generationTask,
                 languageTask
             }).Wait();
-
-            //speciesTask.Wait();
-            //speciesNamesTask.Wait();
-            //habbitTask.Wait();
-            //generationTask.Wait();
-            //languageTask.Wait();
         }
 
         private List<T> ParseTable<T>(ICsvInfo<T> csvInfo) where T : PokedexTable

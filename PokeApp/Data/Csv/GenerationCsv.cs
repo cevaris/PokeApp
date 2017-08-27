@@ -3,14 +3,14 @@ using PokeApp.Utils;
 
 namespace PokeApp.Data.Csv
 {
-    public class GenerationCsv : ICsvInfo
+    public class GenerationCsv : ICsvInfo<GenerationTable>
     {
         public string Filename()
         {
             return "generation_names.csv";
         }
 
-        public PokedexTable FromCsv(string line)
+        public GenerationTable FromCsv(string line)
         {
             String[] data = line.Split(',');
 

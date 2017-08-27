@@ -1,8 +1,8 @@
 ﻿namespace PokeApp.Data.Csv
 {
-    public interface ICsvInfo
+    public interface ICsvInfo<T> where T : PokedexTable
     {
         string Filename();
-        PokedexTable FromCsv(string line);
+        T FromCsv(string line);
     }
 }

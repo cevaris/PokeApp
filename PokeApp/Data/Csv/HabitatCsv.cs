@@ -3,14 +3,14 @@ using PokeApp.Utils;
 
 namespace PokeApp.Data.Csv
 {
-    public class HabitatCsv : ICsvInfo
+    public class HabitatCsv : ICsvInfo<HabitatTable>
     {
         public string Filename()
         {
             return "pokemon_habitat_names.csv";
         }
 
-        public PokedexTable FromCsv(string line)
+        public HabitatTable FromCsv(string line)
         {
             String[] data = line.Split(',');
 

@@ -3,14 +3,14 @@ using PokeApp.Utils;
 
 namespace PokeApp.Data.Csv
 {
-    public class LanguageCsv : ICsvInfo
+    public class LanguageCsv : ICsvInfo<LanguageTable>
     {
         public string Filename()
         {
             return "languages.csv";
         }
 
-        public PokedexTable FromCsv(string line)
+        public LanguageTable FromCsv(string line)
         {
             String[] data = line.Split(',');
 

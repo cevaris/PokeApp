@@ -29,7 +29,7 @@ namespace PokeApp.Data
                     try
                     {
                         instance.Unzip();
-                        instance.ParseTables();
+                        instance.ParseAndPersistTables();
                         //Save them to DB
                         //SaveToFile
                         Logger.Info("done init Pokedex data");
@@ -56,25 +56,22 @@ namespace PokeApp.Data
             fastzip.ExtractZip(path, App.Shared.PokedexCsvPath(), @"\.csv$");
         }
 
-        private List<PokedexTable> ParseTables()
+        private void ParseAndPersistTables()
         {
-
             // LanguageId 9 is english
             // "pokemon_species.csv"  -> id, identifier, generation_id, evolution_chain_id, evolves_from_species_id, habitat_id, capture_rate
             // "pokemon_habitat_names.csv" -> id, local_language_id, name
             // "generation_names.csv" -> generation_id, local_language_id, name 
 
-            List<PokedexTable> pokemonSpecies = ParseTable(new Csv.PokemonSpeciesCsv());
-            List<PokedexTable> habbits = ParseTable(new HabitatCsv());
-            List<PokedexTable> generations = ParseTable(new GenerationCsv());
-            List<PokedexTable> languages = ParseTable(new LanguageCsv());
-
-            return new List<PokedexTable>();
+            List<PokemonSpeciesTable> pokemonSpecies = ParseTable(new PokemonSpeciesCsv());
+            List<HabitatTable> habbits = ParseTable(new HabitatCsv());
+            List<GenerationTable> generations = ParseTable(new GenerationCsv());
+            List<LanguageTable> languages = ParseTable(new LanguageCsv());
         }
 
-        private List<PokedexTable> ParseTable(ICsvInfo csvInfo)
+        private List<T> ParseTable<T>(ICsvInfo<T> csvInfo) where T : PokedexTable
         {
-            List<PokedexTable> tables = new List<PokedexTable>();
+            List<T> tables = new List<T>();
             string pokemonSpeciesPath = Path.Combine(App.Shared.PokedexCsvPath(), csvInfo.Filename());
             Logger.Info($"reading file {pokemonSpeciesPath}");
 
@@ -86,7 +83,7 @@ namespace PokeApp.Data
                     string line = reader.ReadLine();
                     Logger.Info($"parsing line {line}");
 
-                    PokedexTable table = csvInfo.FromCsv(line);
+                    T table = csvInfo.FromCsv(line);
                     tables.Add(table);
                 }
             }

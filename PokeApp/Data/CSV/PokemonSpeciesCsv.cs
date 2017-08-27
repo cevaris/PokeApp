@@ -3,10 +3,9 @@ using System;
 
 namespace PokeApp.Data.Csv
 {
-
-    public class PokemonSpeciesCsv : ICsvInfo
+    public class PokemonSpeciesCsv : ICsvInfo<PokemonSpeciesTable>
     {
-        public PokedexTable FromCsv(string line)
+        public PokemonSpeciesTable FromCsv(string line)
         {
             String[] data = line.Split(',');
 

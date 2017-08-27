@@ -21,5 +21,14 @@ namespace PokeApp.Data
 
         public int CaptureRate { get; set; }
 
+        [Ignore]
+        public string FrontSpriteUrl
+        {
+            get
+            {
+                return $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{Id}.png";
+            }
+        }
+
     }
 }

@@ -6,17 +6,17 @@ namespace PokeApp
 {
     public class PokemonResourceListViewModel
     {
-        public ObservableCollection<NamedApiResource> List { get; set; }
+        public ObservableCollection<PokemonSpeciesTable> List { get; set; }
 
         public PokemonResourceListViewModel()
         {
-            List = new ObservableCollection<NamedApiResource>();
-            foreach (PokemonResourceList ps in Constants.TestPokemonIndexModels)
+            SQLite.SQLiteAsyncConnection conn = App.Shared.GetAsyncConnection();
+            var query = conn.Table<PokemonSpeciesTable>().ToListAsync();
+
+            List = new ObservableCollection<PokemonSpeciesTable>();
+            foreach (PokemonSpeciesTable ps in query.Result)
             {
-                foreach (NamedApiResource p in ps.Results)
-                {
-                    List.Add(p);
-                }
+                List.Add(ps);
             }
         }
     }

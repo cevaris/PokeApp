@@ -2,22 +2,29 @@
 <StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="PokeApp.PokemonListView">
-    <ListView
-        ItemsSource="{Binding List}"
+    <ListView ItemsSource="{Binding List}"
         ItemSelected="OnSelectedItem"
         RowHeight="50">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <StackLayout Orientation="Vertical"
-                        VerticalOptions="FillAndExpand"
-                        HorizontalOptions="FillAndExpand"
+                    <StackLayout Orientation="Horizontal"
                         Margin="5">
-                        <Label Text="{Binding Name}"
-                            HorizontalOptions="Start" />
-                        <Label Text="{Binding Url}"
-                            FontSize="12"
-                            HorizontalOptions="StartAndExpand" />
+                        <StackLayout Orientation="Vertical"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand">
+                            <Label Text="{Binding Id}"
+                                HorizontalOptions="Start" />
+                            <Label Text="{Binding Identifier}"
+                                FontSize="12"
+                                HorizontalOptions="StartAndExpand" />
+                        </StackLayout>
+                        <StackLayout>
+                            <Image Source="{Binding FrontSpriteUrl}"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand"
+                                WidthRequest="100" />
+                        </StackLayout>
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>

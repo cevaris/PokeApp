@@ -34,14 +34,19 @@ namespace PokeApp.iOS
             return new SQLiteAsyncConnection(dbPath);
         }
 
-        public string PokemonZipPath()
+        public string PokedexZipPath()
         {
             return "Pokedex.zip";
         }
 
-        public string PokemonCsvPath()
+        public string PokedexCsvPath()
         {
             return "extracted";
+        }
+
+        public bool PokedexCsvExists()
+        {
+            return false;
         }
 
     }

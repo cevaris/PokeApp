@@ -3,13 +3,14 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using PokeApp.Models;
 using PokeApp.Utils;
+using PokeApp.Data;
 
 namespace PokeApp
 {
 
     public partial class App : Application
     {
-        private static PokeAppDatabase database;
+        private static IShared shared;
 
         public App()
         {
@@ -17,23 +18,22 @@ namespace PokeApp
             MainPage = new NavigationPage(new AppMainPage());
         }
 
-        public static PokeAppDatabase Database
+        public static IShared Shared
         {
             get
             {
-                if (database == null)
+                if (shared == null)
                 {
-                    IShared factory = DependencyService.Get<IShared>();
-                    System.Diagnostics.Debug.WriteLine(factory.GetDatabasePath());
-                    database = new PokeAppDatabase(factory);
+                    shared = DependencyService.Get<IShared>();
                 }
-                return database;
+                return shared;
             }
         }
 
         protected override void OnStart()
         {
             // Handle when your app starts
+            PokedexStorage.Init();
         }
 
         protected override void OnSleep()

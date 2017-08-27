@@ -64,6 +64,7 @@
     <Compile Include="Models\NamedApiResource.cs" />
     <Compile Include="Utils\Loader.cs" />
     <Compile Include="Utils\IShared.cs" />
+    <Compile Include="Data\PokedexStorage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

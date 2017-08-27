@@ -35,7 +35,7 @@ namespace PokeApp.Droid
             return new SQLiteAsyncConnection(dbPath);
         }
 
-        public string PokemonZipPath()
+        public string PokedexZipPath()
         {
             CopyAssets("AboutAssets.txt");
             CopyAssets(Constants.ZipName);
@@ -45,12 +45,18 @@ namespace PokeApp.Droid
             return filePath;
         }
 
-        public string PokemonCsvPath()
+        public string PokedexCsvPath()
         {
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             var filePath = Path.Combine(documentsPath, "extracted");
             return filePath;
         }
+
+        public bool PokedexCsvExists()
+        {
+            return false;
+        }
+
 
 
 

@@ -12,3 +12,8 @@ SQLite storage
 - https://github.com/praeclarum/sqlite-net
 - https://github.com/xamarin/xamarin-forms-samples/tree/master/Todo
 - https://github.com/michaeldimoudis/xam-forms-sqlitenet-async
+
+
+Credits
+- Sprites: https://pokemondb.net/
+- Data:    https://github.com/veekun/pokedex

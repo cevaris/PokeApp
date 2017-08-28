@@ -10,7 +10,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{288CC50E-7689-45D5-AE6D-E7F8342FA7A4}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
-		zip-pokedex.sh = zip-pokedex.sh
+		scripts\download-images.py = scripts\download-images.py
+		scripts\zip-pokedex.sh = scripts\zip-pokedex.sh
 	EndProjectSection
 EndProject
 Global

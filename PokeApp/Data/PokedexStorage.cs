@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using PokeApp.Data.Csv;
 using SQLite;
+using PokeApp.Data.Tables;
 
 namespace PokeApp.Data
 {

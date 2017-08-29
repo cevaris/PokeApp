@@ -1,4 +1,5 @@
 ﻿using PokeApp.Utils;
+using PokeApp.Data.Tables;
 using System;
 
 namespace PokeApp.Data.Csv

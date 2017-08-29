@@ -1,5 +1,5 @@
 ﻿using PokeApp.Data;
-using PokeApp.Models;
+using PokeApp.Data.Tables;
 using System.Collections.ObjectModel;
 
 namespace PokeApp

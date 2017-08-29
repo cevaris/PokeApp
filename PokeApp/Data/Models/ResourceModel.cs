@@ -1,7 +1,7 @@
 ﻿using SQLite;
 using System;
 
-namespace PokeApp.Models
+namespace PokeApp.Data.Models
 {
     public class ResourceModel
     {

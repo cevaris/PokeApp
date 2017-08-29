@@ -1,6 +1,4 @@
-﻿using SQLite;
-
-namespace PokeApp.Data
+﻿namespace PokeApp.Data.Tables
 {
     public class PokemonSpeciesNameTable : PokedexTable
     {

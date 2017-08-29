@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace PokeApp.Models
+namespace PokeApp.Data.Models
 {
     public class PokemonModel
     {

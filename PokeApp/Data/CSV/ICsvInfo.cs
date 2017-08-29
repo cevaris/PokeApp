@@ -1,4 +1,6 @@
-﻿namespace PokeApp.Data.Csv
+﻿using PokeApp.Data.Tables;
+
+namespace PokeApp.Data.Csv
 {
     public interface ICsvInfo<T> where T : PokedexTable
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using PokeApp.Models;
+using PokeApp.Data.Models;
 using PokeApp.Utils;
 using PokeApp.Data;
 

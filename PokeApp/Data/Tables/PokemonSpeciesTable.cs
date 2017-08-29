@@ -1,7 +1,7 @@
 ﻿using System;
 using SQLite;
 
-namespace PokeApp.Data
+namespace PokeApp.Data.Tables
 {
 
     public class PokemonSpeciesTable : PokedexTable

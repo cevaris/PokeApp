@@ -1,4 +1,4 @@
-﻿using PokeApp.Models;
+﻿using PokeApp.Data.Models;
 using System;
 using System.Collections.Generic;
 

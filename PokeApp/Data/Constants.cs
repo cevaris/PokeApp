@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using PokeApp.Models;
+using PokeApp.Data.Models;
 
 namespace PokeApp.Data
 {

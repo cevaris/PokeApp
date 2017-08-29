@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using SQLite;
 
-namespace PokeApp.Models
+namespace PokeApp.Data.Models
 {
     public class PokemonResourceList
     {

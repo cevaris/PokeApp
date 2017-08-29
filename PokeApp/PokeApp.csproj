@@ -44,7 +44,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\PokemonModel.cs" />
     <Compile Include="ViewModels\PokemonResourceListViewModel.cs" />
     <Compile Include="Views\AppMainPage.xaml.cs">
       <DependentUpon>AppMainPage.xaml</DependentUpon>
@@ -58,10 +57,7 @@
     </Compile>
     <Compile Include="Data\PokeAppDatabase.cs" />
     <Compile Include="Utils\Logger.cs" />
-    <Compile Include="Models\PokemonIndexModel.cs" />
     <Compile Include="Data\Constants.cs" />
-    <Compile Include="Models\ResourceModel.cs" />
-    <Compile Include="Models\NamedApiResource.cs" />
     <Compile Include="Utils\Loader.cs" />
     <Compile Include="Utils\IShared.cs" />
     <Compile Include="Data\PokedexStorage.cs" />
@@ -78,6 +74,10 @@
     <Compile Include="Data\Csv\LanguageCsv.cs" />
     <Compile Include="Data\Csv\PokemonSpeciesNameCsv.cs" />
     <Compile Include="Data\Tables\PokemonSpeciesNameTable.cs" />
+    <Compile Include="Data\Models\NamedApiResource.cs" />
+    <Compile Include="Data\Models\PokemonIndexModel.cs" />
+    <Compile Include="Data\Models\PokemonModel.cs" />
+    <Compile Include="Data\Models\ResourceModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
@@ -112,12 +112,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="Views\" />
     <Folder Include="Data\" />
     <Folder Include="Utils\" />
     <Folder Include="Data\Tables\" />
     <Folder Include="Data\Csv\" />
+    <Folder Include="Data\Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

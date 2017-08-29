@@ -1,8 +1,6 @@
-﻿using System;
-namespace PokeApp.Data
+﻿namespace PokeApp.Data.Tables
 {
-    public class PokedexTable
-    {
-        
+    public interface PokedexTable
+    { 
     }
 }

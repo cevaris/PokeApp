@@ -80,6 +80,8 @@
     <Compile Include="Data\Models\ResourceModel.cs" />
     <Compile Include="Data\Mappers\PokemonMapper.cs" />
     <Compile Include="Data\Mappers\Mapper.cs" />
+    <Compile Include="Data\Csv\PokemonCsv.cs" />
+    <Compile Include="Data\Tables\PokemonTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

@@ -1,9 +1,8 @@
-﻿using SQLite;
-
-namespace PokeApp.Data.Tables
+﻿namespace PokeApp.Data.Tables
 {
     public class GenerationTable : PokedexTable
     {
+        [SQLite.Indexed]
         public int Id { get; set; }
 
         public int LanguageId { get; set; }

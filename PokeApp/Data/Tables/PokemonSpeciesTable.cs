@@ -1,12 +1,11 @@
 ﻿using System;
-using SQLite;
 
 namespace PokeApp.Data.Tables
 {
 
     public class PokemonSpeciesTable : PokedexTable
     {
-        [PrimaryKey]
+        [SQLite.PrimaryKey]
         public int Id { get; set; }
 
         public string Identifier { get; set; }
@@ -21,7 +20,7 @@ namespace PokeApp.Data.Tables
 
         public int CaptureRate { get; set; }
 
-        [Ignore]
+        [SQLite.Ignore]
         public string FrontSpriteUrl
         {
             get

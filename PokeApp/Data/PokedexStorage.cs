@@ -66,6 +66,7 @@ namespace PokeApp.Data
             // "pokemon_habitat_names.csv" -> id, local_language_id, name
             // "generation_names.csv" -> generation_id, local_language_id, name 
             // "pokemon_species_names.csv" -> pokemon_species_id,local_language_id,name,genus
+            // "pokemon.csv" -> id,identifier,species_id,height,weight,base_experience,order,is_default
 
             SQLiteAsyncConnection conn = App.Shared.GetAsyncConnection();
 
@@ -75,6 +76,14 @@ namespace PokeApp.Data
                 conn.CreateTableAsync<PokemonSpeciesTable>().Wait();
                 List<PokemonSpeciesTable> pokemonSpecies = ParseTable(new PokemonSpeciesCsv());
                 conn.InsertAllAsync(pokemonSpecies).Wait();            
+            });
+
+            Task pokemonTask = Task.Run(() =>
+            {
+                conn.DropTableAsync<PokemonTable>().Wait();
+                conn.CreateTableAsync<PokemonTable>().Wait();
+                List<PokemonTable> pokemon = ParseTable(new PokemonCsv());
+                conn.InsertAllAsync(pokemon).Wait();
             });
 
             Task speciesNamesTask = Task.Run(() =>
@@ -113,6 +122,7 @@ namespace PokeApp.Data
             Task.WhenAll(new Task[]{
                 speciesTask,
                 speciesNamesTask,
+                pokemonTask,
                 habbitTask,
                 generationTask,
                 languageTask

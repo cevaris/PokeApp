@@ -1,12 +1,11 @@
-﻿using SQLite;
-
-namespace PokeApp.Data.Tables
+﻿namespace PokeApp.Data.Tables
 {
     public class LanguageTable : PokedexTable
     {
-        [PrimaryKey]
+        [SQLite.Indexed]
         public int Id { get; set; }
 
+        [SQLite.Indexed]
         public string Iso639 { get; set; }
 
         public string Iso3166 { get; set; }

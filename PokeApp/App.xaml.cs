@@ -4,6 +4,9 @@ using Xamarin.Forms.Xaml;
 using PokeApp.Data.Models;
 using PokeApp.Utils;
 using PokeApp.Data;
+using PokeApp.Data.Tables;
+using System.Threading.Tasks;
+using System;
 
 namespace PokeApp
 {
@@ -12,10 +15,13 @@ namespace PokeApp
     {
         private static IShared shared;
 
+        private AppMainPage appMainPage;
+
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new AppMainPage());
+            appMainPage = new AppMainPage();
+            MainPage = new NavigationPage(appMainPage);
         }
 
         public static IShared Shared
@@ -34,14 +40,18 @@ namespace PokeApp
         {
             // Handle when your app starts
             PokedexStorage.Init();
+            appMainPage.Update();
 
             //SQLite.SQLiteAsyncConnection conn = App.Shared.GetAsyncConnection();
-            //var query = conn.Table<PokemonSpeciesTable>().Take(5).ToListAsync();
+
+            //var query = conn.Table<PokemonSpeciesTable>().ToListAsync();
+            //MainPage.Navigation.PushAsync(new AppMainPage(query.Result)).GetAwaiter().GetResult();
+            //MainPage = new NavigationPage(new AppMainPage(query.Result));
 
             //var result = query.Result;
 
             //foreach (var species in result)
-                //System.Diagnostics.Debug.WriteLine("Species: " + species.Identifier);
+            //System.Diagnostics.Debug.WriteLine("Species: " + species.Identifier);
         }
 
         protected override void OnSleep()

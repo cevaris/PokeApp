@@ -1,4 +1,6 @@
 ﻿using PokeApp.Data.Models;
+using PokeApp.Data.Mappers;
+using PokeApp.Data.Tables;
 using System;
 using System.Collections.Generic;
 
@@ -14,18 +16,18 @@ namespace PokeApp
             BindingContext = new PokemonResourceListViewModel();
         }
 
+        public PokemonListView(PokemonResourceListViewModel viewModel)
+        {
+            BindingContext = viewModel;
+        }
+
         async void OnSelectedItem(object sender, SelectedItemChangedEventArgs e)
         {
-            // Check cache for resource
-            // Fetch named resource
-            // Parse resource
-            // Push Model to be rendered
-
-            //PokemonModel pokemon = (PokemonModel)e.SelectedItem;
-            PokemonModel pokemon = Data.Constants.TestPokemonModel1;
-            if (pokemon != null)
+            PokemonSpeciesTable selectedPokemon = (PokemonSpeciesTable)e.SelectedItem;
+            if (selectedPokemon != null)
             {
                 PokemonDetailPage page = new PokemonDetailPage();
+                PokemonModel pokemon = await PokemonMapper.GetById(selectedPokemon.Id);
                 page.BindingContext = new PokemonDetailViewModel(pokemon);
                 await Navigation.PushAsync(page);
             }

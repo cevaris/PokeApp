@@ -4,6 +4,6 @@
     xmlns:local="clr-namespace:PokeApp"
     x:Class="PokeApp.AppMainPage">
     <ContentPage.Content>
-        <local:PokemonListView />
+        <local:PokemonListView x:Name="PokemonList"/>
     </ContentPage.Content>
 </ContentPage>

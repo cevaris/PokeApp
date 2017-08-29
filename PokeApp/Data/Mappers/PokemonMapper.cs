@@ -39,6 +39,7 @@ namespace PokeApp.Data.Mappers
 
             return new PokemonModel()
             {
+                Id = speciesTable.Id,
                 Name = pokemonName.Name,
                 Weight = pokemonTable.Weight,
                 Height = pokemonTable.Height,

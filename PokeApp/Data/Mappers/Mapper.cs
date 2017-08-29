@@ -16,7 +16,7 @@ namespace PokeApp.Data.Mappers
         {
             var conn = App.Shared.GetAsyncConnection();
             return await conn.Table<LanguageTable>()
-                             .Where(x => x.Iso639.Equals(Constants.Locale, StringComparison.CurrentCultureIgnoreCase))
+                             .Where(x => x.Iso639 == Constants.Locale)
                              .FirstAsync();
         }
     }

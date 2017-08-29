@@ -72,7 +72,7 @@
     <Compile Include="Data\Tables\GenerationTable.cs" />
     <Compile Include="Data\Tables\LanguageTable.cs" />
     <Compile Include="Data\Csv\PokemonSpeciesCsv.cs" />
-    <Compile Include="Data\CSV\ICsvInfo.cs" />
+    <Compile Include="Data\Csv\ICsvInfo.cs" />
     <Compile Include="Data\Csv\GenerationCsv.cs" />
     <Compile Include="Data\Csv\HabitatCsv.cs" />
     <Compile Include="Data\Csv\LanguageCsv.cs" />

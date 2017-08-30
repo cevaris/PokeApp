@@ -15,13 +15,10 @@ namespace PokeApp
     {
         private static IShared shared;
 
-        private AppMainPage appMainPage;
-
         public App()
         {
             InitializeComponent();
-            appMainPage = new AppMainPage();
-            MainPage = new NavigationPage(appMainPage);
+            MainPage = new NavigationPage(new AppMainPage());
         }
 
         public static IShared Shared
@@ -40,18 +37,6 @@ namespace PokeApp
         {
             // Handle when your app starts
             PokedexStorage.Init();
-            appMainPage.Update();
-
-            //SQLite.SQLiteAsyncConnection conn = App.Shared.GetAsyncConnection();
-
-            //var query = conn.Table<PokemonSpeciesTable>().ToListAsync();
-            //MainPage.Navigation.PushAsync(new AppMainPage(query.Result)).GetAwaiter().GetResult();
-            //MainPage = new NavigationPage(new AppMainPage(query.Result));
-
-            //var result = query.Result;
-
-            //foreach (var species in result)
-            //System.Diagnostics.Debug.WriteLine("Species: " + species.Identifier);
         }
 
         protected override void OnSleep()

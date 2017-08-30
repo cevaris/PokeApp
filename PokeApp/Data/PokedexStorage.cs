@@ -26,22 +26,24 @@ namespace PokeApp.Data
             else
             {
                 // Unzip, Parse, Write to DB
-                //Task.Run(() =>
-                //{
-                try
+                Task.Run(() =>
                 {
-                    instance.Unzip();
-                    instance.ParseAndPersistTables();
-                    //Save them to DB
-                    //SaveToFile
-                    Logger.Info("done init Pokedex data");
-                }
-                catch (Exception e)
-                {
-                    Logger.Error("failed to init Pokedex data", e);
-                    throw e;
-                }
-                //}).ConfigureAwait(false);
+                    try
+                    {
+                        instance.Unzip();
+                        instance.ParseAndPersistTables();
+                        //Save them to DB
+                        //SaveToFile
+                        Logger.Info("done init Pokedex data");
+
+                        MessagingCenter.Send<PokedexStorage>(instance, "PokedexStorage.Update");
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.Error("failed to init Pokedex data", e);
+                        throw e;
+                    }
+                }).ConfigureAwait(false);
             }
         }
 
@@ -75,7 +77,7 @@ namespace PokeApp.Data
                 conn.DropTableAsync<PokemonSpeciesTable>().Wait();
                 conn.CreateTableAsync<PokemonSpeciesTable>().Wait();
                 List<PokemonSpeciesTable> pokemonSpecies = ParseTable(new PokemonSpeciesCsv());
-                conn.InsertAllAsync(pokemonSpecies).Wait();            
+                conn.InsertAllAsync(pokemonSpecies).Wait();
             });
 
             Task pokemonTask = Task.Run(() =>

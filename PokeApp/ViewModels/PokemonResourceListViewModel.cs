@@ -1,6 +1,8 @@
 ﻿using PokeApp.Data.Tables;
+using PokeApp.Data;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using Xamarin.Forms;
 
 namespace PokeApp
 {
@@ -10,6 +12,10 @@ namespace PokeApp
 
         public PokemonResourceListViewModel(){
             PokemonList = new ObservableCollection<PokemonSpeciesTable>();
+
+            MessagingCenter.Subscribe<PokedexStorage>(this, "PokedexStorage.Update", (sender) => {
+                Update();
+            });
         }
 
         public static PokemonResourceListViewModel Preview = new PokemonResourceListViewModel()
@@ -31,7 +37,7 @@ namespace PokeApp
         public async void Update()
         {
             SQLite.SQLiteAsyncConnection conn = App.Shared.GetAsyncConnection();
-            var query = conn.Table<PokemonSpeciesTable>().ToListAsync();
+            var query = conn.Table<PokemonSpeciesTable>().Take(20).ToListAsync();
 
             List<PokemonSpeciesTable> data = await query;
             foreach (PokemonSpeciesTable pst in data)

@@ -1,5 +1,4 @@
-﻿using PokeApp.Data;
-using PokeApp.Data.Tables;
+﻿using PokeApp.Data.Tables;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 
@@ -7,25 +6,24 @@ namespace PokeApp
 {
     public class PokemonResourceListViewModel
     {
-        public ObservableCollection<PokemonSpeciesTable> PokemonList { get; set; }
-
-        public PokemonResourceListViewModel()
+        public ObservableCollection<PokemonSpeciesTable> PokemonList =
+            new ObservableCollection<PokemonSpeciesTable>();
+        
+        public static PokemonResourceListViewModel Preview = PreviewInit();
+        public static PokemonResourceListViewModel PreviewInit()
         {
-            PokemonList = new ObservableCollection<PokemonSpeciesTable>();
-            PokemonList.Add(
-                new PokemonSpeciesTable()
-                {
-                    Id = 1,
-                    Identifier = "bulbasaur"
-                }
-            );
-            PokemonList.Add(
-                new PokemonSpeciesTable()
-                {
-                    Id = 2,
-                    Identifier = "Ivysaur"
-                }
-            );
+            var preview = new PokemonResourceListViewModel();
+            preview.PokemonList.Add(new PokemonSpeciesTable()
+            {
+                Id = 1,
+                Identifier = "Bulbasaur"
+            });
+            preview.PokemonList.Add(new PokemonSpeciesTable()
+            {
+                Id = 2,
+                Identifier = "Ivysaur"
+            });
+            return preview;
         }
 
         public async void Update()

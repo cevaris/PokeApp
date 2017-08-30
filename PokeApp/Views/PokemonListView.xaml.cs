@@ -1,10 +1,8 @@
 ﻿using PokeApp.Data.Models;
 using PokeApp.Data.Mappers;
 using PokeApp.Data.Tables;
-using System;
-using System.Collections.Generic;
-
 using Xamarin.Forms;
+
 
 namespace PokeApp
 {
@@ -13,12 +11,6 @@ namespace PokeApp
         public PokemonListView()
         {
             InitializeComponent();
-            BindingContext = new PokemonResourceListViewModel();
-        }
-
-        public PokemonListView(PokemonResourceListViewModel viewModel)
-        {
-            BindingContext = viewModel;
         }
 
         async void OnSelectedItem(object sender, SelectedItemChangedEventArgs e)

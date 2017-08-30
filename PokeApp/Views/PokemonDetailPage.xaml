@@ -2,8 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:design="clr-namespace:PokeApp"
-    x:Class="PokeApp.PokemonDetailPage"
-    BindingContext="{x:Static design:PokemonDetailViewModel.Preview}">
+    BindingContext="{x:Static design:PokemonDetailViewModel.Preview}"
+    x:Class="PokeApp.PokemonDetailPage">
     <ContentPage.Content>
         <Grid Margin="10">
             <Grid.RowDefinitions>
@@ -36,9 +36,11 @@
                 Grid.ColumnSpan="2"
                 Orientation="Horizontal"
                 HorizontalOptions="CenterAndExpand">
-                <Image Source="{Binding Pokemon.SpriteUrl}"
-                    HorizontalOptions="StartAndExpand"
-                    WidthRequest="100" />
+                <Frame OutlineColor="Black">
+                    <Image Source="{Binding Pokemon.SpriteUrl}"
+                        HorizontalOptions="StartAndExpand"
+                        WidthRequest="100" />
+                </Frame>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

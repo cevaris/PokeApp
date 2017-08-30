@@ -7,9 +7,9 @@
     <ContentPage.Content>
         <Grid Margin="10">
             <Grid.RowDefinitions>
+                <RowDefinition Height="200" />
                 <RowDefinition Height="20" />
                 <RowDefinition Height="20" />
-                <RowDefinition Height="100" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -20,27 +20,27 @@
                 Grid.ColumnSpan="2"
                 Orientation="Horizontal"
                 HorizontalOptions="CenterAndExpand">
-                <Label Text="{Binding Pokemon.DisplayId}" />
-                <Label Text="{Binding Pokemon.Name}" />
+                <Frame OutlineColor="Black">
+                    <Image Source="{Binding Pokemon.SpriteUrl}"
+                        HorizontalOptions="StartAndExpand"
+                        WidthRequest="200" />
+                </Frame>
             </StackLayout>
             <StackLayout Grid.Row="1"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Orientation="Horizontal"
                 HorizontalOptions="CenterAndExpand">
-                <Label Text="Weight:" />
-                <Label Text="{Binding Pokemon.Weight}" />
+                <Label Text="{Binding Pokemon.DisplayId}" />
+                <Label Text="{Binding Pokemon.Name}" />
             </StackLayout>
             <StackLayout Grid.Row="2"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Orientation="Horizontal"
                 HorizontalOptions="CenterAndExpand">
-                <Frame OutlineColor="Black">
-                    <Image Source="{Binding Pokemon.SpriteUrl}"
-                        HorizontalOptions="StartAndExpand"
-                        WidthRequest="100" />
-                </Frame>
+                <Label Text="Weight:" />
+                <Label Text="{Binding Pokemon.Weight}" />
             </StackLayout>
         </Grid>
     </ContentPage.Content>

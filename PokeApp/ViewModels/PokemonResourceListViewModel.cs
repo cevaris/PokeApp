@@ -6,25 +6,27 @@ namespace PokeApp
 {
     public class PokemonResourceListViewModel
     {
-        public ObservableCollection<PokemonSpeciesTable> PokemonList =
-            new ObservableCollection<PokemonSpeciesTable>();
-        
-        public static PokemonResourceListViewModel Preview = PreviewInit();
-        public static PokemonResourceListViewModel PreviewInit()
-        {
-            var preview = new PokemonResourceListViewModel();
-            preview.PokemonList.Add(new PokemonSpeciesTable()
-            {
-                Id = 1,
-                Identifier = "Bulbasaur"
-            });
-            preview.PokemonList.Add(new PokemonSpeciesTable()
-            {
-                Id = 2,
-                Identifier = "Ivysaur"
-            });
-            return preview;
+        public ObservableCollection<PokemonSpeciesTable> PokemonList { get; set; }
+
+        public PokemonResourceListViewModel(){
+            PokemonList = new ObservableCollection<PokemonSpeciesTable>();
         }
+
+        public static PokemonResourceListViewModel Preview = new PokemonResourceListViewModel()
+        {
+            PokemonList = new ObservableCollection<PokemonSpeciesTable>(){
+                new PokemonSpeciesTable()
+                {
+                    Id = 1,
+                    Identifier = "Bulbasaur"
+                },
+                new PokemonSpeciesTable()
+                {
+                    Id = 2,
+                    Identifier = "Ivysaur"
+                }
+            }
+        };
 
         public async void Update()
         {
@@ -32,8 +34,6 @@ namespace PokeApp
             var query = conn.Table<PokemonSpeciesTable>().ToListAsync();
 
             List<PokemonSpeciesTable> data = await query;
-
-            PokemonList.Clear();
             foreach (PokemonSpeciesTable pst in data)
             {
                 PokemonList.Add(pst);

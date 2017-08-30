@@ -20,8 +20,12 @@ namespace PokeApp.Data
         };
         public static readonly PokemonModel TestPokemonModel2 = new PokemonModel()
         {
-            Id = 1,
-            Name = "Ivysaur"
+            Id = 2,
+            Name = "Ivysaur",
+            SpriteUrl = "https://s3-us-west-2.amazonaws.com/assets.images.pokemon/2.png",
+            Weight = 111,
+            Height = 222,
+            BaseExperience = 333
         };
         public static readonly List<PokemonModel> TestPokemonModels = new List<PokemonModel>()
         {

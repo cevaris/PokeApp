@@ -5,17 +5,11 @@ namespace PokeApp
 {
     public class PokemonDetailViewModel
     {
+        public static PokemonDetailViewModel Preview = new PokemonDetailViewModel()
+        {
+            Pokemon = Constants.TestPokemonModel1
+        };
+
         public PokemonModel Pokemon { get; set; }
-
-        public PokemonDetailViewModel()
-        {
-            Pokemon = Constants.TestPokemonModel1;
-        }
-
-        public PokemonDetailViewModel(PokemonModel pokemon)
-        {
-            Pokemon = pokemon;
-        }
-
     }
 }

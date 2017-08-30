@@ -28,7 +28,10 @@ namespace PokeApp
             {
                 PokemonDetailPage page = new PokemonDetailPage();
                 PokemonModel pokemon = await PokemonMapper.GetById(selectedPokemon.Id);
-                page.BindingContext = new PokemonDetailViewModel(pokemon);
+                page.BindingContext = new PokemonDetailViewModel()
+                {
+                    Pokemon = pokemon
+                };
                 await Navigation.PushAsync(page);
             }
         }

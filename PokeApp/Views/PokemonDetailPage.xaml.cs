@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace PokeApp
 {
@@ -10,7 +7,6 @@ namespace PokeApp
         public PokemonDetailPage()
         {
             InitializeComponent();
-            BindingContext = new PokemonDetailViewModel();
         }
     }
 }

@@ -24,8 +24,10 @@ namespace PokeApp
             });
             MessagingCenter.Subscribe<PokemonListView, ItemVisibilityEventArgs>(this, "PokemonResourceListViewModel.Page", (sender, e) =>
             {
-                Logger.Info($"item visible: {e} {e.Item.ToString()} {PokemonList[PokemonList.Count - 1]}");
-                Update(((PokemonSpeciesTable)e.Item).Id);
+                if ((PokemonSpeciesTable)e.Item == PokemonList.Last())
+                {
+                    Update(((PokemonSpeciesTable)e.Item).Id + 1);
+                }
             });
         }
 
@@ -64,14 +66,6 @@ namespace PokeApp
             foreach (PokemonSpeciesTable pst in data)
             {
                 PokemonList.Add(pst);
-            }
-
-            foreach (int i in Enumerable.Range(21, 802))
-            {
-                PokemonList.Add(new PokemonSpeciesTable()
-                {
-                    Id = i
-                });
             }
         }
     }

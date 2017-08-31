@@ -13,7 +13,7 @@ namespace PokeApp
         public PokemonResourceListViewModel(){
             PokemonList = new ObservableCollection<PokemonSpeciesTable>();
 
-            MessagingCenter.Subscribe<PokedexStorage>(this, "PokedexStorage.Update", (sender) => {
+            MessagingCenter.Subscribe<PokedexStorage>(this, "PokedexStorage.Update", (sender) => {                
                 Update();
             });
         }

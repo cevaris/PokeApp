@@ -8,6 +8,9 @@
         ItemSelected="OnSelectedItem"
         RowHeight="50"
         ItemAppearing="Handle_ItemAppearing">
+        <x:Arguments>
+            <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
+        </x:Arguments>
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>

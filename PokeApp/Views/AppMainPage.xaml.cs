@@ -14,10 +14,5 @@ namespace PokeApp
             InitializeComponent();
             PokemonList.BindingContext = viewModel;
         }
-
-        public void Update()
-        {
-            viewModel.Update();
-        }
     }
 }

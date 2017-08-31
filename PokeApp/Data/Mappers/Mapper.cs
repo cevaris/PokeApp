@@ -12,7 +12,7 @@ namespace PokeApp.Data.Mappers
 
         }
 
-        protected static async Task<LanguageTable> LanguageEnglish()
+        public static async Task<LanguageTable> LanguageEnglish()
         {
             var conn = App.Shared.GetAsyncConnection();
             return await conn.Table<LanguageTable>()

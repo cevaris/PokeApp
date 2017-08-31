@@ -13,7 +13,7 @@ namespace PokeApp.Data.Mappers
         {
             var conn = App.Shared.GetAsyncConnection();
 
-            LanguageTable langTable = await LanguageEnglish();
+            LanguageTable langTable = await Mapper.LanguageEnglish();
 
             Task<PokemonSpeciesTable> taskSpeciesTable = conn.Table<PokemonSpeciesTable>()
                                                         .Where(x => x.Id == id)

@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using PokeApp.Utils;
 using System.Linq;
+using System.Threading.Tasks;
+using PokeApp.Data.Mappers;
 
 namespace PokeApp
 {
@@ -20,7 +22,6 @@ namespace PokeApp
         {
             PokemonList = new ObservableCollection<PokemonSpeciesTable>();
             IsLoading = true;
-
 
             MessagingCenter.Subscribe<PokedexStorage>(this, "PokedexStorage.Update", (sender) =>
             {
@@ -56,13 +57,23 @@ namespace PokeApp
         {
             IsLoading = true;
             SQLite.SQLiteAsyncConnection conn = App.Shared.GetAsyncConnection();
-            var query = conn.Table<PokemonSpeciesTable>()
+            LanguageTable langTable = await Mapper.LanguageEnglish();
+
+            Task<List<PokemonSpeciesTable>> speciesTask = conn.Table<PokemonSpeciesTable>()
                             .Skip(idOffset)
                             .Take(20).ToListAsync();
 
-            List<PokemonSpeciesTable> data = await query;
-            foreach (PokemonSpeciesTable pst in data)
+            List<PokemonSpeciesTable> species = await speciesTask;
+            IEnumerable<int> speciesIds = species.Select(y => y.Id);
+
+            Task<List<PokemonSpeciesNameTable>> namesTask = conn.Table<PokemonSpeciesNameTable>()
+                                                                .Where(x => speciesIds.Contains(x.Id) && x.LanguageId == langTable.Id)
+                                                                .ToListAsync();
+            List<PokemonSpeciesNameTable> names = await namesTask;
+
+            foreach (PokemonSpeciesTable pst in species)
             {
+                pst.Identifier = names.Find(x => x.Id == pst.Id).Name;
                 PokemonList.Add(pst);
             }
             IsLoading = false;

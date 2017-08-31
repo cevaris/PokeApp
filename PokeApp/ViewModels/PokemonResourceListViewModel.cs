@@ -12,11 +12,14 @@ namespace PokeApp
     {
         private ILogger Logger = new ConsoleLogger(nameof(PokemonResourceListViewModel));
 
+        public bool IsLoading { get; set; }
+
         public ObservableCollection<PokemonSpeciesTable> PokemonList { get; set; }
 
         public PokemonResourceListViewModel()
         {
             PokemonList = new ObservableCollection<PokemonSpeciesTable>();
+            IsLoading = true;
 
             MessagingCenter.Subscribe<PokedexStorage>(this, "PokedexStorage.Update", (sender) =>
             {
@@ -50,11 +53,13 @@ namespace PokeApp
 
         public async void Update(int id)
         {
+            IsLoading = true;
             SQLite.SQLiteAsyncConnection conn = App.Shared.GetAsyncConnection();
             var query = conn.Table<PokemonSpeciesTable>().Where(x => x.Id == id).FirstAsync();
 
             PokemonSpeciesTable data = await query;
             PokemonList.Add(data);
+            IsLoading = false;
         }
 
         public async void Update()
@@ -67,6 +72,7 @@ namespace PokeApp
             {
                 PokemonList.Add(pst);
             }
+            IsLoading = false;
         }
     }
 }

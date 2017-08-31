@@ -4,35 +4,16 @@
     xmlns:design="clr-namespace:PokeApp"
     BindingContext="{x:Static design:PokemonResourceListViewModel.Preview}"
     x:Class="PokeApp.PokemonListView">
-    <ListView ItemsSource="{Binding PokemonList}"
+    <ListView x:Name="PokemonList"
+        ItemsSource="{Binding PokemonList}"
         ItemSelected="OnSelectedItem"
         RowHeight="50"
         ItemAppearing="Handle_ItemAppearing">
-        <x:Arguments>
-            <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
-        </x:Arguments>
         <ListView.ItemTemplate>
             <DataTemplate>
-                <ViewCell>
-                    <StackLayout Orientation="Horizontal"
-                        Margin="5">
-                        <StackLayout Orientation="Vertical"
-                            VerticalOptions="FillAndExpand"
-                            HorizontalOptions="FillAndExpand">
-                            <Label Text="{Binding Id}"
-                                HorizontalOptions="Start" />
-                            <Label Text="{Binding Identifier}"
-                                FontSize="12"
-                                HorizontalOptions="StartAndExpand" />
-                        </StackLayout>
-                        <StackLayout>
-                            <Image Source="{Binding FrontSpriteUrl}"
-                                HorizontalOptions="FillAndExpand"
-                                VerticalOptions="FillAndExpand"
-                                WidthRequest="30" />
-                        </StackLayout>
-                    </StackLayout>
-                </ViewCell>
+                <ImageCell Text="{Binding Id}"
+                    Detail="{Binding Identifier}"
+                    ImageSource="{Binding FrontSpriteUrl}" />
             </DataTemplate>
         </ListView.ItemTemplate>
         <ListView.Footer>

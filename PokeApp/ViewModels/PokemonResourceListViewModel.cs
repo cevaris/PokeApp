@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using Xamarin.Forms;
 using PokeApp.Utils;
+using System.Linq;
 
 namespace PokeApp
 {
@@ -24,6 +25,7 @@ namespace PokeApp
             MessagingCenter.Subscribe<PokemonListView, ItemVisibilityEventArgs>(this, "PokemonResourceListViewModel.Page", (sender, e) =>
             {
                 Logger.Info($"item visible: {e} {e.Item.ToString()} {PokemonList[PokemonList.Count - 1]}");
+                Update(((PokemonSpeciesTable)e.Item).Id);
             });
         }
 
@@ -41,7 +43,17 @@ namespace PokeApp
                     Identifier = "Ivysaur"
                 }
             }
+
         };
+
+        public async void Update(int id)
+        {
+            SQLite.SQLiteAsyncConnection conn = App.Shared.GetAsyncConnection();
+            var query = conn.Table<PokemonSpeciesTable>().Where(x => x.Id == id).FirstAsync();
+
+            PokemonSpeciesTable data = await query;
+            PokemonList.Add(data);
+        }
 
         public async void Update()
         {
@@ -52,6 +64,14 @@ namespace PokeApp
             foreach (PokemonSpeciesTable pst in data)
             {
                 PokemonList.Add(pst);
+            }
+
+            foreach (int i in Enumerable.Range(21, 802))
+            {
+                PokemonList.Add(new PokemonSpeciesTable()
+                {
+                    Id = i
+                });
             }
         }
     }

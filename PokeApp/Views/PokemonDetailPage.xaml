@@ -3,8 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:design="clr-namespace:PokeApp"
     BindingContext="{x:Static design:PokemonDetailViewModel.Preview}"
-    x:Class="PokeApp.PokemonDetailPage"
-    Title="PokéApp">
+    x:Class="PokeApp.PokemonDetailPage">
     <ContentPage.Content>
         <Grid Margin="10">
             <Grid.RowDefinitions>

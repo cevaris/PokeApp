@@ -7,7 +7,7 @@ namespace PokeApp
 {
     public partial class AppMainPage : ContentPage
     {
-        private PokemonResourceListViewModel viewModel = new PokemonResourceListViewModel();
+        private PokemonListViewModel viewModel = new PokemonListViewModel();
 
         public AppMainPage()
         {

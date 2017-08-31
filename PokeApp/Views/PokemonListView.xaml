@@ -2,18 +2,20 @@
 <StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:design="clr-namespace:PokeApp"
-    BindingContext="{x:Static design:PokemonResourceListViewModel.Preview}"
+    BindingContext="{x:Static design:PokemonListViewModel.Preview}"
     x:Class="PokeApp.PokemonListView">
     <ListView x:Name="PokemonList"
         ItemsSource="{Binding PokemonList}"
         ItemSelected="OnSelectedItem"
         RowHeight="50"
-        ItemAppearing="Handle_ItemAppearing">
+        ItemAppearing="Handle_ItemAppearing"
+        Margin="5"
+        >
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ImageCell Text="{Binding Id}"
-                    Detail="{Binding Identifier}"
-                    ImageSource="{Binding FrontSpriteUrl}" />
+                    Detail="{Binding Name}"
+                    ImageSource="{Binding SpriteUrl}" />
             </DataTemplate>
         </ListView.ItemTemplate>
         <ListView.Footer>

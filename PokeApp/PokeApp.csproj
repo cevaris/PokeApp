@@ -44,7 +44,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\PokemonResourceListViewModel.cs" />
+    <Compile Include="ViewModels\PokemonListViewModel.cs" />
     <Compile Include="Views\AppMainPage.xaml.cs">
       <DependentUpon>AppMainPage.xaml</DependentUpon>
     </Compile>
@@ -82,6 +82,8 @@
     <Compile Include="Data\Mappers\Mapper.cs" />
     <Compile Include="Data\Csv\PokemonCsv.cs" />
     <Compile Include="Data\Tables\PokemonTable.cs" />
+    <Compile Include="Data\Models\PokemonBasicModel.cs" />
+    <Compile Include="Data\Mappers\PokemonBasicMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

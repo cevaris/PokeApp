@@ -8,7 +8,7 @@ namespace PokeApp
 {
     public partial class PokemonListView : StackLayout
     {
-        private ILogger Logger = new ConsoleLogger(nameof(PokemonResourceListViewModel));
+        private ILogger Logger = new ConsoleLogger(nameof(PokemonListViewModel));
 
         public PokemonListView()
         {
@@ -19,12 +19,12 @@ namespace PokeApp
         void Handle_ItemAppearing(object sender, ItemVisibilityEventArgs e)
         {
             Logger.Info($"fired {e.Item.ToString()}");
-            MessagingCenter.Send<PokemonListView, ItemVisibilityEventArgs>(this, "PokemonResourceListViewModel.Page", e);
+            MessagingCenter.Send<PokemonListView, ItemVisibilityEventArgs>(this, "PokemonListViewModel.Page", e);
         }
 
         async void OnSelectedItem(object sender, SelectedItemChangedEventArgs e)
         {
-            PokemonSpeciesTable selectedPokemon = (PokemonSpeciesTable)e.SelectedItem;
+            PokemonBasicModel selectedPokemon = (PokemonBasicModel)e.SelectedItem;
             if (selectedPokemon != null)
             {
                 PokemonDetailPage page = new PokemonDetailPage();

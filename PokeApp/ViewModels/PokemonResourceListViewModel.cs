@@ -3,18 +3,27 @@ using PokeApp.Data;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using Xamarin.Forms;
+using PokeApp.Utils;
 
 namespace PokeApp
 {
     public class PokemonResourceListViewModel
     {
+        private ILogger Logger = new ConsoleLogger(nameof(PokemonResourceListViewModel));
+
         public ObservableCollection<PokemonSpeciesTable> PokemonList { get; set; }
 
-        public PokemonResourceListViewModel(){
+        public PokemonResourceListViewModel()
+        {
             PokemonList = new ObservableCollection<PokemonSpeciesTable>();
 
-            MessagingCenter.Subscribe<PokedexStorage>(this, "PokedexStorage.Update", (sender) => {                
+            MessagingCenter.Subscribe<PokedexStorage>(this, "PokedexStorage.Update", (sender) =>
+            {
                 Update();
+            });
+            MessagingCenter.Subscribe<PokemonListView, ItemVisibilityEventArgs>(this, "PokemonResourceListViewModel.Page", (sender, e) =>
+            {
+                Logger.Info($"item visible: {e} {e.Item.ToString()} {PokemonList[PokemonList.Count - 1]}");
             });
         }
 

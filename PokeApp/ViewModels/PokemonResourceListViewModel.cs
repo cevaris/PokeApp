@@ -16,13 +16,11 @@ namespace PokeApp
 
         public ObservableCollection<PokemonSpeciesTable> PokemonList { get; set; }
 
-        public int HighestIdLoaded { get; set; }
-
         public PokemonResourceListViewModel()
         {
             PokemonList = new ObservableCollection<PokemonSpeciesTable>();
             IsLoading = true;
-            HighestIdLoaded = 0;
+
 
             MessagingCenter.Subscribe<PokedexStorage>(this, "PokedexStorage.Update", (sender) =>
             {
@@ -54,30 +52,8 @@ namespace PokeApp
 
         };
 
-        //public async void Update(int id)
-        //{
-
-
-        //    IsLoading = true;
-        //    SQLite.SQLiteAsyncConnection conn = App.Shared.GetAsyncConnection();
-        //    var query = conn.Table<PokemonSpeciesTable>().Where(x => x.Id == id).FirstAsync();
-
-        //    PokemonSpeciesTable data = await query;
-        //    PokemonList.Add(data);
-        //    IsLoading = false;
-        //}
-
         public async void Update(int idOffset)
         {
-            Logger.Info($"updating at offset {idOffset}");
-            if (idOffset < HighestIdLoaded)
-            {
-                Logger.Info($"skipping loading of {idOffset}");
-                return;
-            }
-
-            Logger.Info($"going to load {idOffset}");
-
             IsLoading = true;
             SQLite.SQLiteAsyncConnection conn = App.Shared.GetAsyncConnection();
             var query = conn.Table<PokemonSpeciesTable>()
@@ -88,7 +64,6 @@ namespace PokeApp
             foreach (PokemonSpeciesTable pst in data)
             {
                 PokemonList.Add(pst);
-                HighestIdLoaded = System.Math.Max(pst.Id, HighestIdLoaded);
             }
             IsLoading = false;
         }

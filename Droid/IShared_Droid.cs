@@ -7,13 +7,15 @@ using PokeApp.Data;
 using SQLite;
 using Xamarin.Forms;
 using System.Linq;
+using System.Security;
+using System.Text;
 
 [assembly: Dependency(typeof(IShared_Droid))]
 namespace PokeApp.Droid
 {
     public class IShared_Droid : IShared
     {
-        private static ILogger Logger = new ConsoleLogger("IShared_Droid");
+        private static ILogger Logger = new ConsoleLogger(nameof(IShared_Droid));
 
         private static string ExternalDirectory =
             Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
@@ -84,6 +86,15 @@ namespace PokeApp.Droid
                     Logger.Info($"{assetName} written to {filePath} {new FileInfo(filePath).Length} bytes");
                 }
             }
+        }
+
+        public string Md5(string message)
+        {
+            Encoding unicode = Encoding.Default;
+            var result = System.Security.Cryptography.MD5.Create();
+            var buffer = result.ComputeHash(unicode.GetBytes($"{message}-{Secrets.Salt}"));
+            string hex = unicode.GetString(buffer, 0, buffer.Length);
+            return hex;
         }
     }
 }

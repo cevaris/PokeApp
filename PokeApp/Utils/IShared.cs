@@ -5,6 +5,8 @@ namespace PokeApp.Utils
 {
     public interface IShared
     {
+        string Md5(string message);
+
         SQLiteAsyncConnection GetAsyncConnection();
         string GetDatabasePath();
 

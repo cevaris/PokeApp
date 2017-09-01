@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using PokeApp.Data.Models;
 using PokeApp.Data.Tables;
+using PokeApp.Utils;
 
 namespace PokeApp.Data.Mappers
 {
     public class PokemonBasicMapper : Mapper
     {
         private static int PageSize = 20;
+        private static readonly ILogger Logger = new ConsoleLogger(nameof(PokemonBasicMapper));
 
         public static async Task<List<PokemonBasicModel>> Page(int idOffset)
         {
@@ -41,6 +43,7 @@ namespace PokeApp.Data.Mappers
                     Name = name,
                     SpriteUrl = $"https://s3-us-west-2.amazonaws.com/assets.images.pokemon/{pst.Id}.png"
                 };
+                Logger.Info($"{pst.Id} - {PokeUtils.GetImage(pst.Id)}");
                 results.Add(instance);
             }
 

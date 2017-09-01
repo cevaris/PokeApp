@@ -84,6 +84,8 @@
     <Compile Include="Data\Tables\PokemonTable.cs" />
     <Compile Include="Data\Models\PokemonBasicModel.cs" />
     <Compile Include="Data\Mappers\PokemonBasicMapper.cs" />
+    <Compile Include="Data\PokeUtils.cs" />
+    <Compile Include="Data\Secrets.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

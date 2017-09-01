@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 using PokeApp.Data;
 using PokeApp.iOS;
 using PokeApp.Utils;
@@ -57,6 +59,20 @@ namespace PokeApp.iOS
         public StreamWriter OpenWriter(string filename)
         {
             return new StreamWriter(filename);
+        }
+
+        public string Md5(string message)
+        {
+            Encoding encoding = Encoding.Default;
+            MD5 result = System.Security.Cryptography.MD5.Create();
+            var buffer = result.ComputeHash(encoding.GetBytes($"{message}-{Secrets.Salt}"));
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < buffer.Length; i++)
+            {
+                sb.Append(buffer[i].ToString("x2"));
+            }
+            return sb.ToString();
         }
     }
 }

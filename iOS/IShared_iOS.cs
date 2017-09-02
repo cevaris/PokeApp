@@ -14,6 +14,7 @@ namespace PokeApp.iOS
     public class IShared_iOS : IShared
     {
         private static ILogger Logger = new ConsoleLogger(nameof(IShared_iOS));
+        private readonly static Encoding encoder = Encoding.Default;
 
         public IShared_iOS()
         {
@@ -61,18 +62,15 @@ namespace PokeApp.iOS
             return new StreamWriter(filename);
         }
 
-        public string Md5(string message)
+        public byte[] Md5(byte[] bytes)
         {
-            Encoding encoding = Encoding.Default;
-            MD5 result = System.Security.Cryptography.MD5.Create();
-            var buffer = result.ComputeHash(encoding.GetBytes($"{message}-{Secrets.Salt}"));
+            MD5 md5 = MD5.Create();
+            return md5.ComputeHash(bytes);
+        }
 
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < buffer.Length; i++)
-            {
-                sb.Append(buffer[i].ToString("x2"));
-            }
-            return sb.ToString();
+        public byte[] ToBytes(string message)
+        {
+            return encoder.GetBytes(message);
         }
     }
 }

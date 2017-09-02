@@ -26,7 +26,7 @@ namespace PokeApp.Data.Tables
             get
             {
 
-                return $"https://s3-us-west-2.amazonaws.com/assets.images.pokemon/{Id}.png";
+                return PokeUtils.GetImage(Id);
                 //string prefix = null;
                 //switch (GenerationId)
                 //{

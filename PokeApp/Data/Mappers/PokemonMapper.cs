@@ -45,7 +45,7 @@ namespace PokeApp.Data.Mappers
                 Height = pokemonTable.Height,
                 BaseExperience = pokemonTable.BaseExperience,
                 SpeciesId = speciesTable.Id,
-                SpriteUrl = $"https://s3-us-west-2.amazonaws.com/assets.images.pokemon/{speciesTable.Id}.png"
+                SpriteUrl = PokeUtils.GetImage(speciesTable.Id)
             };
         }
     }

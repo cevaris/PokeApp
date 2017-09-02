@@ -41,9 +41,9 @@ namespace PokeApp.Data.Mappers
                 {
                     Id = pst.Id,
                     Name = name,
-                    SpriteUrl = $"https://s3-us-west-2.amazonaws.com/assets.images.pokemon/{pst.Id}.png"
+                    SpriteUrl = PokeUtils.GetImage(pst.Id)
                 };
-                Logger.Info($"{pst.Id} - {PokeUtils.GetImage(pst.Id)}");
+                //Logger.Info($"{pst.Id} - {PokeUtils.GetImage(pst.Id)}");
                 results.Add(instance);
             }
 

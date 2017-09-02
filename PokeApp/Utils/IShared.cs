@@ -1,11 +1,13 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using SQLite;
 
 namespace PokeApp.Utils
 {
     public interface IShared
     {
-        string Md5(string message);
+        byte[] Md5(byte[] bytes);
+        byte[] ToBytes(string message);
 
         SQLiteAsyncConnection GetAsyncConnection();
         string GetDatabasePath();

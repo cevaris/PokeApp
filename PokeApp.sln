@@ -12,6 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 		scripts\download-images.py = scripts\download-images.py
 		scripts\zip-pokedex.sh = scripts\zip-pokedex.sh
+		scripts\hash-images.py = scripts\hash-images.py
 	EndProjectSection
 EndProject
 Global

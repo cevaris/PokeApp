@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using System.Linq;
 using System.Security;
 using System.Text;
+using System.Security.Cryptography;
 
 [assembly: Dependency(typeof(IShared_Droid))]
 namespace PokeApp.Droid
@@ -19,6 +20,8 @@ namespace PokeApp.Droid
 
         private static string ExternalDirectory =
             Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
+        
+        private readonly static Encoding encoder = Encoding.Default;
 
         public IShared_Droid()
         {
@@ -41,7 +44,6 @@ namespace PokeApp.Droid
 
         public string PokedexZipPath()
         {
-            CopyAssets("AboutAssets.txt");
             CopyAssets(Constants.ZipName);
 
             var filePath = Path.Combine(ExternalDirectory, Constants.ZipName);
@@ -74,7 +76,6 @@ namespace PokeApp.Droid
         private void CopyAssets(string assetName)
         {
             AssetManager assetManager = Forms.Context.Assets;
-            //Logger.Info($"checking assets {assetManager.List("").ToString()}");
             Logger.Info($"Looking for asset {assetName}");
             var filePath = Path.Combine(ExternalDirectory, assetName);
 
@@ -88,13 +89,15 @@ namespace PokeApp.Droid
             }
         }
 
-        public string Md5(string message)
+        public byte[] Md5(byte[] bytes)
         {
-            Encoding unicode = Encoding.Default;
-            var result = System.Security.Cryptography.MD5.Create();
-            var buffer = result.ComputeHash(unicode.GetBytes($"{message}-{Secrets.Salt}"));
-            string hex = unicode.GetString(buffer, 0, buffer.Length);
-            return hex;
+            MD5 md5 = MD5.Create();
+            return md5.ComputeHash(bytes);
+        }
+
+        public byte[] ToBytes(string message)
+        {
+            return encoder.GetBytes(message);
         }
     }
 }

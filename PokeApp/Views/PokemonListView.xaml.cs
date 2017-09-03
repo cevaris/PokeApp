@@ -20,7 +20,7 @@ namespace PokeApp
         void OnItemAppearing(object sender, ItemVisibilityEventArgs e)
         {
             Logger.Info($"fired {e.Item.ToString()}");
-            MessagingCenter.Send<PokemonListView, ItemVisibilityEventArgs>(this, "PokemonListViewModel.Page", e);
+            MessagingCenter.Send<PokemonListView, ItemVisibilityEventArgs>(this, PokemonListViewModel.MessagePage, e);
         }
 
         async void OnSelectedItem(object sender, SelectedItemChangedEventArgs e)
@@ -43,7 +43,7 @@ namespace PokeApp
             if (sender == PokemonQuery)
             {
                 Logger.Info(PokemonQuery.Text);
-                MessagingCenter.Send<PokemonListView, string>(this, "PokemonListViewModel.PageQuery", PokemonQuery.Text);
+                PageWithQuery(PokemonQuery.Text);
             }
         }
 
@@ -53,15 +53,19 @@ namespace PokeApp
             {
                 if (string.IsNullOrWhiteSpace(args.NewTextValue))
                 {
-                    MessagingCenter.Send<PokemonListView, string>(this, "PokemonListViewModel.PageQuery", null);
+                    PageWithQuery(null);
                 }
                 else
                 {
                     Logger.Info(args.NewTextValue);
-                    MessagingCenter.Send<PokemonListView, string>(this, "PokemonListViewModel.PageQuery", PokemonQuery.Text);
+                    PageWithQuery(PokemonQuery.Text);
                 }
-
             }
+        }
+
+        private void PageWithQuery(string query)
+        {
+            MessagingCenter.Send<PokemonListView, string>(this, PokemonListViewModel.MessagePageWithQuery, query);
         }
     }
 

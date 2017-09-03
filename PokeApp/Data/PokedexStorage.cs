@@ -17,6 +17,8 @@ namespace PokeApp.Data
 
         private static PokedexStorage instance = new PokedexStorage();
 
+        public const string MessageReady = "PokedexStorage.Ready";
+
         public static void Init()
         {
             if (App.Shared.PokedexCsvExists())
@@ -34,7 +36,7 @@ namespace PokeApp.Data
                         instance.ParseAndPersistTables();
                         Logger.Info("done init Pokedex data");
 
-                        MessagingCenter.Send<PokedexStorage>(instance, "PokedexStorage.Update");
+                        MessagingCenter.Send<PokedexStorage>(instance, MessageReady);
                     }
                     catch (AggregateException e)
                     {

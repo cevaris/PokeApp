@@ -21,30 +21,32 @@ namespace PokeApp
 
         public string SearchQuery { get; set; }
 
+        public static readonly string MessagePageWithQuery = $"{nameof(PokemonListViewModel)}.PageQuery";
+        public static readonly string MessagePage = $"{nameof(PokemonListViewModel)}.Page";
+
         public PokemonListViewModel()
         {
             PokemonList = new ObservableCollection<PokemonBasicModel>();
             IsLoading = true;
 
-            MessagingCenter.Subscribe<PokedexStorage>(this, "PokedexStorage.Update", (sender) =>
+            MessagingCenter.Subscribe<PokedexStorage>(this, PokedexStorage.MessageReady, (_) =>
             {
-                SearchQuery = null;
-                PokemonList.Clear();
-                Update(0, SearchQuery);
+                Update(0, null);
             });
 
-            MessagingCenter.Subscribe<PokemonListView, string>(this, "PokemonListViewModel.PageQuery", (sender, query) =>
+            MessagingCenter.Subscribe<PokemonListView, string>(this, MessagePageWithQuery, (sender, query) =>
             {
+                Logger.Info($"received query: {query}");
+             
                 if (query != null)
                     query = query.Trim().ToLower();
-                
-                Logger.Info($"received query: {query}");
+
                 PokemonList.Clear();
                 SearchQuery = query;
                 Update(0, SearchQuery);
             });
 
-            MessagingCenter.Subscribe<PokemonListView, ItemVisibilityEventArgs>(this, "PokemonListViewModel.Page", (sender, e) =>
+            MessagingCenter.Subscribe<PokemonListView, ItemVisibilityEventArgs>(this, MessagePage, (sender, e) =>
             {
                 if (PokemonList.Count > 0 && (PokemonBasicModel)e.Item == PokemonList.Last())
                 {

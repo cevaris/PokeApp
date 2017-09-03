@@ -14,7 +14,7 @@ namespace PokeApp
         public PokemonListView()
         {
             InitializeComponent();
-            PokemonList = new ListView(ListViewCachingStrategy.RecycleElement);
+            PokemonList = new ListView(ListViewCachingStrategy.RetainElement);
         }
 
         void OnItemAppearing(object sender, ItemVisibilityEventArgs e)

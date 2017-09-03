@@ -74,10 +74,7 @@
     <Compile Include="Data\Csv\LanguageCsv.cs" />
     <Compile Include="Data\Csv\PokemonSpeciesNameCsv.cs" />
     <Compile Include="Data\Tables\PokemonSpeciesNameTable.cs" />
-    <Compile Include="Data\Models\NamedApiResource.cs" />
-    <Compile Include="Data\Models\PokemonIndexModel.cs" />
     <Compile Include="Data\Models\PokemonModel.cs" />
-    <Compile Include="Data\Models\ResourceModel.cs" />
     <Compile Include="Data\Mappers\PokemonMapper.cs" />
     <Compile Include="Data\Mappers\Mapper.cs" />
     <Compile Include="Data\Csv\PokemonCsv.cs" />

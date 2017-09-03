@@ -23,12 +23,7 @@ namespace PokeApp.iOS
 
         public string GetDatabasePath()
         {
-            string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal); // Documents folder
-            string libraryPath = Path.Combine(documentsPath, "..", "Library"); // Library folder
-            string pathFull = Path.Combine(libraryPath, Constants.DatabaseName);
-
-            Logger.Info($"dbpath: {pathFull}");
-
+            string pathFull = Path.Combine(GetLibraryPath(), Constants.DatabaseName);
             return pathFull;
         }
 
@@ -40,55 +35,15 @@ namespace PokeApp.iOS
 
         public string PokedexZipPath()
         {
-
-            //var de = NSFileManager.DefaultManager;
-            //var error = new NSError();
-            //foreach (string f in de.GetDirectoryContent(NSBundle.MainBundle.BundlePath, out error))
-            //{
-            //    Logger.Info(f);
-            //}
-
-            //foreach (string f in Directory.EnumerateFiles(NSBundle.MainBundle.BundlePath))
-            //{
-            //    Logger.Info(f);
-            //}
-
-
-
-            //NSBundle.MainBundle.PathForResource("pokedex", "zip");
-
-            string documentsPath = NSBundle.MainBundle.BundlePath; // Documents folder
-                                                                   //string libraryPath = Path.Combine(documentsPath, "..", "Library"); // Library folder
-
-            //foreach (string f in Directory.EnumerateFiles(documentsPath))
-            //{
-            //    Logger.Info(f);
-            //}
-
-            //foreach (string f in Directory.EnumerateFiles(Path.Combine(documentsPath, "..")))
-            //{
-            //    Logger.Info(f);
-            //}
-            //foreach (string f in Directory.EnumerateFiles(libraryPath))
-            //{
-            //    Logger.Info(f);
-            //}
-
+            string documentsPath = NSBundle.MainBundle.BundlePath;
             string pathFull = Path.Combine(documentsPath, "Pokedex.zip");
-            Logger.Info(File.Exists(pathFull));
             return pathFull;
-            //return "Pokedex.zip";
         }
 
         public string PokedexCsvPath()
         {
-            //string documentsPath = NSBundle.MainBundle.BundlePath;
-            string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal); // Documents folder
-            string libraryPath = Path.Combine(documentsPath, "..", "Library"); // Library folder
-            string pathFull = Path.Combine(libraryPath, "extracted");
-            //string pathFull = Path.Combine(documentsPath, "extracted");
+            string pathFull = Path.Combine(GetLibraryPath(), "extracted");
             return pathFull;
-            //return "extracted";
         }
 
         public bool PokedexCsvExists()
@@ -120,6 +75,13 @@ namespace PokeApp.iOS
         public string ToTitleCase(string str)
         {
             return System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(str);
+        }
+
+        private string GetLibraryPath()
+        {
+            string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            string libraryPath = Path.Combine(documentsPath, "..", "Library");
+            return libraryPath;
         }
     }
 }

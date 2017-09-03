@@ -8,7 +8,7 @@ namespace PokeApp.Utils
 {
     public class Loader
     {
-        static readonly ILogger Logger = new ConsoleLogger("ResourceLoader");
+        static readonly ILogger Logger = new ConsoleLogger(nameof(Loader));
 
         public static string GetResourceStream(string resourcePath)
         {
@@ -17,7 +17,7 @@ namespace PokeApp.Utils
             foreach (string res in resourceNames)
             {
                 Logger.Info("found resource: " + res);
-        }
+            }
 
             string path = resourcePath.Replace(@"/", ".");
             path = resourceNames.FirstOrDefault(r => r.Contains(path));

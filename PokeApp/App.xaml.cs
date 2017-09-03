@@ -13,14 +13,8 @@ namespace PokeApp
 
     public partial class App : Application
     {
+
         private static IShared shared;
-
-        public App()
-        {
-            InitializeComponent();
-            MainPage = new NavigationPage(new AppMainPage());
-        }
-
         public static IShared Shared
         {
             get
@@ -33,9 +27,16 @@ namespace PokeApp
             }
         }
 
+        public App()
+        {
+            InitializeComponent();
+            MainPage = new NavigationPage(new AppMainPage());
+        }
+
         protected override void OnStart()
         {
             // Handle when your app starts
+            //PokeApp.Utils.Loader.GetResourceStream("Pokedex.zip");
             PokedexStorage.Init();
         }
 

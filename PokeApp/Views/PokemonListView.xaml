@@ -4,11 +4,15 @@
     xmlns:design="clr-namespace:PokeApp"
     BindingContext="{x:Static design:PokemonListViewModel.Preview}"
     x:Class="PokeApp.PokemonListView">
+    <SearchBar x:Name="searchBar"
+        Placeholder="Search"
+        SearchButtonPressed="OnButtonClick"
+        TextChanged="OnTextChanged" />
     <ListView x:Name="PokemonList"
         ItemsSource="{Binding PokemonList}"
         ItemSelected="OnSelectedItem"
         RowHeight="50"
-        ItemAppearing="Handle_ItemAppearing"
+        ItemAppearing="OnItemAppearing"
         Margin="5">
         <ListView.ItemTemplate>
             <DataTemplate>
@@ -17,8 +21,7 @@
                     <ImageCell.ImageSource>
                         <UriImageSource Uri="{Binding SpriteUrl}"
                             CacheValidity="365"
-                            CachingEnabled="true"
-                        />
+                            CachingEnabled="true" />
                     </ImageCell.ImageSource>
                 </ImageCell>
             </DataTemplate>

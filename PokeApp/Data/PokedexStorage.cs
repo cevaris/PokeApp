@@ -32,16 +32,13 @@ namespace PokeApp.Data
                     {
                         instance.Unzip();
                         instance.ParseAndPersistTables();
-                        //Save them to DB
-                        //SaveToFile
                         Logger.Info("done init Pokedex data");
 
                         MessagingCenter.Send<PokedexStorage>(instance, "PokedexStorage.Update");
                     }
-                    catch (Exception e)
+                    catch (AggregateException e)
                     {
                         Logger.Error("failed to init Pokedex data", e);
-                        throw e;
                     }
                 }).ConfigureAwait(false);
             }

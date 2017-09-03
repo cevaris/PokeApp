@@ -2,6 +2,7 @@
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using Foundation;
 using PokeApp.Data;
 using PokeApp.iOS;
 using PokeApp.Utils;
@@ -39,12 +40,55 @@ namespace PokeApp.iOS
 
         public string PokedexZipPath()
         {
-            return "Pokedex.zip";
+
+            //var de = NSFileManager.DefaultManager;
+            //var error = new NSError();
+            //foreach (string f in de.GetDirectoryContent(NSBundle.MainBundle.BundlePath, out error))
+            //{
+            //    Logger.Info(f);
+            //}
+
+            //foreach (string f in Directory.EnumerateFiles(NSBundle.MainBundle.BundlePath))
+            //{
+            //    Logger.Info(f);
+            //}
+
+
+
+            //NSBundle.MainBundle.PathForResource("pokedex", "zip");
+
+            string documentsPath = NSBundle.MainBundle.BundlePath; // Documents folder
+                                                                   //string libraryPath = Path.Combine(documentsPath, "..", "Library"); // Library folder
+
+            //foreach (string f in Directory.EnumerateFiles(documentsPath))
+            //{
+            //    Logger.Info(f);
+            //}
+
+            //foreach (string f in Directory.EnumerateFiles(Path.Combine(documentsPath, "..")))
+            //{
+            //    Logger.Info(f);
+            //}
+            //foreach (string f in Directory.EnumerateFiles(libraryPath))
+            //{
+            //    Logger.Info(f);
+            //}
+
+            string pathFull = Path.Combine(documentsPath, "Pokedex.zip");
+            Logger.Info(File.Exists(pathFull));
+            return pathFull;
+            //return "Pokedex.zip";
         }
 
         public string PokedexCsvPath()
         {
-            return "extracted";
+            //string documentsPath = NSBundle.MainBundle.BundlePath;
+            string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal); // Documents folder
+            string libraryPath = Path.Combine(documentsPath, "..", "Library"); // Library folder
+            string pathFull = Path.Combine(libraryPath, "extracted");
+            //string pathFull = Path.Combine(documentsPath, "extracted");
+            return pathFull;
+            //return "extracted";
         }
 
         public bool PokedexCsvExists()

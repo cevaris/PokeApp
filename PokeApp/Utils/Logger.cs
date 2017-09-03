@@ -4,6 +4,7 @@ namespace PokeApp.Utils
     public interface ILogger
     {
         void Error(object obj, Exception e);
+        void Error(object obj, AggregateException e);
         void Info(object obj);
     }
 
@@ -11,7 +12,8 @@ namespace PokeApp.Utils
     {
         String Scope { get; set; }
 
-        public ConsoleLogger(string scope) {
+        public ConsoleLogger(string scope)
+        {
             Scope = scope;
         }
 
@@ -25,10 +27,19 @@ namespace PokeApp.Utils
             System.Diagnostics.Debug.WriteLine($"{prefix("INFO")} - {obj} - {e.Message}");
         }
 
+        public void Error(object obj, AggregateException e)
+        {
+            System.Diagnostics.Debug.WriteLine($"{prefix("INFO")} - {obj}");
+            foreach (var inner in e.InnerExceptions)
+            {
+                System.Diagnostics.Debug.WriteLine($"{inner.Message}");
+            }
+        }
+
         private string prefix(string level)
         {
             string now = DateTime.UtcNow.ToString("s", System.Globalization.CultureInfo.InvariantCulture);
-            string scope = Scope == null ? "root" : Scope;            
+            string scope = Scope == null ? "root" : Scope;
             return $"{now} - {level} - {scope}";
         }
     }

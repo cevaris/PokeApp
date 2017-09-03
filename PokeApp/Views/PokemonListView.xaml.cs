@@ -3,6 +3,7 @@ using PokeApp.Data.Mappers;
 using PokeApp.Data.Tables;
 using Xamarin.Forms;
 using PokeApp.Utils;
+using System;
 
 namespace PokeApp
 {
@@ -16,7 +17,7 @@ namespace PokeApp
             PokemonList = new ListView(ListViewCachingStrategy.RecycleElement);
         }
 
-        void Handle_ItemAppearing(object sender, ItemVisibilityEventArgs e)
+        void OnItemAppearing(object sender, ItemVisibilityEventArgs e)
         {
             Logger.Info($"fired {e.Item.ToString()}");
             MessagingCenter.Send<PokemonListView, ItemVisibilityEventArgs>(this, "PokemonListViewModel.Page", e);
@@ -34,6 +35,33 @@ namespace PokeApp
                     Pokemon = pokemon
                 };
                 await Navigation.PushAsync(page);
+            }
+        }
+
+        public void OnButtonClick(object sender, EventArgs args)
+        {
+            if (sender == searchBar)
+            {
+                Logger.Info(searchBar.Text);
+                //itemListView.ItemsSource = Emails.Where(e => e.Header.ToLower().Trim().Contains(searchBar.Text.ToLower().Trim()));
+            }
+        }
+
+        public void OnTextChanged(object sender, TextChangedEventArgs args)
+        {
+            if (sender == searchBar)
+            {
+                if (string.IsNullOrWhiteSpace(args.NewTextValue))
+                {
+                    //PokemonList.ItemsSource = reset;
+                }
+                else
+                {
+                    //Update with search
+                    Logger.Info(args.NewTextValue);
+                    //itemListView.ItemsSource = Emails.Where(e => e.Header.ToLower().Trim().Contains(args.NewTextValue.ToLower().Trim()));
+                }
+
             }
         }
     }

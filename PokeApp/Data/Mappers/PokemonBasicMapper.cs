@@ -10,24 +10,23 @@ namespace PokeApp.Data.Mappers
 {
     public class PokemonBasicMapper : Mapper
     {
-        private static int PageSize = 20;
+        private static int PageSize = 5;
         private static readonly ILogger Logger = new ConsoleLogger(nameof(PokemonBasicMapper));
 
         public static async Task<List<PokemonBasicModel>> Page(int idOffset)
         {
             SQLite.SQLiteAsyncConnection conn = App.Shared.GetAsyncConnection();
-
             List<PokemonBasicModel> results = new List<PokemonBasicModel>();
 
-            LanguageTable langTable = await Mapper.LanguageEnglish();
+            LanguageTable langTable = Mapper.LanguageEnglish();
 
             Task<List<PokemonSpeciesTable>> speciesTask = conn.Table<PokemonSpeciesTable>()
                                                               .Skip(idOffset)
                                                               .Take(PageSize)
                                                               .ToListAsync();
-
+            
             List<PokemonSpeciesTable> species = await speciesTask;
-            IEnumerable<int> speciesIds = species.Select(y => y.Id);
+            List<int> speciesIds = species.Select(y => y.Id).ToList();
 
             Task<List<PokemonSpeciesNameTable>> namesTask = conn.Table<PokemonSpeciesNameTable>()
                                                                 .Where(x => speciesIds.Contains(x.Id) && x.LanguageId == langTable.Id)
@@ -43,7 +42,6 @@ namespace PokeApp.Data.Mappers
                     Name = name,
                     SpriteUrl = PokeUtils.GetImage(pst.Id)
                 };
-                //Logger.Info($"{pst.Id} - {PokeUtils.GetImage(pst.Id)}");
                 results.Add(instance);
             }
 

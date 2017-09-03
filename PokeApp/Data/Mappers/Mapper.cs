@@ -7,17 +7,25 @@ namespace PokeApp.Data.Mappers
 {
     public class Mapper
     {
+        private static LanguageTable english;
+
         public Mapper()
         {
-
         }
 
-        public static async Task<LanguageTable> LanguageEnglish()
+        public static LanguageTable LanguageEnglish()
         {
-            var conn = App.Shared.GetAsyncConnection();
-            return await conn.Table<LanguageTable>()
+            if (english == null)
+            {
+                var conn = App.Shared.GetAsyncConnection();
+                Task<LanguageTable> task = conn.Table<LanguageTable>()
                              .Where(x => x.Iso639 == Constants.Locale)
-                             .FirstAsync();
+                                  .FirstAsync();
+
+                english = task.Result;
+            }
+
+            return english;
         }
     }
 }

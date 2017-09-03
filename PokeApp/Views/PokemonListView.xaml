@@ -4,7 +4,7 @@
     xmlns:design="clr-namespace:PokeApp"
     BindingContext="{x:Static design:PokemonListViewModel.Preview}"
     x:Class="PokeApp.PokemonListView">
-    <SearchBar x:Name="searchBar"
+    <SearchBar x:Name="PokemonQuery"
         Placeholder="Search"
         SearchButtonPressed="OnButtonClick"
         TextChanged="OnTextChanged" />
@@ -21,7 +21,8 @@
                     <ImageCell.ImageSource>
                         <UriImageSource Uri="{Binding SpriteUrl}"
                             CacheValidity="365"
-                            CachingEnabled="true" />
+                            CachingEnabled="true" 
+                        />
                     </ImageCell.ImageSource>
                 </ImageCell>
             </DataTemplate>

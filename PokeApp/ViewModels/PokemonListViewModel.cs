@@ -19,6 +19,8 @@ namespace PokeApp
 
         public ObservableCollection<PokemonBasicModel> PokemonList { get; set; }
 
+        public string SearchQuery { get; set; }
+
         public PokemonListViewModel()
         {
             PokemonList = new ObservableCollection<PokemonBasicModel>();
@@ -26,13 +28,27 @@ namespace PokeApp
 
             MessagingCenter.Subscribe<PokedexStorage>(this, "PokedexStorage.Update", (sender) =>
             {
-                Update(0);
+                SearchQuery = null;
+                PokemonList.Clear();
+                Update(0, SearchQuery);
             });
+
+            MessagingCenter.Subscribe<PokemonListView, string>(this, "PokemonListViewModel.PageQuery", (sender, query) =>
+            {
+                if (query != null)
+                    query = query.Trim().ToLower();
+                
+                Logger.Info($"received query: {query}");
+                PokemonList.Clear();
+                SearchQuery = query;
+                Update(0, SearchQuery);
+            });
+
             MessagingCenter.Subscribe<PokemonListView, ItemVisibilityEventArgs>(this, "PokemonListViewModel.Page", (sender, e) =>
             {
-                if ((PokemonBasicModel)e.Item == PokemonList.Last())
+                if (PokemonList.Count > 0 && (PokemonBasicModel)e.Item == PokemonList.Last())
                 {
-                    Update(((PokemonBasicModel)e.Item).Id + 1);
+                    Update(((PokemonBasicModel)e.Item).Id + 1, SearchQuery);
                 }
             });
         }
@@ -56,10 +72,10 @@ namespace PokeApp
 
         };
 
-        public async void Update(int idOffset)
+        public async void Update(int idOffset, string nameQuery)
         {
             IsLoading = true;
-            List<PokemonBasicModel> pageResults = await PokemonBasicMapper.Page(idOffset);
+            List<PokemonBasicModel> pageResults = await PokemonBasicMapper.Page(idOffset, nameQuery);
             foreach (PokemonBasicModel p in pageResults)
             {
                 PokemonList.Add(p);

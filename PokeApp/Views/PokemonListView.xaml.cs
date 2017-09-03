@@ -9,7 +9,7 @@ namespace PokeApp
 {
     public partial class PokemonListView : StackLayout
     {
-        private ILogger Logger = new ConsoleLogger(nameof(PokemonListViewModel));
+        private ILogger Logger = new ConsoleLogger(nameof(PokemonListView));
 
         public PokemonListView()
         {
@@ -40,26 +40,25 @@ namespace PokeApp
 
         public void OnButtonClick(object sender, EventArgs args)
         {
-            if (sender == searchBar)
+            if (sender == PokemonQuery)
             {
-                Logger.Info(searchBar.Text);
-                //itemListView.ItemsSource = Emails.Where(e => e.Header.ToLower().Trim().Contains(searchBar.Text.ToLower().Trim()));
+                Logger.Info(PokemonQuery.Text);
+                MessagingCenter.Send<PokemonListView, string>(this, "PokemonListViewModel.PageQuery", PokemonQuery.Text);
             }
         }
 
         public void OnTextChanged(object sender, TextChangedEventArgs args)
         {
-            if (sender == searchBar)
+            if (sender == PokemonQuery)
             {
                 if (string.IsNullOrWhiteSpace(args.NewTextValue))
                 {
-                    //PokemonList.ItemsSource = reset;
+                    MessagingCenter.Send<PokemonListView, string>(this, "PokemonListViewModel.PageQuery", null);
                 }
                 else
                 {
-                    //Update with search
                     Logger.Info(args.NewTextValue);
-                    //itemListView.ItemsSource = Emails.Where(e => e.Header.ToLower().Trim().Contains(args.NewTextValue.ToLower().Trim()));
+                    MessagingCenter.Send<PokemonListView, string>(this, "PokemonListViewModel.PageQuery", PokemonQuery.Text);
                 }
 
             }

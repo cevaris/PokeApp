@@ -13,18 +13,30 @@ namespace PokeApp.Data.Mappers
         private static int PageSize = 5;
         private static readonly ILogger Logger = new ConsoleLogger(nameof(PokemonBasicMapper));
 
-        public static async Task<List<PokemonBasicModel>> Page(int idOffset)
+        public static async Task<List<PokemonBasicModel>> Page(int idOffset, string nameQuery)
         {
             SQLite.SQLiteAsyncConnection conn = App.Shared.GetAsyncConnection();
             List<PokemonBasicModel> results = new List<PokemonBasicModel>();
 
             LanguageTable langTable = Mapper.LanguageEnglish();
 
-            Task<List<PokemonSpeciesTable>> speciesTask = conn.Table<PokemonSpeciesTable>()
-                                                              .Skip(idOffset)
-                                                              .Take(PageSize)
-                                                              .ToListAsync();
-            
+            Task<List<PokemonSpeciesTable>> speciesTask;
+            if (nameQuery == null)
+            {
+                speciesTask = conn.Table<PokemonSpeciesTable>()
+                                  .Skip(idOffset)
+                                  .Take(PageSize)
+                                  .ToListAsync();
+            }
+            else
+            {
+                speciesTask = conn.Table<PokemonSpeciesTable>()
+                                  .Where(x => x.Identifier.Contains(nameQuery))
+                                  .Skip(idOffset)
+                                  .Take(PageSize)
+                                  .ToListAsync();
+            }
+
             List<PokemonSpeciesTable> species = await speciesTask;
             List<int> speciesIds = species.Select(y => y.Id).ToList();
 

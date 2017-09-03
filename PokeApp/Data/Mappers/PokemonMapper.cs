@@ -26,7 +26,6 @@ namespace PokeApp.Data.Mappers
             Task<PokemonSpeciesNameTable> taskPokemonName = conn.Table<PokemonSpeciesNameTable>()
                                                                  .Where(x => x.Id == id && x.LanguageId == langTable.Id)
                                                                  .FirstAsync();
-
             await Task.WhenAll(
                 taskSpeciesTable,
                 taskPokemonTable,
@@ -37,12 +36,30 @@ namespace PokeApp.Data.Mappers
             PokemonTable pokemonTable = await taskPokemonTable;
             PokemonSpeciesNameTable pokemonName = await taskPokemonName;
 
+            Task<GenerationTable> taskGeneration = conn.Table<GenerationTable>()
+                                                        .Where(x => x.Id == speciesTable.GenerationId && x.LanguageId == langTable.Id)
+                                                        .FirstAsync();
+
+            Task<HabitatTable> taskHabbit = conn.Table<HabitatTable>()
+                                                .Where(x => x.Id == speciesTable.HabitatId && x.LanguageId == langTable.Id)
+                                                .FirstAsync();
+
+            await Task.WhenAll(
+                taskGeneration,
+                taskHabbit
+            );
+            HabitatTable habbit = await taskHabbit;
+            GenerationTable generation = await taskGeneration;
+
             return new PokemonModel()
             {
                 Id = speciesTable.Id,
                 Name = pokemonName.Name,
                 Weight = pokemonTable.Weight,
+                HabitatName = App.Shared.ToTitleCase(habbit.Name),
                 Height = pokemonTable.Height,
+                Genus = pokemonName.Genus,
+                GenerationName = generation.Name,
                 BaseExperience = pokemonTable.BaseExperience,
                 SpeciesId = speciesTable.Id,
                 SpriteUrl = PokeUtils.GetImage(speciesTable.Id)

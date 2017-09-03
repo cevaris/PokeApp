@@ -14,8 +14,11 @@ namespace PokeApp.Data
             Id = 1,
             Name = "Bulbasaur",
             SpriteUrl = PokeUtils.GetImage(1),
-            Weight = 22,
-            Height = 33,
+            Genus = "Something", 
+            GenerationName = "Generation I",
+            HabitatName = "Grass",
+            Weight = 69,
+            Height = 7,
             BaseExperience = 44
         };
         public static readonly PokemonModel TestPokemonModel2 = new PokemonModel()
@@ -23,8 +26,11 @@ namespace PokeApp.Data
             Id = 2,
             Name = "Ivysaur",
             SpriteUrl = PokeUtils.GetImage(2),
-            Weight = 111,
-            Height = 222,
+            GenerationName = "Generation I",
+            Genus = "Something",
+            HabitatName = "Grass",
+            Weight = 130,
+            Height = 10,
             BaseExperience = 333
         };
         public static readonly List<PokemonModel> TestPokemonModels = new List<PokemonModel>()

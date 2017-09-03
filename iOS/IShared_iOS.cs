@@ -72,5 +72,10 @@ namespace PokeApp.iOS
         {
             return encoder.GetBytes(message);
         }
+
+        public string ToTitleCase(string str)
+        {
+            return System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(str);
+        }
     }
 }

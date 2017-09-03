@@ -9,6 +9,8 @@ namespace PokeApp.Utils
         byte[] Md5(byte[] bytes);
         byte[] ToBytes(string message);
 
+        string ToTitleCase(string str);
+
         SQLiteAsyncConnection GetAsyncConnection();
         string GetDatabasePath();
 

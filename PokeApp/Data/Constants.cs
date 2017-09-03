@@ -13,7 +13,7 @@ namespace PokeApp.Data
         {
             Id = 1,
             Name = "Bulbasaur",
-            SpriteUrl = "https://s3-us-west-2.amazonaws.com/pokeapp.assets/images/1.jpg",
+            SpriteUrl = PokeUtils.GetImage(1),
             Weight = 22,
             Height = 33,
             BaseExperience = 44
@@ -22,7 +22,7 @@ namespace PokeApp.Data
         {
             Id = 2,
             Name = "Ivysaur",
-            SpriteUrl = "https://s3-us-west-2.amazonaws.com/pokeapp.assets/images/2.jpg",
+            SpriteUrl = PokeUtils.GetImage(2),
             Weight = 111,
             Height = 222,
             BaseExperience = 333

@@ -20,7 +20,8 @@ namespace PokeApp.Data
                 sb.Append(buffer[i].ToString("x2"));
             }
             string hash = sb.ToString();
-            string url = $"https://s3-us-west-2.amazonaws.com/pokeapp.assets/images/{hash}.jpg";
+            string url = $"https://s3-us-west-2.amazonaws.com/pokeapp.assets/images/{hash}.png";
+            logger.Info(url);
             return url;
         }
     }

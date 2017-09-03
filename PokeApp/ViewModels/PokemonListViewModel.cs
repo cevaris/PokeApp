@@ -44,13 +44,13 @@ namespace PokeApp
                 {
                     Id = 1,
                     Name = "Bulbasaur",
-                    SpriteUrl = "https://s3-us-west-2.amazonaws.com/pokeapp.assets/images/1.jpg"
+                    SpriteUrl = PokeUtils.GetImage(1)
                 },
                 new PokemonBasicModel()
                 {
                     Id = 2,
                     Name = "Ivysaur",
-                    SpriteUrl = "https://s3-us-west-2.amazonaws.com/pokeapp.assets/images/2.jpg"
+                    SpriteUrl = PokeUtils.GetImage(2)
                 }
             }
 

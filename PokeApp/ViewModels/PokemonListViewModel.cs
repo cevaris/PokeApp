@@ -41,60 +41,63 @@ namespace PokeApp
 
         private CancellationTokenSource tokenSource { get; set; }
 
-        public PokemonListViewModel()
+        public PokemonListViewModel(bool subscribe = true)
         {
             PokemonList = new ObservableCollection<PokemonBasicModel>();
 
-            MessagingCenter.Subscribe<PokedexStorage>(this, PokedexStorage.MessageReady, async (_) =>
+            if (subscribe)
             {
-                await Update(idOffset: 0, pageSize: 20);
-            });
+                MessagingCenter.Subscribe<PokedexStorage>(this, PokedexStorage.MessageReady, async (_) =>
+                {
+                    await Update(idOffset: 0, pageSize: 20);
+                });
 
-            MessagingCenter.Subscribe<PokemonListView, string>(this, MessagePageWithQuery, async (sender, query) =>
-            {
-                Logger.Info($"queing query: {query}");
-                try
+                MessagingCenter.Subscribe<PokemonListView, string>(this, MessagePageWithQuery, async (sender, query) =>
                 {
-                    tokenSource?.Cancel();
-                }
-                catch (ObjectDisposedException)
-                {
-                    Logger.Info($"token source alredy disposed");
-                }
-
-                try
-                {
-                    if (query == null)
+                    Logger.Info($"queing query: {query}");
+                    try
                     {
-                        // query was closed/cancelled, reset list
-                        SearchQuery = query;
-                        await Update(idOffset: 0, pageSize: 20, clearList: true);
+                        tokenSource?.Cancel();
                     }
-                    else
+                    catch (ObjectDisposedException)
                     {
-                        // there still is some text, reset stuff
-                        tokenSource = new CancellationTokenSource();
-                        await DelayedQueryTask(query, tokenSource.Token);
-                        tokenSource.Dispose();
+                        Logger.Info($"token source alredy disposed");
                     }
-                }
-                catch (TaskCanceledException)
-                {
-                    Logger.Info($"cancelled query: {query}");
-                }
 
-            });
+                    try
+                    {
+                        if (query == null)
+                        {
+                            // query was closed/cancelled, reset list
+                            SearchQuery = query;
+                            await Update(idOffset: 0, pageSize: 20, clearList: true);
+                        }
+                        else
+                        {
+                            // there still is some text, reset stuff
+                            tokenSource = new CancellationTokenSource();
+                            await DelayedQueryTask(query, tokenSource.Token);
+                            tokenSource.Dispose();
+                        }
+                    }
+                    catch (TaskCanceledException)
+                    {
+                        Logger.Info($"cancelled query: {query}");
+                    }
 
-            MessagingCenter.Subscribe<PokemonListView, ItemVisibilityEventArgs>(this, MessagePage, async (sender, e) =>
-            {
-                if (PokemonList.Count > 0 && (PokemonBasicModel)e.Item == PokemonList.Last())
+                });
+
+                MessagingCenter.Subscribe<PokemonListView, ItemVisibilityEventArgs>(this, MessagePage, async (sender, e) =>
                 {
-                    await Update(((PokemonBasicModel)e.Item).Id + 1, SearchQuery);
-                }
-            });
+                    if (PokemonList.Count > 0 && (PokemonBasicModel)e.Item == PokemonList.Last())
+                    {
+                        await Update(((PokemonBasicModel)e.Item).Id + 1, SearchQuery);
+                    }
+                });
+            }
         }
 
-        public static PokemonListViewModel Preview = new PokemonListViewModel()
+        public static PokemonListViewModel Preview = new PokemonListViewModel(subscribe: false)
         {
             PokemonList = new ObservableCollection<PokemonBasicModel>(){
                 new PokemonBasicModel()
@@ -109,7 +112,8 @@ namespace PokeApp
                     Name = "Ivysaur",
                     SpriteUrl = PokeUtils.GetImage(2)
                 }
-            }
+            },
+
 
         };
 

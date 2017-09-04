@@ -19,14 +19,14 @@ namespace PokeApp
 
         void OnItemAppearing(object sender, ItemVisibilityEventArgs e)
         {
-            PokemonBasicModel p = ((PokemonBasicModel)e.Item);
+            PokemonListItemModel p = ((PokemonListItemModel)e.Item);
             Logger.Info($"fired for {p.Id}-{p.Name}");
             MessagingCenter.Send<PokemonListView, ItemVisibilityEventArgs>(this, PokemonListViewModel.MessagePage, e);
         }
 
         async void OnSelectedItem(object sender, SelectedItemChangedEventArgs e)
         {
-            PokemonBasicModel selectedPokemon = (PokemonBasicModel)e.SelectedItem;
+            PokemonListItemModel selectedPokemon = (PokemonListItemModel)e.SelectedItem;
             if (selectedPokemon != null)
             {
                 PokemonDetailPage page = new PokemonDetailPage();

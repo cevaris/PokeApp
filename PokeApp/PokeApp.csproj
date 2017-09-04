@@ -29,7 +29,7 @@
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml" />
-    <EmbeddedResource Include="Views\AppMainPage.xaml">
+    <EmbeddedResource Include="Views\MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\PokemonListView.xaml">
@@ -45,8 +45,8 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\PokemonListViewModel.cs" />
-    <Compile Include="Views\AppMainPage.xaml.cs">
-      <DependentUpon>AppMainPage.xaml</DependentUpon>
+    <Compile Include="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PokemonListView.xaml.cs">
       <DependentUpon>PokemonListView.xaml</DependentUpon>
@@ -79,10 +79,11 @@
     <Compile Include="Data\Mappers\Mapper.cs" />
     <Compile Include="Data\Csv\PokemonCsv.cs" />
     <Compile Include="Data\Tables\PokemonTable.cs" />
-    <Compile Include="Data\Models\PokemonBasicModel.cs" />
-    <Compile Include="Data\Mappers\PokemonBasicMapper.cs" />
+    <Compile Include="Data\Models\PokemonListItemModel.cs" />
+    <Compile Include="Data\Mappers\PokemonListItemMapper.cs" />
     <Compile Include="Data\PokeUtils.cs" />
     <Compile Include="Data\Secrets.cs" />
+    <Compile Include="ViewModels\MainPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib">

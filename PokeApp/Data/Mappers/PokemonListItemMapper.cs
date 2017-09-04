@@ -8,14 +8,14 @@ using PokeApp.Utils;
 
 namespace PokeApp.Data.Mappers
 {
-    public class PokemonBasicMapper : Mapper
+    public class PokemonListItemMapper : Mapper
     {
-        private static readonly ILogger Logger = new ConsoleLogger(nameof(PokemonBasicMapper));
+        private static readonly ILogger Logger = new ConsoleLogger(nameof(PokemonListItemMapper));
 
-        public static async Task<List<PokemonBasicModel>> Page(int idOffset, string nameQuery, int pageSize)
+        public static async Task<List<PokemonListItemModel>> Page(int idOffset, string nameQuery, int pageSize)
         {
             SQLite.SQLiteAsyncConnection conn = App.Shared.GetAsyncConnection();
-            List<PokemonBasicModel> results = new List<PokemonBasicModel>();
+            List<PokemonListItemModel> results = new List<PokemonListItemModel>();
 
             LanguageTable langTable = Mapper.LanguageEnglish();
 
@@ -47,7 +47,7 @@ namespace PokeApp.Data.Mappers
             foreach (PokemonSpeciesTable pst in species)
             {
                 string name = names.Find(x => x.Id == pst.Id).Name;
-                PokemonBasicModel instance = new PokemonBasicModel()
+                PokemonListItemModel instance = new PokemonListItemModel()
                 {
                     Id = pst.Id,
                     Name = name,

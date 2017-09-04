@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:design="clr-namespace:PokeApp"
+    BindingContext="{x:Static design:MainPageViewModel.Preview}"
+    x:Class="PokeApp.MainPage">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+            iOS="0, 15, 0, 0" />
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Orientation="Horizontal"
+                HorizontalOptions="CenterAndExpand">
+                <Frame OutlineColor="Black"
+                    WidthRequest="300"
+                    HeightRequest="500">
+                    <Image HorizontalOptions="StartAndExpand"
+                        WidthRequest="300">
+                        <Image.Source>
+                            <UriImageSource Uri="{Binding PokedexUrl}"
+                                CacheValidity="365"/>
+                        </Image.Source>
+                    </Image>
+                    <Label Text="Pokédex" />
+                </Frame>
+            </StackLayout>
+            <StackLayout Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Orientation="Horizontal"
+                HorizontalOptions="CenterAndExpand">
+                <Frame OutlineColor="Black"
+                    WidthRequest="300"
+                    HeightRequest="200">
+                    <Image HorizontalOptions="StartAndExpand"
+                        WidthRequest="300">
+                        <Image.Source>
+                            <UriImageSource Uri="{Binding AboutUrl}"
+                                CacheValidity="365"/>
+                        </Image.Source>
+                    </Image>
+                    <Label Text="Info/About" />
+                </Frame>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

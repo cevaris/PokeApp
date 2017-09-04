@@ -32,7 +32,7 @@ namespace PokeApp
             }
         }
 
-        public ObservableCollection<PokemonBasicModel> PokemonList { get; set; }
+        public ObservableCollection<PokemonListItemModel> PokemonList { get; set; }
 
         public string SearchQuery { get; set; }
 
@@ -43,7 +43,7 @@ namespace PokeApp
 
         public PokemonListViewModel(bool subscribe = true)
         {
-            PokemonList = new ObservableCollection<PokemonBasicModel>();
+            PokemonList = new ObservableCollection<PokemonListItemModel>();
 
             if (subscribe)
             {
@@ -89,9 +89,9 @@ namespace PokeApp
 
                 MessagingCenter.Subscribe<PokemonListView, ItemVisibilityEventArgs>(this, MessagePage, async (sender, e) =>
                 {
-                    if (PokemonList.Count > 0 && (PokemonBasicModel)e.Item == PokemonList.Last())
+                    if (PokemonList.Count > 0 && (PokemonListItemModel)e.Item == PokemonList.Last())
                     {
-                        await Update(((PokemonBasicModel)e.Item).Id + 1, SearchQuery);
+                        await Update(((PokemonListItemModel)e.Item).Id + 1, SearchQuery);
                     }
                 });
             }
@@ -99,14 +99,14 @@ namespace PokeApp
 
         public static PokemonListViewModel Preview = new PokemonListViewModel(subscribe: false)
         {
-            PokemonList = new ObservableCollection<PokemonBasicModel>(){
-                new PokemonBasicModel()
+            PokemonList = new ObservableCollection<PokemonListItemModel>(){
+                new PokemonListItemModel()
                 {
                     Id = 1,
                     Name = "Bulbasaur",
                     SpriteUrl = PokeUtils.GetImage(1)
                 },
-                new PokemonBasicModel()
+                new PokemonListItemModel()
                 {
                     Id = 2,
                     Name = "Ivysaur",
@@ -126,13 +126,13 @@ namespace PokeApp
         {
             Logger.Info($"idOffset:{idOffset}, query:{query} clearList:{clearList} pageSize:{pageSize}");
             IsLoading = true;
-            List<PokemonBasicModel> pageResults = await PokemonBasicMapper.Page(idOffset, query, pageSize);
+            List<PokemonListItemModel> pageResults = await PokemonListItemMapper.Page(idOffset, query, pageSize);
             if (clearList)
             {
                 PokemonList.Clear();
             }
 
-            foreach (PokemonBasicModel p in pageResults)
+            foreach (PokemonListItemModel p in pageResults)
             {
                 PokemonList.Add(p);
             }

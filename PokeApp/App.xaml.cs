@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using PokeApp.Data.Models;
+using PokeApp;
 using PokeApp.Utils;
 using PokeApp.Data;
 using PokeApp.Data.Tables;
@@ -30,14 +31,18 @@ namespace PokeApp
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new AppMainPage());
+            MainPage main = new MainPage();
+            main.BindingContext = MainPageViewModel.Preview;
+
+            NavigationPage page = new NavigationPage(main);
+            MainPage = page;
         }
 
         protected override void OnStart()
         {
             // Handle when your app starts
             //PokeApp.Utils.Loader.GetResourceStream("Pokedex.zip");
-            PokedexStorage.Init();
+            //PokedexStorage.Init();
         }
 
         protected override void OnSleep()

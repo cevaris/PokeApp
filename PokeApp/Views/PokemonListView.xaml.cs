@@ -19,7 +19,8 @@ namespace PokeApp
 
         void OnItemAppearing(object sender, ItemVisibilityEventArgs e)
         {
-            Logger.Info($"fired {e.Item.ToString()}");
+            PokemonBasicModel p = ((PokemonBasicModel)e.Item);
+            Logger.Info($"fired for {p.Id}-{p.Name}");
             MessagingCenter.Send<PokemonListView, ItemVisibilityEventArgs>(this, PokemonListViewModel.MessagePage, e);
         }
 

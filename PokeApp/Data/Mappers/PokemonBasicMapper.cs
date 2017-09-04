@@ -10,10 +10,9 @@ namespace PokeApp.Data.Mappers
 {
     public class PokemonBasicMapper : Mapper
     {
-        private static int PageSize = 5;
         private static readonly ILogger Logger = new ConsoleLogger(nameof(PokemonBasicMapper));
 
-        public static async Task<List<PokemonBasicModel>> Page(int idOffset, string nameQuery)
+        public static async Task<List<PokemonBasicModel>> Page(int idOffset, string nameQuery, int pageSize)
         {
             SQLite.SQLiteAsyncConnection conn = App.Shared.GetAsyncConnection();
             List<PokemonBasicModel> results = new List<PokemonBasicModel>();
@@ -25,7 +24,7 @@ namespace PokeApp.Data.Mappers
             {
                 speciesTask = conn.Table<PokemonSpeciesTable>()
                                   .Skip(idOffset)
-                                  .Take(PageSize)
+                                  .Take(pageSize)
                                   .ToListAsync();
             }
             else
@@ -33,7 +32,7 @@ namespace PokeApp.Data.Mappers
                 speciesTask = conn.Table<PokemonSpeciesTable>()
                                   .Where(x => x.Identifier.Contains(nameQuery))
                                   .Skip(idOffset)
-                                  .Take(PageSize)
+                                  .Take(pageSize)
                                   .ToListAsync();
             }
 

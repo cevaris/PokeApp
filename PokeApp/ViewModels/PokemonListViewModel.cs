@@ -47,7 +47,7 @@ namespace PokeApp
 
             MessagingCenter.Subscribe<PokedexStorage>(this, PokedexStorage.MessageReady, async (_) =>
             {
-                await Update(idOffset: 0);
+                await Update(idOffset: 0, pageSize: 20);
             });
 
             MessagingCenter.Subscribe<PokemonListView, string>(this, MessagePageWithQuery, async (sender, query) =>
@@ -64,9 +64,19 @@ namespace PokeApp
 
                 try
                 {
-                    tokenSource = new CancellationTokenSource();
-                    await QueryTask(query, tokenSource.Token);
-                    IsLoading = false;
+                    if (query == null)
+                    {
+                        // query was closed/cancelled, reset list
+                        SearchQuery = query;
+                        await Update(idOffset: 0, pageSize: 20, clearList: true);
+                    }
+                    else
+                    {
+                        // there still is some text, reset stuff
+                        tokenSource = new CancellationTokenSource();
+                        await DelayedQueryTask(query, tokenSource.Token);
+                        tokenSource.Dispose();
+                    }
                 }
                 catch (TaskCanceledException)
                 {
@@ -103,10 +113,16 @@ namespace PokeApp
 
         };
 
-        private async Task<int> Update(int idOffset, string nameQuery = null, bool clearList = false)
+        private async Task<int> Update(
+            int idOffset,
+            string query = null,
+            bool clearList = false,
+            int pageSize = 5
+        )
         {
+            Logger.Info($"idOffset:{idOffset}, query:{query} clearList:{clearList} pageSize:{pageSize}");
             IsLoading = true;
-            List<PokemonBasicModel> pageResults = await PokemonBasicMapper.Page(idOffset, nameQuery);
+            List<PokemonBasicModel> pageResults = await PokemonBasicMapper.Page(idOffset, query, pageSize);
             if (clearList)
             {
                 PokemonList.Clear();
@@ -120,25 +136,30 @@ namespace PokeApp
             return pageResults.Count;
         }
 
-        private async Task<CancellationToken> QueryTask(string query, CancellationToken token)
+        private async Task<CancellationToken> DelayedQueryTask(string query, CancellationToken token)
         {
             await Task.Delay(1000, token);
+            await QueryTask(query);
+            return token;
+        }
 
+        private async Task<string> QueryTask(string query)
+        {
             Logger.Info($"processing query: {query}");
 
             if (query != null)
                 query = query.Trim().ToLower();
 
             SearchQuery = query;
-            await Update(0, SearchQuery, clearList: true);
-            return token;
+            await Update(idOffset: 0, query: query, clearList: true, pageSize: 20);
+            return query;
         }
 
         private void OnPropertyChanged([CallerMemberName] string caller = "")
         {
             if (PropertyChanged != null)
             {
-                PropertyChanged(this,new PropertyChangedEventArgs(caller));
+                PropertyChanged(this, new PropertyChangedEventArgs(caller));
             }
         }
     }

@@ -4,9 +4,11 @@
 JSON.net
 - https://www.newtonsoft.com/json
 
-
 Http/ModelViewModel Sample apps
 - https://github.com/xamarin/xamarin-forms-samples/tree/master/WebServices/AzureSearch/MonkeyApp
+
+Task/Cancellation
+- https://stackoverflow.com/a/35165414/3538289
 
 SQLite storage
 - https://github.com/praeclarum/sqlite-net

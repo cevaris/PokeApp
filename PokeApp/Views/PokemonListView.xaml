@@ -29,7 +29,8 @@
         </ListView.ItemTemplate>
         <ListView.Footer>
             <ActivityIndicator IsRunning="{Binding IsLoading}"
-                IsVisible="{Binding IsLoading}" />
+                IsVisible="{Binding IsLoading}"
+                 />
         </ListView.Footer>
     </ListView>
 </StackLayout>

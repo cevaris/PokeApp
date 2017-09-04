@@ -10,14 +10,27 @@ using PokeApp.Data.Mappers;
 using PokeApp.Data.Models;
 using System.Threading;
 using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace PokeApp
 {
-    public class PokemonListViewModel
+    public class PokemonListViewModel : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private ILogger Logger = new ConsoleLogger(nameof(PokemonListViewModel));
 
-        public bool IsLoading { get; set; }
+        private bool _isLoading = true;
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ObservableCollection<PokemonBasicModel> PokemonList { get; set; }
 
@@ -31,13 +44,10 @@ namespace PokeApp
         public PokemonListViewModel()
         {
             PokemonList = new ObservableCollection<PokemonBasicModel>();
-            IsLoading = true;
-
-            tokenSource = new CancellationTokenSource();
 
             MessagingCenter.Subscribe<PokedexStorage>(this, PokedexStorage.MessageReady, async (_) =>
             {
-                await Update(0, null);
+                await Update(idOffset: 0);
             });
 
             MessagingCenter.Subscribe<PokemonListView, string>(this, MessagePageWithQuery, async (sender, query) =>
@@ -56,6 +66,7 @@ namespace PokeApp
                 {
                     tokenSource = new CancellationTokenSource();
                     await QueryTask(query, tokenSource.Token);
+                    IsLoading = false;
                 }
                 catch (TaskCanceledException)
                 {
@@ -92,7 +103,7 @@ namespace PokeApp
 
         };
 
-        private async Task<int> Update(int idOffset, string nameQuery, bool clearList = false)
+        private async Task<int> Update(int idOffset, string nameQuery = null, bool clearList = false)
         {
             IsLoading = true;
             List<PokemonBasicModel> pageResults = await PokemonBasicMapper.Page(idOffset, nameQuery);
@@ -111,7 +122,6 @@ namespace PokeApp
 
         private async Task<CancellationToken> QueryTask(string query, CancellationToken token)
         {
-            // https://stackoverflow.com/a/35165414/3538289
             await Task.Delay(1000, token);
 
             Logger.Info($"processing query: {query}");
@@ -122,6 +132,14 @@ namespace PokeApp
             SearchQuery = query;
             await Update(0, SearchQuery, clearList: true);
             return token;
+        }
+
+        private void OnPropertyChanged([CallerMemberName] string caller = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this,new PropertyChangedEventArgs(caller));
+            }
         }
     }
 }

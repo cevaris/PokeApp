@@ -8,6 +8,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using PokeApp.Data.Mappers;
 using PokeApp.Data.Models;
+using System.Threading;
+using System;
 
 namespace PokeApp
 {
@@ -24,33 +26,49 @@ namespace PokeApp
         public static readonly string MessagePageWithQuery = $"{nameof(PokemonListViewModel)}.PageQuery";
         public static readonly string MessagePage = $"{nameof(PokemonListViewModel)}.Page";
 
+        private CancellationTokenSource tokenSource { get; set; }
+
         public PokemonListViewModel()
         {
             PokemonList = new ObservableCollection<PokemonBasicModel>();
             IsLoading = true;
 
-            MessagingCenter.Subscribe<PokedexStorage>(this, PokedexStorage.MessageReady, (_) =>
+            tokenSource = new CancellationTokenSource();
+
+            MessagingCenter.Subscribe<PokedexStorage>(this, PokedexStorage.MessageReady, async (_) =>
             {
-                Update(0, null);
+                await Update(0, null);
             });
 
-            MessagingCenter.Subscribe<PokemonListView, string>(this, MessagePageWithQuery, (sender, query) =>
+            MessagingCenter.Subscribe<PokemonListView, string>(this, MessagePageWithQuery, async (sender, query) =>
             {
-                Logger.Info($"received query: {query}");
-             
-                if (query != null)
-                    query = query.Trim().ToLower();
+                Logger.Info($"queing query: {query}");
+                try
+                {
+                    tokenSource?.Cancel();
+                }
+                catch (ObjectDisposedException)
+                {
+                    Logger.Info($"token source alredy disposed");
+                }
 
-                PokemonList.Clear();
-                SearchQuery = query;
-                Update(0, SearchQuery);
+                try
+                {
+                    tokenSource = new CancellationTokenSource();
+                    await QueryTask(query, tokenSource.Token);
+                }
+                catch (TaskCanceledException)
+                {
+                    Logger.Info($"cancelled query: {query}");
+                }
+
             });
 
-            MessagingCenter.Subscribe<PokemonListView, ItemVisibilityEventArgs>(this, MessagePage, (sender, e) =>
+            MessagingCenter.Subscribe<PokemonListView, ItemVisibilityEventArgs>(this, MessagePage, async (sender, e) =>
             {
                 if (PokemonList.Count > 0 && (PokemonBasicModel)e.Item == PokemonList.Last())
                 {
-                    Update(((PokemonBasicModel)e.Item).Id + 1, SearchQuery);
+                    await Update(((PokemonBasicModel)e.Item).Id + 1, SearchQuery);
                 }
             });
         }
@@ -74,15 +92,36 @@ namespace PokeApp
 
         };
 
-        public async void Update(int idOffset, string nameQuery)
+        private async Task<int> Update(int idOffset, string nameQuery, bool clearList = false)
         {
             IsLoading = true;
             List<PokemonBasicModel> pageResults = await PokemonBasicMapper.Page(idOffset, nameQuery);
+            if (clearList)
+            {
+                PokemonList.Clear();
+            }
+
             foreach (PokemonBasicModel p in pageResults)
             {
                 PokemonList.Add(p);
             }
             IsLoading = false;
+            return pageResults.Count;
+        }
+
+        private async Task<CancellationToken> QueryTask(string query, CancellationToken token)
+        {
+            // https://stackoverflow.com/a/35165414/3538289
+            await Task.Delay(1000, token);
+
+            Logger.Info($"processing query: {query}");
+
+            if (query != null)
+                query = query.Trim().ToLower();
+
+            SearchQuery = query;
+            await Update(0, SearchQuery, clearList: true);
+            return token;
         }
     }
 }

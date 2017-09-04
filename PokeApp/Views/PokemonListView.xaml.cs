@@ -58,7 +58,7 @@ namespace PokeApp
                 else
                 {
                     Logger.Info(args.NewTextValue);
-                    PageWithQuery(PokemonQuery.Text);
+                    PageWithQuery(args.NewTextValue);
                 }
             }
         }

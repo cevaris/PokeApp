@@ -83,7 +83,6 @@
     <Compile Include="Data\Mappers\PokemonBasicMapper.cs" />
     <Compile Include="Data\PokeUtils.cs" />
     <Compile Include="Data\Secrets.cs" />
-    <Compile Include="Utils\MessagingCenterUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib">

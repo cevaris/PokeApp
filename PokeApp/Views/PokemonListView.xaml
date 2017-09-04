@@ -4,16 +4,18 @@
     xmlns:design="clr-namespace:PokeApp"
     BindingContext="{x:Static design:PokemonListViewModel.Preview}"
     x:Class="PokeApp.PokemonListView">
-    <SearchBar x:Name="PokemonQuery"
-        Placeholder="Search"
-        SearchButtonPressed="OnButtonClick"
-        TextChanged="OnTextChanged" />
     <ListView x:Name="PokemonList"
         ItemsSource="{Binding PokemonList}"
         ItemSelected="OnSelectedItem"
         RowHeight="50"
         ItemAppearing="OnItemAppearing"
         Margin="5">
+        <ListView.Header>
+            <SearchBar x:Name="PokemonQuery"
+                Placeholder="Search"
+                SearchButtonPressed="OnButtonClick"
+                TextChanged="OnTextChanged" />
+        </ListView.Header>
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ImageCell Text="{Binding Id}"
@@ -21,16 +23,14 @@
                     <ImageCell.ImageSource>
                         <UriImageSource Uri="{Binding SpriteUrl}"
                             CacheValidity="365"
-                            CachingEnabled="true" 
-                        />
+                            CachingEnabled="true" />
                     </ImageCell.ImageSource>
                 </ImageCell>
             </DataTemplate>
         </ListView.ItemTemplate>
         <ListView.Footer>
             <ActivityIndicator IsRunning="{Binding IsLoading}"
-                IsVisible="{Binding IsLoading}"
-                 />
+                IsVisible="{Binding IsLoading}" />
         </ListView.Footer>
     </ListView>
 </StackLayout>

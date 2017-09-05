@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Xamarin.Forms;
-using PokeApp.Data.Tables;
+﻿using Xamarin.Forms;
 using System;
 using PokeApp.Utils;
 
@@ -38,6 +36,23 @@ namespace PokeApp
             if (sender == AboutFrame)
             {
                 logger.Info("clicked about");
+            }
+        }
+
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
+            if (width > height)
+            {
+                AboutStack.Orientation = StackOrientation.Horizontal;
+                PokedexStack.Orientation = StackOrientation.Horizontal;
+                logger.Info("setting orientation to horizontal");
+            }
+            else
+            {
+                AboutStack.Orientation = StackOrientation.Vertical;
+                PokedexStack.Orientation = StackOrientation.Vertical;
+                logger.Info("setting orientation to vertical");
             }
         }
     }

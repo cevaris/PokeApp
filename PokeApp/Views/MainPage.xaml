@@ -27,14 +27,13 @@
                     <TapGestureRecognizer Tapped="OnTapped"
                         NumberOfTapsRequired="1" />
                 </Frame.GestureRecognizers>
-                <StackLayout Orientation="Vertical">
-                    <Label Text="Pokédex"
-                        VerticalOptions="StartAndExpand" />
-                    <Image
-                        Source="{Binding PokedexUrl}"
-                        Aspect="Fill"
-                        HorizontalOptions="CenterAndExpand"
-                        VerticalOptions="StartAndExpand">
+                <StackLayout x:Name="PokedexStack"
+                    Orientation="Vertical">
+                    <Label Text="Pokédex" />
+                    <Image Source="{Binding PokedexUrl}"
+                        Aspect="AspectFit"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
                     </Image>
                 </StackLayout>
             </Frame>
@@ -46,12 +45,13 @@
                     <TapGestureRecognizer Tapped="OnTapped"
                         NumberOfTapsRequired="1" />
                 </Frame.GestureRecognizers>
-                <StackLayout Orientation="Vertical">
+                <StackLayout x:Name="AboutStack"
+                    Orientation="Vertical">
                     <Label Text="About" />
                     <Image Source="{Binding AboutUrl}"
-                        Aspect="Fill"
-                        HorizontalOptions="CenterAndExpand"
-                        VerticalOptions="StartAndExpand">
+                        Aspect="AspectFit"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
                     </Image>
                 </StackLayout>
             </Frame>

@@ -26,11 +26,13 @@
                     WidthRequest="300"
                     HeightRequest="500">
                     <Image HorizontalOptions="StartAndExpand"
-                        WidthRequest="300">
-                        <Image.Source>
+                        WidthRequest="300"
+                        x:Name="PokedexImage"
+                        Source="{Binding PokedexUrl}">
+                        <!--<Image.Source>
                             <UriImageSource Uri="{Binding PokedexUrl}"
                                 CacheValidity="365"/>
-                        </Image.Source>
+                        </Image.Source>-->
                     </Image>
                     <Label Text="Pokédex" />
                 </Frame>
@@ -44,11 +46,12 @@
                     WidthRequest="300"
                     HeightRequest="200">
                     <Image HorizontalOptions="StartAndExpand"
-                        WidthRequest="300">
-                        <Image.Source>
+                        WidthRequest="300"
+                        Source="{Binding AboutUrl}">
+                        <!--    <Image.Source>
                             <UriImageSource Uri="{Binding AboutUrl}"
                                 CacheValidity="365"/>
-                        </Image.Source>
+                        </Image.Source>-->
                     </Image>
                     <Label Text="Info/About" />
                 </Frame>

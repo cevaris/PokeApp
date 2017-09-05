@@ -23,6 +23,7 @@ Images
 - https://github.com/dchest/webp-quicklook
 - https://developers.google.com/speed/webp/docs/cwebp
 - https://github.com/artem-zinnatullin/jet-image-loader
+- `convert 1.png -colors 256 PNG8:1.png`
 
 
 Credits

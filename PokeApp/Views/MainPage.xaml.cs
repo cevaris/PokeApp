@@ -9,8 +9,12 @@ namespace PokeApp
     {
         public MainPage()
         {
-            InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            BindingContext = MainPageViewModel.Preview;
+            InitializeComponent();
+
+            PokedexImage.Source = ImageSource.FromUri(new Uri(MainPageViewModel.Preview.PokedexUrl));
+
         }
     }
 }

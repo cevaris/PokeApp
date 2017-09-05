@@ -11,61 +11,46 @@
     <ContentPage.Content>
         <Grid Margin="10">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="400" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <StackLayout Grid.Row="0"
+            <Frame Grid.Row="0"
                 Grid.Column="0"
                 Grid.ColumnSpan="3"
-                Orientation="Horizontal"
-                HorizontalOptions="CenterAndExpand">
-                <Frame x:Name="PokedexFrame"
-                    OutlineColor="Black"
-                    WidthRequest="300"
-                    HeightRequest="500">
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnTapped"
-                            NumberOfTapsRequired="1" />
-                    </Frame.GestureRecognizers>
-                    <Image HorizontalOptions="StartAndExpand"
-                        WidthRequest="300"
-                        x:Name="PokedexImage"
+                x:Name="PokedexFrame">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnTapped"
+                        NumberOfTapsRequired="1" />
+                </Frame.GestureRecognizers>
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Pokédex"
+                        VerticalOptions="StartAndExpand" />
+                    <Image x:Name="PokedexImage"
+                        VerticalOptions="StartAndExpand"
                         Source="{Binding PokedexUrl}">
-                        <!--<Image.Source>
-                            <UriImageSource Uri="{Binding PokedexUrl}"
-                                CacheValidity="365"/>
-                        </Image.Source>-->
                     </Image>
-                    <Label Text="Pokédex" />
-                </Frame>
-            </StackLayout>
-            <StackLayout Grid.Row="1"
+                </StackLayout>
+            </Frame>
+            <Frame Grid.Row="1"
                 Grid.Column="0"
                 Grid.ColumnSpan="3"
-                Orientation="Horizontal"
-                HorizontalOptions="CenterAndExpand">
-                <Frame x:Name="AboutFrame"
-                    OutlineColor="Black"
-                    WidthRequest="300"
-                    HeightRequest="200">
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnTapped"
-                            NumberOfTapsRequired="1" />
-                    </Frame.GestureRecognizers>
-                    <Image HorizontalOptions="StartAndExpand"
-                        WidthRequest="300"
-                        Source="{Binding AboutUrl}">
-                        <!--    <Image.Source>
-                            <UriImageSource Uri="{Binding AboutUrl}"
-                                CacheValidity="365"/>
-                        </Image.Source>-->
-                    </Image>
+                x:Name="AboutFrame">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnTapped"
+                        NumberOfTapsRequired="1" />
+                </Frame.GestureRecognizers>
+                <StackLayout Orientation="Vertical">
                     <Label Text="About" />
-                </Frame>
-            </StackLayout>
+                    <Image WidthRequest="300"
+                        Source="{Binding AboutUrl}">
+                    </Image>
+                </StackLayout>
+            </Frame>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -40,8 +40,7 @@ namespace PokeApp
         protected override void OnStart()
         {
             // Handle when your app starts
-            //PokeApp.Utils.Loader.GetResourceStream("Pokedex.zip");
-            //PokedexStorage.Init();
+            PokedexStorage.Init();
         }
 
         protected override void OnSleep()

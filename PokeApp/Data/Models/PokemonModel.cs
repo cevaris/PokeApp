@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Newtonsoft.Json;
-
-namespace PokeApp.Data.Models
+﻿namespace PokeApp.Data.Models
 {
     public class PokemonModel
     {

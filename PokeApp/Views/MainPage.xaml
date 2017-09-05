@@ -11,7 +11,7 @@
     <ContentPage.Content>
         <Grid Margin="10">
             <Grid.RowDefinitions>
-                <RowDefinition Height="400" />
+                <RowDefinition Height="1.5*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -30,9 +30,11 @@
                 <StackLayout Orientation="Vertical">
                     <Label Text="Pokédex"
                         VerticalOptions="StartAndExpand" />
-                    <Image x:Name="PokedexImage"
-                        VerticalOptions="StartAndExpand"
-                        Source="{Binding PokedexUrl}">
+                    <Image
+                        Source="{Binding PokedexUrl}"
+                        Aspect="Fill"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="StartAndExpand">
                     </Image>
                 </StackLayout>
             </Frame>
@@ -46,8 +48,10 @@
                 </Frame.GestureRecognizers>
                 <StackLayout Orientation="Vertical">
                     <Label Text="About" />
-                    <Image WidthRequest="300"
-                        Source="{Binding AboutUrl}">
+                    <Image Source="{Binding AboutUrl}"
+                        Aspect="Fill"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="StartAndExpand">
                     </Image>
                 </StackLayout>
             </Frame>

@@ -15,11 +15,11 @@ using System.Runtime.CompilerServices;
 
 namespace PokeApp
 {
-    public class PokemonListViewModel : INotifyPropertyChanged
+    public class PokedexListPageModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private ILogger Logger = new ConsoleLogger(nameof(PokemonListViewModel));
+        private ILogger Logger = new ConsoleLogger(nameof(PokedexListPageModel));
 
         private bool _isLoading = true;
         public bool IsLoading
@@ -36,12 +36,12 @@ namespace PokeApp
 
         public string SearchQuery { get; set; }
 
-        public static readonly string MessagePageWithQuery = $"{nameof(PokemonListViewModel)}.PageQuery";
-        public static readonly string MessagePage = $"{nameof(PokemonListViewModel)}.Page";
+        public static readonly string MessagePageWithQuery = $"{nameof(PokedexListPageModel)}.PageQuery";
+        public static readonly string MessagePage = $"{nameof(PokedexListPageModel)}.Page";
 
         private CancellationTokenSource tokenSource { get; set; }
 
-        public PokemonListViewModel(bool subscribe = true)
+        public PokedexListPageModel(bool subscribe = true)
         {
             PokemonList = new ObservableCollection<PokemonListItemModel>();
 
@@ -52,7 +52,7 @@ namespace PokeApp
                     await Update(idOffset: 0, pageSize: 20);
                 });
 
-                MessagingCenter.Subscribe<PokemonListView, string>(this, MessagePageWithQuery, async (sender, query) =>
+                MessagingCenter.Subscribe<PokedexListPage, string>(this, MessagePageWithQuery, async (sender, query) =>
                 {
                     Logger.Info($"queing query: {query}");
                     try
@@ -87,7 +87,7 @@ namespace PokeApp
 
                 });
 
-                MessagingCenter.Subscribe<PokemonListView, ItemVisibilityEventArgs>(this, MessagePage, async (sender, e) =>
+                MessagingCenter.Subscribe<PokedexListPage, ItemVisibilityEventArgs>(this, MessagePage, async (sender, e) =>
                 {
                     if (PokemonList.Count > 0 && (PokemonListItemModel)e.Item == PokemonList.Last())
                     {
@@ -97,7 +97,7 @@ namespace PokeApp
             }
         }
 
-        public static PokemonListViewModel Preview = new PokemonListViewModel(subscribe: false)
+        public static PokedexListPageModel Preview = new PokedexListPageModel(subscribe: false)
         {
             PokemonList = new ObservableCollection<PokemonListItemModel>(){
                 new PokemonListItemModel()

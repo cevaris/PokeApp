@@ -2,8 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:design="clr-namespace:PokeApp"
-    BindingContext="{x:Static design:PokemonListViewModel.Preview}"
-    x:Class="PokeApp.PokemonListView">
+    BindingContext="{x:Static design:PokedexListPageModel.Preview}"
+    x:Class="PokeApp.PokedexListPage">
     <ContentPage.Content>
         <ListView x:Name="PokemonList"
             ItemsSource="{Binding PokemonList}"

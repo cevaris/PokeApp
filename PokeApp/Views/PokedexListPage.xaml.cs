@@ -7,11 +7,11 @@ using System;
 
 namespace PokeApp
 {
-    public partial class PokemonListView : ContentPage
+    public partial class PokedexListPage : ContentPage
     {
-        private ILogger Logger = new ConsoleLogger(nameof(PokemonListView));
+        private ILogger Logger = new ConsoleLogger(nameof(PokedexListPage));
 
-        public PokemonListView()
+        public PokedexListPage()
         {
             InitializeComponent();
             PokemonList = new ListView(ListViewCachingStrategy.RetainElement);
@@ -21,7 +21,7 @@ namespace PokeApp
         {
             PokemonListItemModel p = ((PokemonListItemModel)e.Item);
             Logger.Info($"fired for {p.Id}-{p.Name}");
-            MessagingCenter.Send<PokemonListView, ItemVisibilityEventArgs>(this, PokemonListViewModel.MessagePage, e);
+            MessagingCenter.Send<PokedexListPage, ItemVisibilityEventArgs>(this, PokedexListPageModel.MessagePage, e);
         }
 
         async void OnSelectedItem(object sender, SelectedItemChangedEventArgs e)
@@ -66,7 +66,7 @@ namespace PokeApp
 
         private void PageWithQuery(string query)
         {
-            MessagingCenter.Send<PokemonListView, string>(this, PokemonListViewModel.MessagePageWithQuery, query);
+            MessagingCenter.Send<PokedexListPage, string>(this, PokedexListPageModel.MessagePageWithQuery, query);
         }
     }
 

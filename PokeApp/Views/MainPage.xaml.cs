@@ -28,8 +28,8 @@ namespace PokeApp
             if (sender == PokedexFrame)
             {
                 logger.Info("clicked pokedex");
-                PokemonListView page = new PokemonListView();
-                page.BindingContext = new PokemonListViewModel();
+                PokedexListPage page = new PokedexListPage();
+                page.BindingContext = new PokedexListPageModel();
                 await Navigation.PushAsync(page);
             }
 

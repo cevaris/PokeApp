@@ -7,7 +7,7 @@ using System;
 
 namespace PokeApp
 {
-    public partial class PokemonListView : StackLayout
+    public partial class PokemonListView : ContentPage
     {
         private ILogger Logger = new ConsoleLogger(nameof(PokemonListView));
 

@@ -22,9 +22,14 @@
                 Grid.ColumnSpan="3"
                 Orientation="Horizontal"
                 HorizontalOptions="CenterAndExpand">
-                <Frame OutlineColor="Black"
+                <Frame x:Name="PokedexFrame"
+                    OutlineColor="Black"
                     WidthRequest="300"
                     HeightRequest="500">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTapped"
+                            NumberOfTapsRequired="1" />
+                    </Frame.GestureRecognizers>
                     <Image HorizontalOptions="StartAndExpand"
                         WidthRequest="300"
                         x:Name="PokedexImage"
@@ -42,9 +47,14 @@
                 Grid.ColumnSpan="3"
                 Orientation="Horizontal"
                 HorizontalOptions="CenterAndExpand">
-                <Frame OutlineColor="Black"
+                <Frame x:Name="AboutFrame"
+                    OutlineColor="Black"
                     WidthRequest="300"
                     HeightRequest="200">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTapped"
+                            NumberOfTapsRequired="1" />
+                    </Frame.GestureRecognizers>
                     <Image HorizontalOptions="StartAndExpand"
                         WidthRequest="300"
                         Source="{Binding AboutUrl}">
@@ -53,7 +63,7 @@
                                 CacheValidity="365"/>
                         </Image.Source>-->
                     </Image>
-                    <Label Text="Info/About" />
+                    <Label Text="About" />
                 </Frame>
             </StackLayout>
         </Grid>

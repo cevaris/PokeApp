@@ -3,7 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:design="clr-namespace:PokeApp"
     BindingContext="{x:Static design:MainPageViewModel.Preview}"
-    x:Class="PokeApp.MainPage">
+    x:Class="PokeApp.MainPage"
+    BackgroundColor="#CB481A">
     <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness"
             iOS="0, 15, 0, 0" />
@@ -11,7 +12,7 @@
     <ContentPage.Content>
         <Grid Margin="10">
             <Grid.RowDefinitions>
-                <RowDefinition Height="1.5*" />
+                <RowDefinition Height="1.25*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -22,7 +23,8 @@
             <Frame Grid.Row="0"
                 Grid.Column="0"
                 Grid.ColumnSpan="3"
-                x:Name="PokedexFrame">
+                x:Name="PokedexFrame"
+                BackgroundColor="#F0F0F0">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnTapped"
                         NumberOfTapsRequired="1" />
@@ -40,7 +42,8 @@
             <Frame Grid.Row="1"
                 Grid.Column="0"
                 Grid.ColumnSpan="3"
-                x:Name="AboutFrame">
+                x:Name="AboutFrame"
+                BackgroundColor="#F0F0F0">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnTapped"
                         NumberOfTapsRequired="1" />
@@ -51,7 +54,9 @@
                     <Image Source="{Binding AboutUrl}"
                         Aspect="AspectFit"
                         HorizontalOptions="FillAndExpand"
-                        VerticalOptions="FillAndExpand">
+                        VerticalOptions="FillAndExpand"
+                        HeightRequest="200"
+                        >
                     </Image>
                 </StackLayout>
             </Frame>

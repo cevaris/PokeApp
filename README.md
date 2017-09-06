@@ -27,5 +27,6 @@ Images
 
 
 Credits
-- Sprites: https://pokemondb.net/
-- Data:    https://github.com/veekun/pokedex
+- Sprites:     https://pokemondb.net/
+- Data:        https://github.com/veekun/pokedex
+- Jenny Image: https://www.pinterest.com/source/animemissy123.deviantart.com/

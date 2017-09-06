@@ -52,6 +52,11 @@ namespace PokeApp
                     await Update(idOffset: 0, pageSize: 20);
                 });
 
+                MessagingCenter.Subscribe<MainPage>(this, PokedexStorage.MessageReady, async (_) =>
+                {
+                    await Update(idOffset: 0, pageSize: 20);
+                });
+
                 MessagingCenter.Subscribe<PokedexListPage, string>(this, MessagePageWithQuery, async (sender, query) =>
                 {
                     Logger.Info($"queing query: {query}");

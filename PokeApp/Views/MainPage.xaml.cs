@@ -1,6 +1,7 @@
 ﻿using Xamarin.Forms;
 using System;
 using PokeApp.Utils;
+using PokeApp.Data;
 
 namespace PokeApp
 {
@@ -8,34 +9,38 @@ namespace PokeApp
     {
         private ILogger logger = new ConsoleLogger(nameof(MainPage));
 
+        public bool IsPushing { get; set; }
+
         public MainPage()
         {
             NavigationPage.SetHasNavigationBar(this, false);
-            BindingContext = MainPageViewModel.Preview;
             InitializeComponent();
-
-            //PokedexImage.Source = ImageSource.FromUri(new Uri(MainPageViewModel.Preview.PokedexUrl));
-            //PokedexImage.Source = ImageSource.FromUri(new Uri("http://icons.iconarchive.com/icons/thiago-silva/palm/256/Photos-icon.png"));
-            //PokedexImage.Source = new UriImageSource
-            //{
-            //    CachingEnabled = false,
-            //    Uri = new Uri("http://icons.iconarchive.com/icons/thiago-silva/palm/256/Photos-icon.png")
-            //};
         }
 
         async void OnTapped(object sender, EventArgs e)
         {
+            if (IsPushing)
+            {
+                logger.Info("already pushing");
+                return;
+            } else {
+                IsPushing = true;
+            }
+            
             if (sender == PokedexFrame)
             {
                 logger.Info("clicked pokedex");
                 PokedexListPage page = new PokedexListPage();
                 page.BindingContext = new PokedexListPageModel();
                 await Navigation.PushAsync(page);
+                MessagingCenter.Send<MainPage>(this, PokedexStorage.MessageReady);
+                IsPushing = false;
             }
 
             if (sender == AboutFrame)
             {
                 logger.Info("clicked about");
+                IsPushing = false;
             }
         }
 

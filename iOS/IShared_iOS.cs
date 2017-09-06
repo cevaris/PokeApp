@@ -16,9 +16,11 @@ namespace PokeApp.iOS
     {
         private static ILogger logger = new ConsoleLogger(nameof(IShared_iOS));
 
-        private readonly  Encoding encoder = Encoding.Default;
+        private readonly Encoding encoder = Encoding.Default;
 
         private string bundlePath = NSBundle.MainBundle.BundlePath;
+
+        private const bool shouldCopyBundleToLib = false;
 
         public IShared_iOS()
         {

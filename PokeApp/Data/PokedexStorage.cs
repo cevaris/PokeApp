@@ -145,7 +145,6 @@ namespace PokeApp.Data
                 while (!reader.EndOfStream)
                 {
                     string line = reader.ReadLine();
-                    //Logger.Info($"parsing line {line}");
 
                     T table = csvInfo.FromCsv(line);
                     tables.Add(table);

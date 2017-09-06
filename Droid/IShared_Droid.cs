@@ -18,19 +18,39 @@ namespace PokeApp.Droid
     {
         private static ILogger Logger = new ConsoleLogger(nameof(IShared_Droid));
 
-        private static string ExternalDirectory =
+        private static string externalDirectory =
             Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
-        
+
         private readonly static Encoding encoder = Encoding.Default;
 
         public IShared_Droid()
         {
+            string dbLibPath = DatabasePath();
+            if (!DoesFileExists(dbLibPath))
+            {
+                try
+                {
+                    copyAssets(Constants.DatabaseName);
+                }
+                catch (Java.IO.FileNotFoundException)
+                {
+                    Logger.Error($"{Constants.DatabaseName} asset not found");
+                }
+            }
+
+            try
+            {
+                copyAssets(Constants.ZipName);
+            }
+            catch (Java.IO.FileNotFoundException)
+            {
+                Logger.Info($"{Constants.ZipName} asset not found");
+            }
         }
 
         public string DatabasePath()
         {
-            string pathFull = Path.Combine(ExternalDirectory, Constants.DatabaseName);
-            Logger.Info($"dbpath: {pathFull}");
+            string pathFull = Path.Combine(externalDirectory, Constants.DatabaseName);
             return pathFull;
         }
 
@@ -42,23 +62,15 @@ namespace PokeApp.Droid
 
         public string PokedexZipPath()
         {
-            CopyAssets(Constants.ZipName);
-
-            var filePath = Path.Combine(ExternalDirectory, Constants.ZipName);
+            var filePath = Path.Combine(externalDirectory, Constants.ZipName);
             return filePath;
         }
 
         public string PokedexCsvPath()
         {
-            var filePath = Path.Combine(ExternalDirectory, "extracted");
+            var filePath = Path.Combine(externalDirectory, "extracted");
             return filePath;
         }
-
-        public bool PokedexCsvExists()
-        {
-            return File.Exists(PokedexCsvPath());
-        }
-
 
         public StreamReader OpenReader(string filename)
         {
@@ -93,18 +105,18 @@ namespace PokeApp.Droid
 
 
         // Local 
-        private void CopyAssets(string assetName)
+        private void copyAssets(string assetName)
         {
             AssetManager assetManager = Forms.Context.Assets;
             Logger.Info($"Looking for asset {assetName}");
-            var filePath = Path.Combine(ExternalDirectory, assetName);
+            var outFilepath = Path.Combine(externalDirectory, assetName);
 
-            using (StreamWriter writer = new StreamWriter(filePath))
+            using (Stream asset = assetManager.Open(assetName))
             {
-                using (Stream asset = assetManager.Open(assetName))
+                using (StreamWriter writer = new StreamWriter(outFilepath))
                 {
                     asset.CopyTo(writer.BaseStream);
-                    Logger.Info($"{assetName} written to {filePath} {new FileInfo(filePath).Length} bytes");
+                    Logger.Info($"{assetName} written to {outFilepath} {new FileInfo(outFilepath).Length} bytes");
                 }
             }
         }

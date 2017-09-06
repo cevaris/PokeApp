@@ -26,6 +26,12 @@ Images
 - `convert 1.png -colors 256 PNG8:1.png`
 
 
+Todo
+- Dont unzip/write to db on every run
+- Style Detail Page
+- Include Ads
+
+
 Credits
 - Sprites:     https://pokemondb.net/
 - Data:        https://github.com/veekun/pokedex

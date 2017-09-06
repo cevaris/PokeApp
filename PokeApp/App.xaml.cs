@@ -31,6 +31,7 @@ namespace PokeApp
         public App()
         {
             InitializeComponent();
+
             MainPage main = new MainPage();
             main.BindingContext = MainPageViewModel.Preview;
 

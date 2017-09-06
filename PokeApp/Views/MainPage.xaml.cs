@@ -13,8 +13,8 @@ namespace PokeApp
 
         public MainPage()
         {
-            NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         async void OnTapped(object sender, EventArgs e)

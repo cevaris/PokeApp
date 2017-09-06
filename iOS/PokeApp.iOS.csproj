@@ -142,8 +142,7 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\Pokedex.zip">
-    </BundleResource>
+    <BundleResource Include="Resources\PokeApp.db3" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets')" />

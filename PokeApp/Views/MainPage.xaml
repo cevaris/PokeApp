@@ -55,8 +55,7 @@
                         Aspect="AspectFit"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand"
-                        HeightRequest="200"
-                        >
+                        HeightRequest="200">
                     </Image>
                 </StackLayout>
             </Frame>

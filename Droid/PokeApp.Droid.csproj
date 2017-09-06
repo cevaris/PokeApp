@@ -156,8 +156,8 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Pokedex.zip" />
     <AndroidAsset Include="Assets\AboutAssets.txt" />
+    <AndroidAsset Include="Assets\PokeApp.db3" />
   </ItemGroup>
   <ItemGroup>
     <AndroidEnvironment Include="Assets\EnvironmentVars.txt" />

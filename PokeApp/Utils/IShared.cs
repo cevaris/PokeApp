@@ -12,12 +12,12 @@ namespace PokeApp.Utils
         string ToTitleCase(string str);
 
         SQLiteAsyncConnection GetAsyncConnection();
-        string GetDatabasePath();
+        string DatabasePath();
 
         string PokedexZipPath();
         string PokedexCsvPath();
-        bool PokedexCsvExists();
 
+        bool DoesFileExists(string filePath);
         StreamReader OpenReader(string filename);
         StreamWriter OpenWriter(string filename);
     }

@@ -14,22 +14,32 @@ namespace PokeApp.iOS
 {
     public class IShared_iOS : IShared
     {
-        private static ILogger Logger = new ConsoleLogger(nameof(IShared_iOS));
-        private readonly static Encoding encoder = Encoding.Default;
+        private static ILogger logger = new ConsoleLogger(nameof(IShared_iOS));
+
+        private readonly  Encoding encoder = Encoding.Default;
+
+        private string bundlePath = NSBundle.MainBundle.BundlePath;
 
         public IShared_iOS()
         {
+            // copy over bundle resources to application Library
+            string dbBundlePath = Path.Combine(bundlePath, Constants.DatabaseName);
+            string dbLibPath = DatabasePath();
+            if (DoesFileExists(dbBundlePath) && !DoesFileExists(dbLibPath))
+            {
+                copyToLibrary(dbBundlePath, dbLibPath);
+            }
         }
 
-        public string GetDatabasePath()
+        public string DatabasePath()
         {
-            string pathFull = Path.Combine(GetLibraryPath(), Constants.DatabaseName);
-            return pathFull;
+            string dbLibPath = Path.Combine(GetLibraryPath(), Constants.DatabaseName);
+            return dbLibPath;
         }
 
         public SQLiteAsyncConnection GetAsyncConnection()
         {
-            string dbPath = GetDatabasePath();
+            string dbPath = DatabasePath();
             return new SQLiteAsyncConnection(dbPath);
         }
 
@@ -44,11 +54,6 @@ namespace PokeApp.iOS
         {
             string pathFull = Path.Combine(GetLibraryPath(), "extracted");
             return pathFull;
-        }
-
-        public bool PokedexCsvExists()
-        {
-            return File.Exists(PokedexCsvPath());
         }
 
         public StreamReader OpenReader(string filename)
@@ -83,5 +88,23 @@ namespace PokeApp.iOS
             string libraryPath = Path.Combine(documentsPath, "..", "Library");
             return libraryPath;
         }
+
+        public bool DoesFileExists(string filePath)
+        {
+            return File.Exists(filePath);
+        }
+
+        private void copyToLibrary(string inFilePath, string outFilePath)
+        {
+            using (StreamWriter writer = new StreamWriter(outFilePath))
+            {
+                using (Stream reader = File.OpenRead(inFilePath))
+                {
+                    reader.CopyTo(writer.BaseStream);
+                    logger.Info($"{inFilePath} written {new FileInfo(outFilePath).Length} bytes to {outFilePath}");
+                }
+            }
+        }
+
     }
 }

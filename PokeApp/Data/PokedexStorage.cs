@@ -21,11 +21,7 @@ namespace PokeApp.Data
 
         public static void Init()
         {
-            if (App.Shared.PokedexCsvExists())
-            {
-                Logger.Info($"CsvPath exists {App.Shared.PokedexZipPath()}");
-            }
-            else
+            if (App.Shared.DoesFileExists(App.Shared.PokedexZipPath()))
             {
                 // Unzip, Parse, Write to DB
                 Task.Run(() =>
@@ -43,6 +39,13 @@ namespace PokeApp.Data
                         Logger.Error("failed to init Pokedex data", e);
                     }
                 }).ConfigureAwait(false);
+            }
+
+            if (!App.Shared.DoesFileExists(App.Shared.DatabasePath()))
+            {
+                string msg = $"Database file {App.Shared.DatabasePath()} not found; failed to generate or not bundled";
+                Logger.Error(msg);
+                throw new IOException(msg);
             }
         }
 

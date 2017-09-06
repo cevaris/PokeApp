@@ -27,18 +27,16 @@ namespace PokeApp.Droid
         {
         }
 
-        public string GetDatabasePath()
+        public string DatabasePath()
         {
             string pathFull = Path.Combine(ExternalDirectory, Constants.DatabaseName);
-
             Logger.Info($"dbpath: {pathFull}");
-
             return pathFull;
         }
 
         public SQLiteAsyncConnection GetAsyncConnection()
         {
-            string dbPath = GetDatabasePath();
+            string dbPath = DatabasePath();
             return new SQLiteAsyncConnection(dbPath);
         }
 
@@ -72,6 +70,28 @@ namespace PokeApp.Droid
             return new StreamWriter(filename);
         }
 
+        public byte[] Md5(byte[] bytes)
+        {
+            MD5 md5 = MD5.Create();
+            return md5.ComputeHash(bytes);
+        }
+
+        public byte[] ToBytes(string message)
+        {
+            return encoder.GetBytes(message);
+        }
+
+        public string ToTitleCase(string str)
+        {
+            return System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(str);
+        }
+
+        public bool DoesFileExists(string filePath)
+        {
+            return File.Exists(filePath);
+        }
+
+
         // Local 
         private void CopyAssets(string assetName)
         {
@@ -87,22 +107,6 @@ namespace PokeApp.Droid
                     Logger.Info($"{assetName} written to {filePath} {new FileInfo(filePath).Length} bytes");
                 }
             }
-        }
-
-        public byte[] Md5(byte[] bytes)
-        {
-            MD5 md5 = MD5.Create();
-            return md5.ComputeHash(bytes);
-        }
-
-        public byte[] ToBytes(string message)
-        {
-            return encoder.GetBytes(message);
-        }
-
-        public string ToTitleCase(string str)
-        {
-            return System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(str);
         }
     }
 }

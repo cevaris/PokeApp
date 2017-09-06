@@ -3,7 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:design="clr-namespace:PokeApp"
     BindingContext="{x:Static design:PokedexListPageModel.Preview}"
-    x:Class="PokeApp.PokedexListPage">
+    x:Class="PokeApp.PokedexListPage"
+    Title="Pokédex">
     <ContentPage.Content>
         <ListView x:Name="PokemonList"
             ItemsSource="{Binding PokemonList}"

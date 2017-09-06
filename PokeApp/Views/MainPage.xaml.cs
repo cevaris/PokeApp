@@ -40,6 +40,8 @@ namespace PokeApp
             if (sender == AboutFrame)
             {
                 logger.Info("clicked about");
+                AboutPage page = new AboutPage();
+                await Navigation.PushAsync(page);
                 IsPushing = false;
             }
         }

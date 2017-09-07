@@ -10,7 +10,7 @@
             iOS="0, 15, 0, 0" />
     </ContentPage.Padding>
     <ContentPage.Content>
-        <Grid Margin="10">
+        <Grid Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1.25*" />
                 <RowDefinition Height="*" />

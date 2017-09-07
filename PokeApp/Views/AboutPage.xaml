@@ -1,57 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	x:Class="PokeApp.AboutPage"
-	Title="About">
-	<ContentPage.Content>
-		<Frame BackgroundColor="{StaticResource priBgColor}"
-			Padding="5">
-			<StackLayout Orientation="Vertical"
-				Spacing="30"
-                Padding="0,30,0,0"
-				BackgroundColor="{StaticResource secBgColor}">
-				<Label Text="General Pokémon pocketbook reference."
-					HorizontalOptions="CenterAndExpand" />
-				<Label Text="Credits"
-					FontSize="Large"
-					HorizontalOptions="CenterAndExpand" />
-				<Label Text="©2017 Pokémon/Nintendo"
-					HorizontalOptions="CenterAndExpand"
-					x:Name="PokemonLink"
-					TextColor="Blue">
-					<Label.GestureRecognizers>
-						<TapGestureRecognizer Tapped="OnTapped"
-							NumberOfTapsRequired="1" />
-					</Label.GestureRecognizers>
-				</Label>
-				<Label Text="Pokémon Images"
-					HorizontalOptions="CenterAndExpand"
-					x:Name="PokemonImagesLink"
-					TextColor="Blue">
-					<Label.GestureRecognizers>
-						<TapGestureRecognizer Tapped="OnTapped"
-							NumberOfTapsRequired="1" />
-					</Label.GestureRecognizers>
-				</Label>
-				<Label Text="Pokémon Database"
-					HorizontalOptions="CenterAndExpand"
-					x:Name="PokemonDatabaseLink"
-					TextColor="Blue">
-					<Label.GestureRecognizers>
-						<TapGestureRecognizer Tapped="OnTapped"
-							NumberOfTapsRequired="1" />
-					</Label.GestureRecognizers>
-				</Label>
-				<Label Text="Jenny Image"
-					HorizontalOptions="CenterAndExpand"
-					x:Name="JennyImageLink"
-					TextColor="Blue">
-					<Label.GestureRecognizers>
-						<TapGestureRecognizer Tapped="OnTapped"
-							NumberOfTapsRequired="1" />
-					</Label.GestureRecognizers>
-				</Label>
-			</StackLayout>
-		</Frame>
-	</ContentPage.Content>
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PokeApp.AboutPage"
+    Title="About"
+    BackgroundColor="{StaticResource priBgColor}">
+    <ContentPage.Content>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Frame Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                BackgroundColor="{StaticResource secBgColor}">
+                <StackLayout Orientation="Vertical"
+                    Spacing="30">
+                    <Label Text="General Pokémon pocketbook reference."
+                        HorizontalOptions="CenterAndExpand" />
+                    <Label Text="Credits"
+                        FontSize="Large"
+                        HorizontalOptions="CenterAndExpand" />
+                    <Label Text="©2017 Pokémon/Nintendo"
+                        HorizontalOptions="CenterAndExpand"
+                        x:Name="PokemonLink"
+                        TextColor="Blue">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnTapped"
+                                NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="Pokémon Images"
+                        HorizontalOptions="CenterAndExpand"
+                        x:Name="PokemonImagesLink"
+                        TextColor="Blue">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnTapped"
+                                NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="Pokémon Database"
+                        HorizontalOptions="CenterAndExpand"
+                        x:Name="PokemonDatabaseLink"
+                        TextColor="Blue">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnTapped"
+                                NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="Jenny Image"
+                        HorizontalOptions="CenterAndExpand"
+                        x:Name="JennyImageLink"
+                        TextColor="Blue">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnTapped"
+                                NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
 </ContentPage>

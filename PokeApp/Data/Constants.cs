@@ -13,19 +13,19 @@ namespace PokeApp.Data
         {
             Id = 1,
             Name = "Bulbasaur",
-            SpriteUrl = PokeUtils.GetImage(1),
-            Genus = "Something", 
+            SpriteUrl = "https://s3-us-west-2.amazonaws.com/pokeapp.assets/images/0da58fc82f19e64c56f93b99b27adc09.png",
+            Genus = "Something",
             GenerationName = "Generation I",
             HabitatName = "Grass",
             Weight = 69,
             Height = 7,
-            BaseExperience = 44
+            BaseExperience = 44,
         };
         public static readonly PokemonModel TestPokemonModel2 = new PokemonModel()
         {
             Id = 2,
             Name = "Ivysaur",
-            SpriteUrl = PokeUtils.GetImage(2),
+            SpriteUrl = "https://s3-us-west-2.amazonaws.com/pokeapp.assets/images/b8543e21b56830b34383b0cf96ee9596.png",
             GenerationName = "Generation I",
             Genus = "Something",
             HabitatName = "Grass",

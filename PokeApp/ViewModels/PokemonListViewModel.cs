@@ -109,13 +109,13 @@ namespace PokeApp
                 {
                     Id = 1,
                     Name = "Bulbasaur",
-                    SpriteUrl = PokeUtils.GetImage(1)
+                    SpriteUrl = "https://s3-us-west-2.amazonaws.com/pokeapp.assets/images/0da58fc82f19e64c56f93b99b27adc09.png"
                 },
                 new PokemonListItemModel()
                 {
                     Id = 2,
                     Name = "Ivysaur",
-                    SpriteUrl = PokeUtils.GetImage(2)
+                    SpriteUrl = "https://s3-us-west-2.amazonaws.com/pokeapp.assets/images/b8543e21b56830b34383b0cf96ee9596.png"
                 }
             },
 

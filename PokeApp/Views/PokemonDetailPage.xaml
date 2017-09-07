@@ -3,69 +3,95 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:design="clr-namespace:PokeApp"
     BindingContext="{x:Static design:PokemonDetailViewModel.Preview}"
-    x:Class="PokeApp.PokemonDetailPage">
+    x:Class="PokeApp.PokemonDetailPage"
+    BackgroundColor="{StaticResource priBgColor}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="Label0"
+                TargetType="Label">
+                <Setter Property="FontSize"
+                    Value="Large" />
+                <Setter Property="TextColor"
+                    Value="Black" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid Margin="10">
+        <Grid Margin="5">
             <Grid.RowDefinitions>
-                <RowDefinition Height="200" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <StackLayout Grid.Row="0"
+            <Frame Grid.Row="0"
                 Grid.Column="0"
                 Grid.ColumnSpan="3"
-                Orientation="Horizontal"
-                HorizontalOptions="CenterAndExpand">
-                <Frame OutlineColor="Black">
-                    <Image Source="{Binding Pokemon.SpriteUrl}"
-                        HorizontalOptions="StartAndExpand"
-                        WidthRequest="200" />
-                </Frame>
-            </StackLayout>
-            <StackLayout Grid.Row="1"
-                Grid.Column="0"
-                Grid.ColumnSpan="3"
-                Orientation="Horizontal"
-                HorizontalOptions="CenterAndExpand">
-                <Label Text="{Binding Pokemon.DisplayHeader}" />
-            </StackLayout>
-            <StackLayout Grid.Row="2"
-                Grid.Column="0"
-                Orientation="Horizontal"
-                HorizontalOptions="StartAndExpand">
-                <Label Text="{Binding Pokemon.DisplayWeight}" />
-            </StackLayout>
-            <StackLayout Grid.Row="2"
-                Grid.Column="1"
-                Orientation="Horizontal"
-                HorizontalOptions="Center">
-                <Label Text="{Binding Pokemon.DisplayHeight}" />
-            </StackLayout>
-            <StackLayout Grid.Row="2"
-                Grid.Column="2"
-                Orientation="Horizontal"
-                HorizontalOptions="EndAndExpand">
-                <Label Text="{Binding Pokemon.DisplayExperience}" />
-            </StackLayout>
-            <StackLayout Grid.Row="3"
-                Grid.Column="0"
-                Orientation="Horizontal"
-                HorizontalOptions="StartAndExpand">
-                <Label Text="{Binding Pokemon.GenerationName}" />
-            </StackLayout>
-            <StackLayout Grid.Row="3"
-                Grid.Column="1"
-                Grid.ColumnSpan="2"
-                Orientation="Horizontal"
-                HorizontalOptions="EndAndExpand">
-                <Label Text="{Binding Pokemon.DisplayHabitat}" />
-            </StackLayout>
+                BackgroundColor="{StaticResource secBgColor}">
+                <Grid Padding="10"
+                    BackgroundColor="{StaticResource secBgColor}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        Orientation="Horizontal"
+                        HorizontalOptions="CenterAndExpand">
+                        <Frame BackgroundColor="{StaticResource secBgColor}">
+                            <Image Source="{Binding Pokemon.SpriteUrl}"
+                                HorizontalOptions="StartAndExpand"
+                                WidthRequest="200" />
+                        </Frame>
+                    </StackLayout>
+                    <StackLayout Grid.Row="1"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        Orientation="Horizontal"
+                        HorizontalOptions="CenterAndExpand">
+                        <Label Text="{Binding Pokemon.DisplayHeader}" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="2"
+                        Grid.Column="0"
+                        Orientation="Horizontal"
+                        HorizontalOptions="StartAndExpand">
+                        <Label Text="{Binding Pokemon.DisplayWeight}" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="2"
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        HorizontalOptions="Center">
+                        <Label Text="{Binding Pokemon.DisplayHeight}" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="2"
+                        Grid.Column="2"
+                        Orientation="Horizontal"
+                        HorizontalOptions="EndAndExpand">
+                        <Label Text="{Binding Pokemon.DisplayExperience}" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="3"
+                        Grid.Column="0"
+                        Orientation="Horizontal"
+                        HorizontalOptions="StartAndExpand">
+                        <Label Text="{Binding Pokemon.GenerationName}" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="3"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Orientation="Horizontal"
+                        HorizontalOptions="EndAndExpand">
+                        <Label Text="{Binding Pokemon.DisplayHabitat}" />
+                    </StackLayout>
+                </Grid>
+            </Frame>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

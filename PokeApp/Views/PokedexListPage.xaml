@@ -4,19 +4,22 @@
     xmlns:design="clr-namespace:PokeApp"
     BindingContext="{x:Static design:PokedexListPageModel.Preview}"
     x:Class="PokeApp.PokedexListPage"
-    Title="Pokédex">
+    Title="Pokédex"
+    BackgroundColor="{StaticResource priBgColor}">
     <ContentPage.Content>
         <ListView x:Name="PokemonList"
             ItemsSource="{Binding PokemonList}"
             ItemSelected="OnSelectedItem"
             RowHeight="50"
             ItemAppearing="OnItemAppearing"
-            Margin="5">
+            Margin="5"
+            BackgroundColor="{StaticResource secBgColor}">
             <ListView.Header>
                 <SearchBar x:Name="PokemonQuery"
                     Placeholder="Search"
                     SearchButtonPressed="OnButtonClick"
-                    TextChanged="OnTextChanged" />
+                    TextChanged="OnTextChanged"
+                    BackgroundColor="{StaticResource secBgColor}" />
             </ListView.Header>
             <ListView.ItemTemplate>
                 <DataTemplate>

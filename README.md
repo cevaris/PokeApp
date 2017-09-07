@@ -25,9 +25,11 @@ Images
 - https://github.com/artem-zinnatullin/jet-image-loader
 - `convert 1.png -colors 256 PNG8:1.png`
 
+Common Styling 
+- https://blog.xamarin.com/easy-app-theming-with-xamarin-forms-styles/
 
 Todo
-- Dont unzip/write to db on every run
+- ~~Dont unzip/write to db on every run~~
 - Style Detail Page
 - Include Ads
 

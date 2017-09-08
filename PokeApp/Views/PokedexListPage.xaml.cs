@@ -36,6 +36,8 @@ namespace PokeApp
                     Pokemon = pokemon
                 };
                 await Navigation.PushAsync(page);
+                // deselect item
+                ((ListView)sender).SelectedItem = null;
             }
         }
 

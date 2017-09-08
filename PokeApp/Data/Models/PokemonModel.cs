@@ -16,11 +16,27 @@
 
         public string SpriteUrl { get; set; }
 
-        public string DisplayHeader
+        public string DisplayId
         {
             get
             {
-                return $"#{Id} {Name} - {Genus.Replace("Pokémon", "")}";
+                return $"# {Id}";
+            }
+        }
+
+        public string DisplayIdName
+        {
+            get
+            {
+                return $"#{Id} {Name}";
+            }
+        }
+
+        public string DisplayGenus
+        {
+            get
+            {
+                return $"{Genus.Replace("Pokémon", "")}";
             }
         }
 

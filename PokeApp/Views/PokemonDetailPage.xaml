@@ -26,56 +26,54 @@
                     Aspect="AspectFit"
                     HorizontalOptions="Center"
                     VerticalOptions="Center" />
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <StackLayout Grid.Row="0"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="3"
-                        Orientation="Horizontal"
-                        HorizontalOptions="CenterAndExpand">
-                        <Label Text="{Binding Pokemon.DisplayHeader}" />
-                    </StackLayout>
-                    <StackLayout Grid.Row="1"
-                        Grid.Column="0"
-                        Orientation="Horizontal"
-                        HorizontalOptions="StartAndExpand">
-                        <Label Text="{Binding Pokemon.DisplayWeight}" />
-                    </StackLayout>
-                    <StackLayout Grid.Row="1"
-                        Grid.Column="1"
-                        Orientation="Horizontal"
-                        HorizontalOptions="Center">
-                        <Label Text="{Binding Pokemon.DisplayHeight}" />
-                    </StackLayout>
-                    <StackLayout Grid.Row="1"
-                        Grid.Column="2"
-                        Orientation="Horizontal"
-                        HorizontalOptions="EndAndExpand">
-                        <Label Text="{Binding Pokemon.DisplayExperience}" />
-                    </StackLayout>
-                    <StackLayout Grid.Row="2"
-                        Grid.Column="0"
-                        Orientation="Horizontal"
-                        HorizontalOptions="StartAndExpand">
-                        <Label Text="{Binding Pokemon.GenerationName}" />
-                    </StackLayout>
-                    <StackLayout Grid.Row="2"
-                        Grid.Column="1"
-                        Grid.ColumnSpan="2"
-                        Orientation="Horizontal"
-                        HorizontalOptions="EndAndExpand">
-                        <Label Text="{Binding Pokemon.DisplayHabitat}" />
-                    </StackLayout>
-                </Grid>
+                <TableView Intent="Data">
+                    <TableRoot>
+                        <TableSection Title="{Binding Pokemon.DisplayIdName}">
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal"
+                                    Margin="10">
+                                    <Label Text="Genus:"
+                                        HorizontalOptions="StartAndExpand" />
+                                    <Label Text="{Binding Pokemon.DisplayGenus}" />
+                                </StackLayout>
+                            </ViewCell>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal"
+                                    Margin="10">
+                                    <Label Text="Hieght / Weight: "
+                                        HorizontalOptions="StartAndExpand" />
+                                    <Label Text="{Binding Pokemon.DisplayHeight}" />
+                                    <Label Text="/" />
+                                    <Label Text="{Binding Pokemon.DisplayWeight}" />
+                                </StackLayout>
+                            </ViewCell>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal"
+                                    Margin="10">
+                                    <Label Text="Experience: "
+                                        HorizontalOptions="StartAndExpand" />
+                                    <Label Text="{Binding Pokemon.BaseExperience}" />
+                                </StackLayout>
+                            </ViewCell>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal"
+                                    Margin="10">
+                                    <Label Text="Generation:"
+                                        HorizontalOptions="StartAndExpand" />
+                                    <Label Text="{Binding Pokemon.GenerationName}" />
+                                </StackLayout>
+                            </ViewCell>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal"
+                                    Margin="10">
+                                    <Label Text="Habitat: "
+                                        HorizontalOptions="StartAndExpand" />
+                                    <Label Text="{Binding Pokemon.HabitatName}" />
+                                </StackLayout>
+                            </ViewCell>
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
             </StackLayout>
         </Frame>
     </ContentPage.Content>

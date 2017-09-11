@@ -13,7 +13,7 @@ using Xamarin.Forms;
 
 namespace PokeApp.Droid
 {
-    [Activity(Label = "PokeApp.Droid", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "PokéApp", Icon = "@drawable/pokeball", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
@@ -24,16 +24,6 @@ namespace PokeApp.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
-
-            //AssetManager assets = this.Assets;
-            //var fd = assets.Open("AboutAssets.txt");
-            //System.Diagnostics.Debug.WriteLine($"fd len {fd.}");
-            //fd.Close();
-
-            //fd = assets.Open(PokeApp.Data.Constants.ZipName);
-            //System.Diagnostics.Debug.WriteLine($"fd len {fd.Length}");
-            //fd.Close();
-
 
             LoadApplication(new App());
         }

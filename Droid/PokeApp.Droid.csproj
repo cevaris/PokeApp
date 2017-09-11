@@ -154,6 +154,10 @@
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\pokeball.png" />
+    <AndroidResource Include="Resources\drawable\pokeball.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\pokeball.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\pokeball.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\AboutAssets.txt" />

@@ -59,6 +59,15 @@
                                 NumberOfTapsRequired="1" />
                         </Label.GestureRecognizers>
                     </Label>
+                    <Label Text="Pokéball Logo"
+                        HorizontalOptions="CenterAndExpand"
+                        x:Name="PokeballLogoLink"
+                        TextColor="Blue">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnTapped"
+                                NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
                 </StackLayout>
             </Frame>
         </Grid>

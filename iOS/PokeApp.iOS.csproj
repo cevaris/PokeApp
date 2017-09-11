@@ -124,6 +124,23 @@
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\pokeball-120.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\pokeball-180.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\pokeball-29.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\pokeball-58.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\pokeball-87.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\pokeball-80.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\pokeball-57.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\pokeball-114.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\pokeball-40.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\pokeball-50.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\pokeball-100.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\pokeball-72.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\pokeball-144.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\pokeball-76.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\pokeball-152.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\pokeball-167.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -143,6 +160,10 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\PokeApp.db3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork%402x" />
+    <ITunesArtwork Include="iTunesArtwork" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets')" />

@@ -10,57 +10,54 @@
             iOS="0, 15, 0, 0" />
     </ContentPage.Padding>
     <ContentPage.Content>
-        <StackLayout Margin="5">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1.25*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="50" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Frame Grid.Row="0"
-                    Grid.Column="0"
-                    x:Name="PokedexFrame"
-                    BackgroundColor="{StaticResource secBgColor}">
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnTapped"
-                            NumberOfTapsRequired="1" />
-                    </Frame.GestureRecognizers>
-                    <StackLayout x:Name="PokedexStack"
-                        Orientation="Vertical">
-                        <Label Text="Pokédex" />
-                        <Image Source="{Binding PokedexUrl}"
-                            Aspect="AspectFit"
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="FillAndExpand"
-                            HeightRequest="200">
-                        </Image>
-                    </StackLayout>
-                </Frame>
-                <Frame Grid.Row="1"
-                    Grid.Column="0"
-                    x:Name="AboutFrame"
-                    BackgroundColor="{StaticResource secBgColor}">
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnTapped"
-                            NumberOfTapsRequired="1" />
-                    </Frame.GestureRecognizers>
-                    <StackLayout x:Name="AboutStack"
-                        Orientation="Vertical">
-                        <Label Text="About" />
-                        <Image Source="{Binding AboutUrl}"
-                            Aspect="AspectFit"
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="FillAndExpand"
-                            HeightRequest="200">
-                        </Image>
-                    </StackLayout>
-                </Frame>
-                <local:AdmobBannerView Grid.Row="2"
-                    Grid.Column="0" />
-            </Grid>
-        </StackLayout>
+        <Grid Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.25*" />
+                <RowDefinition Height="*" />
+<!--                <RowDefinition Height="50" />-->
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Frame Grid.Row="0"
+                Grid.Column="0"
+                x:Name="PokedexFrame"
+                BackgroundColor="{StaticResource secBgColor}">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnTapped"
+                        NumberOfTapsRequired="1" />
+                </Frame.GestureRecognizers>
+                <StackLayout x:Name="PokedexStack"
+                    Orientation="Vertical">
+                    <Label Text="Pokédex" />
+                    <Image Source="{Binding PokedexUrl}"
+                        Aspect="AspectFit"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+                    </Image>
+                </StackLayout>
+            </Frame>
+            <Frame Grid.Row="1"
+                Grid.Column="0"
+                x:Name="AboutFrame"
+                BackgroundColor="{StaticResource secBgColor}">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnTapped"
+                        NumberOfTapsRequired="1" />
+                </Frame.GestureRecognizers>
+                <StackLayout x:Name="AboutStack"
+                    Orientation="Vertical">
+                    <Label Text="About" />
+                    <Image Source="{Binding AboutUrl}"
+                        Aspect="AspectFit"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        HeightRequest="200">
+                    </Image>
+                </StackLayout>
+            </Frame>
+            <!--<local:AdmobBannerView Grid.Row="2"
+                Grid.Column="0" />-->
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

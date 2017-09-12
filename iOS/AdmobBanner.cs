@@ -1,19 +1,19 @@
 ﻿using Xamarin.Forms.Platform.iOS;
 using Xamarin.Forms;
-using PokeApp.Views;
 using PokeApp.iOS;
 using Google.MobileAds;
 using UIKit;
+using PokeApp;
 
 [assembly: ExportRenderer(typeof(AdmobBannerView), typeof(AdmobBanner))]
 namespace PokeApp.iOS
 {
-    public class AdmobBanner : ViewRenderer
+    public class AdmobBanner : ViewRenderer<AdmobBannerView, BannerView>
     {
         BannerView adView;
         bool viewOnScreen;
 
-        protected override void OnElementChanged(ElementChangedEventArgs<View> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<AdmobBannerView> e)
         {
             base.OnElementChanged(e);
 
@@ -24,7 +24,7 @@ namespace PokeApp.iOS
 
                 adView = new BannerView(size: AdSizeCons.Banner)
                 {
-                    AdUnitID = adMobElement.Id,
+                    AdUnitID = Secrets.BannderId,
                     RootViewController = UIApplication.SharedApplication.Windows[0].RootViewController
                 };
 
@@ -35,7 +35,12 @@ namespace PokeApp.iOS
                     viewOnScreen = true;
                 };
 
-                adView.LoadRequest(Request.GetDefaultRequest());
+                Request request = Request.GetDefaultRequest();
+                request.TestDevices = new string[]
+                {
+                    Request.SimulatorId
+                };
+                adView.LoadRequest(request);
                 SetNativeControl(adView);
             }
         }

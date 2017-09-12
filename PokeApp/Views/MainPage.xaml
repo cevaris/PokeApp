@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:design="clr-namespace:PokeApp"
-    BindingContext="{x:Static design:MainPageViewModel.Preview}"
+    xmlns:local="clr-namespace:PokeApp;assembly=PokeApp"
+    BindingContext="{x:Static local:MainPageViewModel.Preview}"
     x:Class="PokeApp.MainPage"
     BackgroundColor="{StaticResource priBgColor}">
     <ContentPage.Padding>
@@ -14,6 +14,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1.25*" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="0.2*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -58,6 +59,12 @@
                         HeightRequest="200">
                     </Image>
                 </StackLayout>
+            </Frame>
+            <Frame Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Margin="0" Padding="0">
+                <local:AdmobBannerView x:Name="Banner" />
             </Frame>
         </Grid>
     </ContentPage.Content>

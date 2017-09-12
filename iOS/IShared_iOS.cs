@@ -96,6 +96,10 @@ namespace PokeApp.iOS
             return File.Exists(filePath);
         }
 
+        public void ShowBanner(string id)
+        {
+        }
+
         private void copyToLibrary(string inFilePath, string outFilePath)
         {
             using (StreamWriter writer = new StreamWriter(outFilePath))
@@ -107,6 +111,5 @@ namespace PokeApp.iOS
                 }
             }
         }
-
     }
 }

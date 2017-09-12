@@ -20,5 +20,7 @@ namespace PokeApp.Utils
         bool DoesFileExists(string filePath);
         StreamReader OpenReader(string filename);
         StreamWriter OpenWriter(string filename);
+
+        void ShowBanner(string id);
     }
 }

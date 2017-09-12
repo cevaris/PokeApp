@@ -120,6 +120,11 @@ namespace PokeApp.Droid
                 }
             }
         }
+
+        public void ShowBanner(string id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

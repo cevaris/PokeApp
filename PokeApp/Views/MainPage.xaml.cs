@@ -15,6 +15,7 @@ namespace PokeApp
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            Banner = new AdmobBannerView();
         }
 
         async void OnTapped(object sender, EventArgs e)

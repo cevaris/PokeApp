@@ -1,10 +1,9 @@
 ﻿using Xamarin.Forms;
 
-namespace PokeApp.Views
+namespace PokeApp
 {
     public class AdmobBannerView : ContentView
     {
-        public string Id { get; set; }
     }
 }
 

@@ -13,17 +13,15 @@
         <StackLayout Margin="5">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1.5*" />
+                    <RowDefinition Height="2*" />
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="50" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Frame Grid.Row="0"
                     Grid.Column="0"
-                    Grid.ColumnSpan="3"
                     x:Name="PokedexFrame"
                     BackgroundColor="{StaticResource secBgColor}">
                     <Frame.GestureRecognizers>
@@ -31,18 +29,17 @@
                             NumberOfTapsRequired="1" />
                     </Frame.GestureRecognizers>
                     <StackLayout x:Name="PokedexStack"
-                        Orientation="Vertical">
+                        Orientation="Vertical"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
                         <Label Text="Pokédex" />
                         <Image Source="{Binding PokedexUrl}"
-                            Aspect="AspectFit"
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="FillAndExpand">
+                            Aspect="AspectFit">
                         </Image>
                     </StackLayout>
                 </Frame>
                 <Frame Grid.Row="1"
                     Grid.Column="0"
-                    Grid.ColumnSpan="3"
                     x:Name="AboutFrame"
                     BackgroundColor="{StaticResource secBgColor}">
                     <Frame.GestureRecognizers>
@@ -50,18 +47,18 @@
                             NumberOfTapsRequired="1" />
                     </Frame.GestureRecognizers>
                     <StackLayout x:Name="AboutStack"
-                        Orientation="Vertical">
+                        Orientation="Vertical"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
                         <Label Text="About" />
                         <Image Source="{Binding AboutUrl}"
-                            Aspect="AspectFit"
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="FillAndExpand"
-                            HeightRequest="200">
+                            Aspect="AspectFit">
                         </Image>
                     </StackLayout>
                 </Frame>
+                <local:AdmobBannerView Grid.Row="2"
+                    Grid.Column="0" />
             </Grid>
-            <local:AdmobBannerView WidthRequest="500" HeightRequest="500"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

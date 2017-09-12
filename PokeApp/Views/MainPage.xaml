@@ -13,7 +13,7 @@
         <StackLayout Margin="5">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="1.25*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="50" />
                 </Grid.RowDefinitions>
@@ -29,12 +29,13 @@
                             NumberOfTapsRequired="1" />
                     </Frame.GestureRecognizers>
                     <StackLayout x:Name="PokedexStack"
-                        Orientation="Vertical"
-                        HorizontalOptions="FillAndExpand"
-                        VerticalOptions="FillAndExpand">
+                        Orientation="Vertical">
                         <Label Text="Pokédex" />
                         <Image Source="{Binding PokedexUrl}"
-                            Aspect="AspectFit">
+                            Aspect="AspectFit"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            HeightRequest="200">
                         </Image>
                     </StackLayout>
                 </Frame>
@@ -47,12 +48,13 @@
                             NumberOfTapsRequired="1" />
                     </Frame.GestureRecognizers>
                     <StackLayout x:Name="AboutStack"
-                        Orientation="Vertical"
-                        HorizontalOptions="FillAndExpand"
-                        VerticalOptions="FillAndExpand">
+                        Orientation="Vertical">
                         <Label Text="About" />
                         <Image Source="{Binding AboutUrl}"
-                            Aspect="AspectFit">
+                            Aspect="AspectFit"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            HeightRequest="200">
                         </Image>
                     </StackLayout>
                 </Frame>

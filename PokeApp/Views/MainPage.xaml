@@ -14,7 +14,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1.25*" />
                 <RowDefinition Height="*" />
-<!--                <RowDefinition Height="50" />-->
+                <RowDefinition Height="50" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -46,18 +46,18 @@
                         NumberOfTapsRequired="1" />
                 </Frame.GestureRecognizers>
                 <StackLayout x:Name="AboutStack"
-                    Orientation="Vertical">
+                    Orientation="Vertical"
+                    IsClippedToBounds="true">
                     <Label Text="About" />
                     <Image Source="{Binding AboutUrl}"
                         Aspect="AspectFit"
                         HorizontalOptions="FillAndExpand"
-                        VerticalOptions="FillAndExpand"
-                        HeightRequest="200">
+                        VerticalOptions="FillAndExpand">
                     </Image>
                 </StackLayout>
             </Frame>
-            <!--<local:AdmobBannerView Grid.Row="2"
-                Grid.Column="0" />-->
+            <local:AdmobBannerView Grid.Row="2"
+                Grid.Column="0" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

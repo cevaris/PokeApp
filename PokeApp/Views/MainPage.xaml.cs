@@ -51,14 +51,14 @@ namespace PokeApp
             base.OnSizeAllocated(width, height);
             if (width > height)
             {
-                //AboutStack.Orientation = StackOrientation.Horizontal;
-                //PokedexStack.Orientation = StackOrientation.Horizontal;
+                AboutStack.Orientation = StackOrientation.Horizontal;
+                PokedexStack.Orientation = StackOrientation.Horizontal;
                 logger.Info("setting orientation to horizontal");
             }
             else
             {
-                //AboutStack.Orientation = StackOrientation.Vertical;
-                //PokedexStack.Orientation = StackOrientation.Vertical;
+                AboutStack.Orientation = StackOrientation.Vertical;
+                PokedexStack.Orientation = StackOrientation.Vertical;
                 logger.Info("setting orientation to vertical");
             }
         }

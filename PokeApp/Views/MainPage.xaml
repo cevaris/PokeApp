@@ -61,7 +61,7 @@
                     </StackLayout>
                 </Frame>
             </Grid>
-            <local:AdmobBannerView/>
+            <local:AdmobBannerView WidthRequest="500" HeightRequest="500"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

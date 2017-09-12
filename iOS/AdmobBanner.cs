@@ -10,13 +10,13 @@ using PokeApp.Utils;
 [assembly: ExportRenderer(typeof(AdmobBannerView), typeof(AdmobBanner))]
 namespace PokeApp.iOS
 {
-    public class AdmobBanner : ViewRenderer<AdmobBannerView, BannerView>
+    public class AdmobBanner: ViewRenderer
     {
         BannerView adView;
         bool viewOnScreen = false;
         private readonly static ILogger logger = new ConsoleLogger(nameof(AdmobBanner));
 
-        protected override void OnElementChanged(ElementChangedEventArgs<AdmobBannerView> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<View> e)
         {
             base.OnElementChanged(e);
 
@@ -68,7 +68,7 @@ namespace PokeApp.iOS
 
                 Request request = Request.GetDefaultRequest();
                 //request.TestDevices = new string[] { Secrets.TestRequestId };
-                request.TestDevices = new[] { Request.SimulatorId, Secrets.TestRequestId };
+                //request.TestDevices = new[] { Request.SimulatorId, Secrets.TestRequestId };
                 adView.LoadRequest(request);
                 SetNativeControl(adView);
             }

@@ -4,6 +4,8 @@ using PokeApp.iOS;
 using Google.MobileAds;
 using UIKit;
 using PokeApp;
+using CoreGraphics;
+using PokeApp.Utils;
 
 [assembly: ExportRenderer(typeof(AdmobBannerView), typeof(AdmobBanner))]
 namespace PokeApp.iOS
@@ -11,35 +13,62 @@ namespace PokeApp.iOS
     public class AdmobBanner : ViewRenderer<AdmobBannerView, BannerView>
     {
         BannerView adView;
-        bool viewOnScreen;
+        bool viewOnScreen = false;
+        private readonly static ILogger logger = new ConsoleLogger(nameof(AdmobBanner));
 
         protected override void OnElementChanged(ElementChangedEventArgs<AdmobBannerView> e)
         {
             base.OnElementChanged(e);
 
-            var adMobElement = Element as AdmobBannerView;
+            if (e.NewElement == null)
+                return;
 
-            if (null != adMobElement)
+            if (e.OldElement == null)
             {
+                UIViewController viewCtrl = null;
 
-                adView = new BannerView(size: AdSizeCons.Banner)
+                foreach (UIWindow v in UIApplication.SharedApplication.Windows)
                 {
-                    AdUnitID = Secrets.BannderId,
-                    RootViewController = UIApplication.SharedApplication.Windows[0].RootViewController
+                    if (v.RootViewController != null)
+                    {
+                        viewCtrl = v.RootViewController;
+                    }
+                }
+
+                logger.Info($"found root controller {viewCtrl.NibName}");
+                adView = new BannerView(
+                    size: AdSizeCons.SmartBannerPortrait,
+                    origin: new CGPoint(0, UIScreen.MainScreen.Bounds.Size.Height - AdSizeCons.Banner.Size.Height)
+                )
+                {
+                    AdUnitID = Secrets.BannerId,
+                    RootViewController = viewCtrl
+                };
+
+                adView.ReceiveAdFailed += (sender, args) =>
+                {
+                    var error = ((BannerViewErrorEventArgs)args).Error;
+                    logger.Error($"received failed ad: {error} {error.Code}");
+                };
+
+                adView.WillChangeAdSizeTo += (sender, args) =>
+                {
+                    logger.Info($"changing add size to: {((AdSizeDelegateSizeEventArgs)args).Size}");
                 };
 
                 adView.AdReceived += (sender, args) =>
                 {
                     if (!viewOnScreen)
+                    {
+                        logger.Info($"received ad: {args}");
                         AddSubview(adView);
+                    }
                     viewOnScreen = true;
                 };
 
                 Request request = Request.GetDefaultRequest();
-                request.TestDevices = new string[]
-                {
-                    Request.SimulatorId
-                };
+                //request.TestDevices = new string[] { Secrets.TestRequestId };
+                request.TestDevices = new[] { Request.SimulatorId, Secrets.TestRequestId };
                 adView.LoadRequest(request);
                 SetNativeControl(adView);
             }

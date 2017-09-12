@@ -15,7 +15,6 @@ namespace PokeApp
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            Banner = new AdmobBannerView();
         }
 
         async void OnTapped(object sender, EventArgs e)
@@ -28,23 +27,23 @@ namespace PokeApp
                 IsPushing = true;
             }
             
-            if (sender == PokedexFrame)
-            {
-                logger.Info("clicked pokedex");
-                PokedexListPage page = new PokedexListPage();
-                page.BindingContext = new PokedexListPageModel();
-                await Navigation.PushAsync(page);
-                MessagingCenter.Send<MainPage>(this, PokedexStorage.MessageReady);
-                IsPushing = false;
-            }
+            //if (sender == PokedexFrame)
+            //{
+            //    logger.Info("clicked pokedex");
+            //    PokedexListPage page = new PokedexListPage();
+            //    page.BindingContext = new PokedexListPageModel();
+            //    await Navigation.PushAsync(page);
+            //    MessagingCenter.Send<MainPage>(this, PokedexStorage.MessageReady);
+            //    IsPushing = false;
+            //}
 
-            if (sender == AboutFrame)
-            {
-                logger.Info("clicked about");
-                AboutPage page = new AboutPage();
-                await Navigation.PushAsync(page);
-                IsPushing = false;
-            }
+            //if (sender == AboutFrame)
+            //{
+            //    logger.Info("clicked about");
+            //    AboutPage page = new AboutPage();
+            //    await Navigation.PushAsync(page);
+            //    IsPushing = false;
+            //}
         }
 
         protected override void OnSizeAllocated(double width, double height)
@@ -52,14 +51,14 @@ namespace PokeApp
             base.OnSizeAllocated(width, height);
             if (width > height)
             {
-                AboutStack.Orientation = StackOrientation.Horizontal;
-                PokedexStack.Orientation = StackOrientation.Horizontal;
+                //AboutStack.Orientation = StackOrientation.Horizontal;
+                //PokedexStack.Orientation = StackOrientation.Horizontal;
                 logger.Info("setting orientation to horizontal");
             }
             else
             {
-                AboutStack.Orientation = StackOrientation.Vertical;
-                PokedexStack.Orientation = StackOrientation.Vertical;
+                //AboutStack.Orientation = StackOrientation.Vertical;
+                //PokedexStack.Orientation = StackOrientation.Vertical;
                 logger.Info("setting orientation to vertical");
             }
         }

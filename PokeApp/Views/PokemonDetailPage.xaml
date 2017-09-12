@@ -4,7 +4,8 @@
     xmlns:design="clr-namespace:PokeApp"
     BindingContext="{x:Static design:PokemonDetailViewModel.Preview}"
     x:Class="PokeApp.PokemonDetailPage"
-    BackgroundColor="{StaticResource priBgColor}">
+    BackgroundColor="{StaticResource priBgColor}"
+    Title="{Binding Pokemon.DisplayIdName}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="Label0"
@@ -28,7 +29,7 @@
                     VerticalOptions="Center" />
                 <TableView Intent="Data">
                     <TableRoot>
-                        <TableSection Title="{Binding Pokemon.DisplayIdName}">
+                        <TableSection>
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal"
                                     Margin="10">

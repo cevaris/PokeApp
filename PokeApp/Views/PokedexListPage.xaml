@@ -8,7 +8,7 @@
     xmlns:local="clr-namespace:PokeApp;assembly=PokeApp"
     BackgroundColor="{StaticResource priBgColor}">
     <ContentPage.Content>
-        <Grid Margin="5">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="50" />
@@ -22,7 +22,9 @@
                 RowHeight="50"
                 ItemAppearing="OnItemAppearing"
                 BackgroundColor="{StaticResource secBgColor}"
-                Grid.Row="0">
+                Grid.Row="0"
+                Margin="5,5,5,0"
+                >
                 <ListView.Header>
                     <SearchBar x:Name="PokemonQuery"
                         Placeholder="Search"
@@ -47,8 +49,8 @@
                         IsVisible="{Binding IsLoading}" />
                 </ListView.Footer>
             </ListView>
+            <!--<Frame Grid.Row="1" />-->
             <local:AdmobBannerView Grid.Row="1"/>
-<!--            <Frame Grid.Row="1"></Frame>-->
         </Grid>
     </ContentPage.Content>
 </ContentPage>

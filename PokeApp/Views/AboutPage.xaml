@@ -6,7 +6,7 @@
     Title="About"
     BackgroundColor="{StaticResource priBgColor}">
     <ContentPage.Content>
-        <Grid Margin="5">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="50" />
@@ -15,8 +15,8 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Frame Grid.Row="0"
-                Grid.Column="0"
-                BackgroundColor="{StaticResource secBgColor}">
+                BackgroundColor="{StaticResource secBgColor}"
+                Margin="5,5,5,0">
                 <StackLayout Orientation="Vertical"
                     Spacing="30">
                     <Label Text="General Pokémon pocketbook reference."
@@ -71,8 +71,8 @@
                     </Label>
                 </StackLayout>
             </Frame>
-            <local:AdmobBannerView Grid.Row="1"
-                Grid.Column="0" />
+            <!--<Frame Grid.Row="1" />-->
+            <local:AdmobBannerView Grid.Row="1" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

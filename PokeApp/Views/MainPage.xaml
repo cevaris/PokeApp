@@ -10,7 +10,7 @@
             iOS="0, 15, 0, 0" />
     </ContentPage.Padding>
     <ContentPage.Content>
-        <Grid Margin="5">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1.25*" />
                 <RowDefinition Height="*" />
@@ -20,9 +20,9 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Frame Grid.Row="0"
-                Grid.Column="0"
                 x:Name="PokedexFrame"
-                BackgroundColor="{StaticResource secBgColor}">
+                BackgroundColor="{StaticResource secBgColor}"
+                Margin="5,5,5,0">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnTapped"
                         NumberOfTapsRequired="1" />
@@ -32,15 +32,16 @@
                     <Label Text="Pokédex" />
                     <Image Source="{Binding PokedexUrl}"
                         Aspect="AspectFit"
+                        WidthRequest="200"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand">
                     </Image>
                 </StackLayout>
             </Frame>
             <Frame Grid.Row="1"
-                Grid.Column="0"
                 x:Name="AboutFrame"
-                BackgroundColor="{StaticResource secBgColor}">
+                BackgroundColor="{StaticResource secBgColor}"
+                Margin="5,0,5,0">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnTapped"
                         NumberOfTapsRequired="1" />
@@ -51,13 +52,14 @@
                     <Label Text="About" />
                     <Image Source="{Binding AboutUrl}"
                         Aspect="AspectFit"
+                        WidthRequest="200"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand">
                     </Image>
                 </StackLayout>
             </Frame>
-            <local:AdmobBannerView Grid.Row="2"
-                Grid.Column="0" />
+            <!--<Frame Grid.Row="2" />-->
+            <local:AdmobBannerView Grid.Row="2" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

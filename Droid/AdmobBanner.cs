@@ -18,7 +18,7 @@ namespace PokeApp.Droid
                 return adView;
             
             adView = new AdView(Forms.Context);
-            adView.AdSize = AdSize.Banner;
+            adView.AdSize = AdSize.SmartBanner;
             adView.AdUnitId = Secrets.BannerId;
 
             adView.LoadAd(new AdRequest.Builder().AddTestDevice(Secrets.DroidTestRequestId).Build());

@@ -6,6 +6,7 @@
     x:Class="PokeApp.PokedexListPage"
     Title="Pokédex"
     xmlns:local="clr-namespace:PokeApp;assembly=PokeApp"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     BackgroundColor="{StaticResource priBgColor}">
     <ContentPage.Content>
         <Grid>
@@ -23,8 +24,7 @@
                 ItemAppearing="OnItemAppearing"
                 BackgroundColor="{StaticResource secBgColor}"
                 Grid.Row="0"
-                Margin="5,5,5,0"
-                >
+                Margin="5,5,5,0">
                 <ListView.Header>
                     <SearchBar x:Name="PokemonQuery"
                         Placeholder="Search"
@@ -34,14 +34,38 @@
                 </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ImageCell Text="{Binding Id}"
-                            Detail="{Binding Name}">
-                            <ImageCell.ImageSource>
-                                <UriImageSource Uri="{Binding SpriteUrl}"
-                                    CacheValidity="365"
-                                    CachingEnabled="true" />
-                            </ImageCell.ImageSource>
-                        </ImageCell>
+                        <ViewCell Height="45">
+                            <Grid Padding="5,5,5,5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <ffimageloading:CachedImage 
+                                    Grid.Column="0"
+                                    Grid.Row="0"
+                                    Grid.RowSpan="2"
+                                    Aspect="AspectFit"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand"
+                                    Source="{Binding SpriteUrl}">
+                                </ffimageloading:CachedImage>
+                                <Label Grid.Column="1"
+                                    Grid.Row="0"
+                                    VerticalTextAlignment="Center"
+                                    Text="{Binding Name}"
+                                />
+                                <Label Grid.Column="1"
+                                    Grid.Row="1"
+                                    VerticalTextAlignment="Center"
+                                    Text="{Binding Id}"
+                                    FontSize="Small"
+                                />
+                            </Grid>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
                 <ListView.Footer>

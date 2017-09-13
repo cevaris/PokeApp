@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using FFImageLoading.Forms.Touch;
 using Foundation;
+using Google.MobileAds;
 using UIKit;
 
 namespace PokeApp.iOS
@@ -12,6 +13,9 @@ namespace PokeApp.iOS
     {
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            CachedImageRenderer.Init();
+            MobileAds.Configure(Secrets.AppId);
+
             global::Xamarin.Forms.Forms.Init();
 
             LoadApplication(new App());

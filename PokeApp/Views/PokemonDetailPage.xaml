@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:design="clr-namespace:PokeApp"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     BindingContext="{x:Static design:PokemonDetailViewModel.Preview}"
     x:Class="PokeApp.PokemonDetailPage"
     BackgroundColor="{StaticResource priBgColor}"
@@ -23,10 +24,12 @@
             <StackLayout x:Name="DetailSection"
                 WidthRequest="200"
                 HeightRequest="200">
-                <Image Source="{Binding Pokemon.SpriteUrl}"
-                    Aspect="AspectFit"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center" />
+                <ffimageloading:CachedImage
+                    Aspect="AspectFill"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    Source="{Binding Pokemon.SpriteUrl}">
+                </ffimageloading:CachedImage>
                 <TableView Intent="Data">
                     <TableRoot>
                         <TableSection>
@@ -67,8 +70,7 @@
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal"
                                     Margin="10"
-                                    IsVisible="{Binding Pokemon.HasHabitatName}"
-                                    >
+                                    IsVisible="{Binding Pokemon.HasHabitatName}">
                                     <Label Text="Habitat: "
                                         HorizontalOptions="StartAndExpand" />
                                     <Label Text="{Binding Pokemon.HabitatName}" />

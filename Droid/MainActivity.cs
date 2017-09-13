@@ -11,6 +11,7 @@ using Android.Content.Res;
 using System.IO;
 using Xamarin.Forms;
 using Android.Gms.Ads;
+using FFImageLoading.Forms.Droid;
 
 namespace PokeApp.Droid
 {
@@ -19,6 +20,7 @@ namespace PokeApp.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
+            CachedImageRenderer.Init();
             MobileAds.Initialize(ApplicationContext, Secrets.AppId);
 
             TabLayoutResource = Resource.Layout.Tabbar;

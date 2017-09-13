@@ -5,7 +5,7 @@ namespace PokeApp
 {
     public partial class PokemonDetailPage : ContentPage
     {
-        private ILogger logger = new ConsoleLogger(nameof(MainPage));
+        private ILogger logger = new ConsoleLogger(nameof(PokemonDetailPage));
 
         public PokemonDetailPage()
         {

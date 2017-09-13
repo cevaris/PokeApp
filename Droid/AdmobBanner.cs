@@ -3,29 +3,36 @@ using Xamarin.Forms;
 using PokeApp.Droid;
 using Android.Gms.Ads;
 using PokeApp;
+using Android.Widget;
+
 
 [assembly: ExportRenderer(typeof(AdmobBannerView), typeof(AdmobBanner))]
 namespace PokeApp.Droid
 {
     public class AdmobBanner : ViewRenderer<AdmobBannerView, AdView>
     {
-        //protected override void OnElementChanged(ElementChangedEventArgs<AdView> e)
-        //{
-        //    base.OnElementChanged(e);
+        AdView adView;
+        AdView CreateNativeAdControl()
+        {
+            if (adView != null)
+                return adView;
+            
+            adView = new AdView(Forms.Context);
+            adView.AdSize = AdSize.Banner;
+            adView.AdUnitId = Secrets.BannerId;
 
-        //    //convert the element to the control we want
-        //    var adMobElement = Element as AdmobBannerView;
+            adView.LoadAd(new AdRequest.Builder().AddTestDevice(Secrets.DroidTestRequestId).Build());
+            return adView;
+        }
 
-        //    if ((adMobElement != null) && (e.OldElement == null))
-        //    {
-        //        var ad = new AdView(Context);
-        //        ad.AdSize = AdSize.Banner;
-        //        ad.AdUnitId = Secrets.BannderId;
-        //        var requestbuilder = new AdRequest.Builder();
-        //        ad.LoadAd(requestbuilder.Build());
-        //        SetNativeControl(ad);
-        //    }
-        //}
+        protected override void OnElementChanged(ElementChangedEventArgs<AdmobBannerView> e)
+        {
+            base.OnElementChanged(e);
+            if (Control == null)
+            {
+                CreateNativeAdControl();
+                SetNativeControl(adView);
+            }
+        }
     }
 }
-

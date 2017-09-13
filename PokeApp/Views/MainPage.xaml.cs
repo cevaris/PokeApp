@@ -27,23 +27,23 @@ namespace PokeApp
                 IsPushing = true;
             }
             
-            //if (sender == PokedexFrame)
-            //{
-            //    logger.Info("clicked pokedex");
-            //    PokedexListPage page = new PokedexListPage();
-            //    page.BindingContext = new PokedexListPageModel();
-            //    await Navigation.PushAsync(page);
-            //    MessagingCenter.Send<MainPage>(this, PokedexStorage.MessageReady);
-            //    IsPushing = false;
-            //}
+            if (sender == PokedexFrame)
+            {
+                logger.Info("clicked pokedex");
+                PokedexListPage page = new PokedexListPage();
+                page.BindingContext = new PokedexListPageModel();
+                await Navigation.PushAsync(page);
+                MessagingCenter.Send<MainPage>(this, PokedexStorage.MessageReady);
+                IsPushing = false;
+            }
 
-            //if (sender == AboutFrame)
-            //{
-            //    logger.Info("clicked about");
-            //    AboutPage page = new AboutPage();
-            //    await Navigation.PushAsync(page);
-            //    IsPushing = false;
-            //}
+            if (sender == AboutFrame)
+            {
+                logger.Info("clicked about");
+                AboutPage page = new AboutPage();
+                await Navigation.PushAsync(page);
+                IsPushing = false;
+            }
         }
 
         protected override void OnSizeAllocated(double width, double height)

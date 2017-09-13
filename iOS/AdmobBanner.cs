@@ -10,7 +10,7 @@ using PokeApp.Utils;
 [assembly: ExportRenderer(typeof(AdmobBannerView), typeof(AdmobBanner))]
 namespace PokeApp.iOS
 {
-    public class AdmobBanner: ViewRenderer
+    public class AdmobBanner : ViewRenderer
     {
         BannerView adView;
         bool viewOnScreen = false;
@@ -35,9 +35,10 @@ namespace PokeApp.iOS
                     }
                 }
 
-                logger.Info($"found root controller {viewCtrl.NibName}");
+                logger.Info($"found root controller {viewCtrl.ToString()}");
+
                 adView = new BannerView(
-                    size: AdSizeCons.SmartBannerPortrait,
+                    size: AdSizeCons.Banner,
                     origin: new CGPoint(0, UIScreen.MainScreen.Bounds.Size.Height - AdSizeCons.Banner.Size.Height)
                 )
                 {
@@ -60,15 +61,14 @@ namespace PokeApp.iOS
                 {
                     if (!viewOnScreen)
                     {
-                        logger.Info($"received ad: {args}");
+                        logger.Info($"received ad: {args.ToString()}");
                         AddSubview(adView);
                     }
                     viewOnScreen = true;
                 };
 
                 Request request = Request.GetDefaultRequest();
-                //request.TestDevices = new string[] { Secrets.TestRequestId };
-                //request.TestDevices = new[] { Request.SimulatorId, Secrets.TestRequestId };
+                request.TestDevices = new[] { Request.SimulatorId, Secrets.IOSTestRequestId };
                 adView.LoadRequest(request);
                 SetNativeControl(adView);
             }

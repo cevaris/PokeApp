@@ -5,38 +5,50 @@
     BindingContext="{x:Static design:PokedexListPageModel.Preview}"
     x:Class="PokeApp.PokedexListPage"
     Title="Pokédex"
+    xmlns:local="clr-namespace:PokeApp;assembly=PokeApp"
     BackgroundColor="{StaticResource priBgColor}">
     <ContentPage.Content>
-        <ListView x:Name="PokemonList"
-            ItemsSource="{Binding PokemonList}"
-            ItemSelected="OnSelectedItem"
-            RowHeight="50"
-            ItemAppearing="OnItemAppearing"
-            Margin="5"
-            BackgroundColor="{StaticResource secBgColor}">
-            <ListView.Header>
-                <SearchBar x:Name="PokemonQuery"
-                    Placeholder="Search"
-                    SearchButtonPressed="OnButtonClick"
-                    TextChanged="OnTextChanged"
-                    BackgroundColor="{StaticResource secBgColor}" />
-            </ListView.Header>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ImageCell Text="{Binding Id}"
-                        Detail="{Binding Name}">
-                        <ImageCell.ImageSource>
-                            <UriImageSource Uri="{Binding SpriteUrl}"
-                                CacheValidity="365"
-                                CachingEnabled="true" />
-                        </ImageCell.ImageSource>
-                    </ImageCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-            <ListView.Footer>
-                <ActivityIndicator IsRunning="{Binding IsLoading}"
-                    IsVisible="{Binding IsLoading}" />
-            </ListView.Footer>
-        </ListView>
+        <Grid Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <ListView x:Name="PokemonList"
+                ItemsSource="{Binding PokemonList}"
+                ItemSelected="OnSelectedItem"
+                RowHeight="50"
+                ItemAppearing="OnItemAppearing"
+                BackgroundColor="{StaticResource secBgColor}"
+                Grid.Row="0">
+                <ListView.Header>
+                    <SearchBar x:Name="PokemonQuery"
+                        Placeholder="Search"
+                        SearchButtonPressed="OnButtonClick"
+                        TextChanged="OnTextChanged"
+                        BackgroundColor="{StaticResource secBgColor}" />
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ImageCell Text="{Binding Id}"
+                            Detail="{Binding Name}">
+                            <ImageCell.ImageSource>
+                                <UriImageSource Uri="{Binding SpriteUrl}"
+                                    CacheValidity="365"
+                                    CachingEnabled="true" />
+                            </ImageCell.ImageSource>
+                        </ImageCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <ActivityIndicator IsRunning="{Binding IsLoading}"
+                        IsVisible="{Binding IsLoading}" />
+                </ListView.Footer>
+            </ListView>
+            <local:AdmobBannerView Grid.Row="1"/>
+<!--            <Frame Grid.Row="1"></Frame>-->
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

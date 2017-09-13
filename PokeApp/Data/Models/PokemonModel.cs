@@ -8,6 +8,13 @@
         public string Name { get; set; }
         public string GenerationName { get; set; }
         public string Genus { get; set; }
+        public bool HasHabitatName
+        {
+            get
+            {
+                return HabitatName != null;
+            }
+        }
         public string HabitatName { get; set; }
 
         public int Height { get; set; }
@@ -72,7 +79,7 @@
             {
                 float kgToLbs = 3.28084f;
                 float feet = Height / 10.0f * kgToLbs;
-                return string.Format("{0:0.0} ft", feet);                
+                return string.Format("{0:0.0} ft", feet);
             }
         }
     }

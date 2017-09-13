@@ -40,15 +40,17 @@ namespace PokeApp.Data.Mappers
                                                         .Where(x => x.Id == speciesTable.GenerationId && x.LanguageId == langTable.Id)
                                                         .FirstAsync();
 
-            Task<HabitatTable> taskHabbit = conn.Table<HabitatTable>()
-                                                .Where(x => x.Id == speciesTable.HabitatId && x.LanguageId == langTable.Id)
-                                                .FirstAsync();
+            String habitatName = null;
+            if (speciesTable.HabitatId != null)
+            {
+                Task<HabitatTable> taskHabbit = conn.Table<HabitatTable>()
+                                                    .Where(x => x.Id == speciesTable.HabitatId && x.LanguageId == langTable.Id)
+                                                    .FirstAsync();
+                await Task.WhenAll(taskGeneration, taskHabbit);
+                HabitatTable habitat = await taskHabbit;
+                habitatName = App.Shared.ToTitleCase(habitat.Name);
+            }
 
-            await Task.WhenAll(
-                taskGeneration,
-                taskHabbit
-            );
-            HabitatTable habbit = await taskHabbit;
             GenerationTable generation = await taskGeneration;
 
             return new PokemonModel()
@@ -56,7 +58,7 @@ namespace PokeApp.Data.Mappers
                 Id = speciesTable.Id,
                 Name = pokemonName.Name,
                 Weight = pokemonTable.Weight,
-                HabitatName = App.Shared.ToTitleCase(habbit.Name),
+                HabitatName = habitatName,
                 Height = pokemonTable.Height,
                 Genus = pokemonName.Genus,
                 GenerationName = generation.Name,

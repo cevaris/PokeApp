@@ -61,7 +61,7 @@ namespace PokeApp.iOS
                 {
                     if (!viewOnScreen)
                     {
-                        logger.Info($"received ad: {args.ToString()}");
+                        logger.Info($"received ad: {args.GetType()}");
                         AddSubview(adView);
                     }
                     viewOnScreen = true;

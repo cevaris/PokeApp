@@ -4,7 +4,8 @@ using PokeApp.Droid;
 using Android.Gms.Ads;
 using PokeApp;
 using Android.Widget;
-
+using PokeApp.Utils;
+using Android.Content.Res;
 
 [assembly: ExportRenderer(typeof(AdmobBannerView), typeof(AdmobBanner))]
 namespace PokeApp.Droid
@@ -12,27 +13,42 @@ namespace PokeApp.Droid
     public class AdmobBanner : ViewRenderer<AdmobBannerView, AdView>
     {
         AdView adView;
-        AdView CreateNativeAdControl()
-        {
-            if (adView != null)
-                return adView;
-            
-            adView = new AdView(Forms.Context);
-            adView.AdSize = AdSize.SmartBanner;
-            adView.AdUnitId = Secrets.BannerId;
 
-            adView.LoadAd(new AdRequest.Builder().AddTestDevice(Secrets.DroidTestRequestId).Build());
-            return adView;
-        }
+        private ILogger logger = new ConsoleLogger(nameof(AdmobBanner));
 
         protected override void OnElementChanged(ElementChangedEventArgs<AdmobBannerView> e)
         {
             base.OnElementChanged(e);
-            if (Control == null)
+
+            if (e.NewElement == null)
+                return;
+
+            if (e.OldElement == null)
             {
-                CreateNativeAdControl();
+                
+                ScreenLayout screenlayout = Resources.Configuration.ScreenLayout;
+
+                //var metrics = Resources.DisplayMetrics;
+                //var widthInDp = ConvertPixelsToDp(metrics.WidthPixels);
+                //var heightInDp = ConvertPixelsToDp(metrics.HeightPixels);
+                //AdSize adsSize = new AdSize(widthInDp, 50);
+                logger.Info($"screenLayout {screenlayout}");
+
+                adView = new AdView(Forms.Context);
+                adView.AdUnitId = Secrets.BannerId;
+                //adView.AdSize = adsSize;
+                //adView.AdSize = AdSize.SmartBanner;
+                adView.AdSize = AdSize.Banner;
+
+                adView.LoadAd(new AdRequest.Builder().AddTestDevice(Secrets.DroidTestRequestId).Build());
                 SetNativeControl(adView);
             }
+        }
+
+        private int ConvertPixelsToDp(float pixelValue)
+        {
+            var dp = (int)((pixelValue) / Resources.DisplayMetrics.Density);
+            return dp;
         }
     }
 }

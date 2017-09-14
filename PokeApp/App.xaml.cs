@@ -8,12 +8,27 @@ using PokeApp.Data;
 using PokeApp.Data.Tables;
 using System.Threading.Tasks;
 using System;
+using FFImageLoading;
 
 namespace PokeApp
 {
 
     public partial class App : Application
     {
+
+        public static bool IsDebug
+        {
+            get
+            {
+                bool isDebug;
+#if DEBUG
+                isDebug = true;
+#else
+                isDebug = false;
+#endif
+                return isDebug;
+            }
+        }
 
         private static IShared shared;
         public static IShared Shared
@@ -37,6 +52,9 @@ namespace PokeApp
 
             NavigationPage page = new NavigationPage(main);
             MainPage = page;
+
+            //TODO: DEPLOY
+            ImageService.Instance.InvalidateCacheAsync(FFImageLoading.Cache.CacheType.All).Wait();
         }
 
         protected override void OnStart()

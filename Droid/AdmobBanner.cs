@@ -25,7 +25,7 @@ namespace PokeApp.Droid
 
             if (e.OldElement == null)
             {
-                
+
                 ScreenLayout screenlayout = Resources.Configuration.ScreenLayout;
 
                 //var metrics = Resources.DisplayMetrics;
@@ -40,7 +40,12 @@ namespace PokeApp.Droid
                 //adView.AdSize = AdSize.SmartBanner;
                 adView.AdSize = AdSize.Banner;
 
-                adView.LoadAd(new AdRequest.Builder().AddTestDevice(Secrets.DroidTestRequestId).Build());
+                var adBuilder = new AdRequest.Builder();
+                if(App.IsDebug) {
+                    adBuilder.AddTestDevice(Secrets.DroidTestRequestId);
+                }  
+
+                adView.LoadAd(adBuilder.Build());
                 SetNativeControl(adView);
             }
         }

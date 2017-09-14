@@ -68,7 +68,10 @@ namespace PokeApp.iOS
                 };
 
                 Request request = Request.GetDefaultRequest();
-                request.TestDevices = new[] { Request.SimulatorId, Secrets.IOSTestRequestId };
+                if (App.IsDebug)
+                {
+                    request.TestDevices = new[] { Request.SimulatorId, Secrets.IOSTestRequestId };
+                }
                 adView.LoadRequest(request);
                 SetNativeControl(adView);
             }

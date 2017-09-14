@@ -34,10 +34,10 @@
 				</ListView.Header>
 				<ListView.ItemTemplate>
 					<DataTemplate>
-						<ViewCell Height="45">
+						<ViewCell Height="50">
 							<Grid Padding="5,5,5,5">
 								<Grid.RowDefinitions>
-									<RowDefinition Height="2*" />
+									<RowDefinition Height="1.5*" />
 									<RowDefinition Height="*" />
 								</Grid.RowDefinitions>
 								<Grid.ColumnDefinitions>
@@ -61,13 +61,13 @@
                                         BindingContext="{x:Reference Name=SpriteImage}" />
 								<Label Grid.Column="1"
 									Grid.Row="0"
-									VerticalTextAlignment="Center"
+									VerticalTextAlignment="Start"
 									Text="{Binding Name}" />
 								<Label Grid.Column="1"
 									Grid.Row="1"
-									VerticalTextAlignment="Center"
+									VerticalTextAlignment="End"
 									Text="{Binding Id}"
-									FontSize="Small" />
+									FontSize="Micro" />
 							</Grid>
 						</ViewCell>
 					</DataTemplate>

@@ -31,11 +31,11 @@
                 <StackLayout x:Name="PokedexStack"
                     Orientation="Vertical">
                     <Label Text="Pokédex" />
-                    <ffimageloading:CachedImage Aspect="AspectFit"
+                    <Image Aspect="AspectFit"
                         WidthRequest="200"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand"
-                        Source="{Binding PokedexUrl}" />
+                        x:Name="PokedexImage" />
                 </StackLayout>
             </Frame>
             <Frame Grid.Row="1"
@@ -50,11 +50,11 @@
                     Orientation="Vertical"
                     IsClippedToBounds="true">
                     <Label Text="About" />
-                    <ffimageloading:CachedImage Aspect="AspectFit"
+                    <Image Aspect="AspectFit"
                         WidthRequest="200"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand"
-                        Source="{Binding AboutUrl}" />
+                        x:Name="AboutImage" />
                 </StackLayout>
             </Frame>
             <!--<Frame Grid.Row="2" />-->

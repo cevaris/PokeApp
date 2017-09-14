@@ -15,6 +15,9 @@ namespace PokeApp
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+
+            AboutImage.Source = ImageSource.FromResource("PokeApp.Resources.jenny2.png");
+            PokedexImage.Source = ImageSource.FromResource("PokeApp.Resources.dex1.png");
         }
 
         async void OnTapped(object sender, EventArgs e)

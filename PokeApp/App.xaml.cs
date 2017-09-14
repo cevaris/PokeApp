@@ -53,8 +53,11 @@ namespace PokeApp
             NavigationPage page = new NavigationPage(main);
             MainPage = page;
 
-            //TODO: DEPLOY
-            ImageService.Instance.InvalidateCacheAsync(FFImageLoading.Cache.CacheType.All).Wait();
+            if (App.IsDebug)
+            {
+                //Kill cache in dev
+                ImageService.Instance.InvalidateCacheAsync(FFImageLoading.Cache.CacheType.All).Wait();
+            }
         }
 
         protected override void OnStart()

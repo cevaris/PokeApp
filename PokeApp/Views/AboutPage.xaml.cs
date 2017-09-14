@@ -41,6 +41,11 @@ namespace PokeApp
             {
                 Device.OpenUri(new Uri("https://pixabay.com/en/users/Alanyadk-1919646/"));
             }
+
+            if (sender == SupportLink)
+            {
+                Device.OpenUri(new Uri("https://github.com/cevaris/PokeApp-Support/issues?q=is%3Aissue"));
+            }
         }
     }
 }

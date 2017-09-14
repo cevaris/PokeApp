@@ -77,8 +77,8 @@
 						IsVisible="{Binding IsLoading}" />
 				</ListView.Footer>
 			</ListView>
-			<Frame Grid.Row="1" />
-			<!--<local:AdmobBannerView Grid.Row="1" />-->
+			<!--<Frame Grid.Row="1" />-->
+			<local:AdmobBannerView Grid.Row="1" />
 		</Grid>
 	</ContentPage.Content>
 </ContentPage>

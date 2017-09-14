@@ -21,22 +21,22 @@
     <ContentPage.Content>
         <Frame BackgroundColor="{StaticResource secBgColor}"
             Margin="5">
-            <StackLayout x:Name="DetailSection"
-                WidthRequest="200"
-                HeightRequest="200">
+            <StackLayout x:Name="DetailSection">
                 <AbsoluteLayout VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand">
-                    <ffimageloading:CachedImage Aspect="AspectFill"
+                    <!--<Frame AbsoluteLayout.LayoutBounds="1, 1, 1, 1"
+                        AbsoluteLayout.LayoutFlags="All" />-->
+                    <ffimageloading:CachedImage Aspect="AspectFit"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand"
                         Source="{Binding Pokemon.SpriteUrl}"
                         x:Name="SpriteImage"
-                        AbsoluteLayout.LayoutBounds="0.5, 0.5, 0.5, 0.5"
+                        AbsoluteLayout.LayoutBounds="1, 1, 1, 1"
                         AbsoluteLayout.LayoutFlags="All" />
                     <ActivityIndicator BindingContext="{x:Reference Name=SpriteImage}"
                         IsVisible="{Binding IsLoading}"
                         IsRunning="{Binding IsLoading}"
-                        AbsoluteLayout.LayoutBounds="0.5, 0.5, 0.5, 0.5"
+                        AbsoluteLayout.LayoutBounds="1, 1, 1, 1"
                         AbsoluteLayout.LayoutFlags="All" />
                 </AbsoluteLayout>
                 <TableView Intent="Data">

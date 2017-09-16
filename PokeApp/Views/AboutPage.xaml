@@ -21,6 +21,18 @@
                     <StackLayout Spacing="30">
                         <Label Text="General Pokémon pocketbook reference."
                             HorizontalOptions="CenterAndExpand" />
+                        <Label Text="Support"
+                            FontSize="Large"
+                            HorizontalOptions="CenterAndExpand" />
+                        <Label Text="Questions/Issues, let us know"
+                            HorizontalOptions="CenterAndExpand"
+                            x:Name="SupportLink"
+                            TextColor="Blue">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTapped"
+                                    NumberOfTapsRequired="1" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Label Text="Credits"
                             FontSize="Large"
                             HorizontalOptions="CenterAndExpand" />
@@ -63,18 +75,6 @@
                         <Label Text="Pokéball Logo"
                             HorizontalOptions="CenterAndExpand"
                             x:Name="PokeballLogoLink"
-                            TextColor="Blue">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnTapped"
-                                    NumberOfTapsRequired="1" />
-                            </Label.GestureRecognizers>
-                        </Label>
-                        <Label Text="Support"
-                            FontSize="Large"
-                            HorizontalOptions="CenterAndExpand" />
-                        <Label Text="Questions/Issues, let us know"
-                            HorizontalOptions="CenterAndExpand"
-                            x:Name="SupportLink"
                             TextColor="Blue">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnTapped"

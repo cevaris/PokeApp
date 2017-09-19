@@ -35,7 +35,13 @@ namespace PokeApp.Droid
                 logger.Info($"screenLayout {screenlayout}");
 
                 adView = new AdView(Forms.Context);
+
                 adView.AdUnitId = Secrets.BannerId;
+                if (App.IsDebug)
+                {
+                    adView.AdUnitId = Secrets.TestBannerId;
+                }
+
                 //adView.AdSize = adsSize;
                 //adView.AdSize = AdSize.SmartBanner;
                 adView.AdSize = AdSize.Banner;

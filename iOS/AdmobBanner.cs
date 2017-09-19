@@ -37,12 +37,19 @@ namespace PokeApp.iOS
 
                 logger.Info($"found root controller {viewCtrl.ToString()}");
 
+
+                string bannerId = Secrets.BannerId;
+                if (App.IsDebug)
+                {
+                    bannerId = Secrets.TestBannerId;
+                }
+
                 adView = new BannerView(
                     size: AdSizeCons.Banner,
                     origin: new CGPoint(0, UIScreen.MainScreen.Bounds.Size.Height - AdSizeCons.Banner.Size.Height)
                 )
                 {
-                    AdUnitID = Secrets.BannerId,
+                    AdUnitID = bannerId,
                     RootViewController = viewCtrl
                 };
 

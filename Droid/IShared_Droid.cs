@@ -22,7 +22,7 @@ namespace PokeApp.Droid
         private static ILogger Logger = new ConsoleLogger(nameof(IShared_Droid));
 
         private static string externalDirectory =
-            Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
+            System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
 
         private readonly static Encoding encoder = Encoding.Default;
 

@@ -19,6 +19,12 @@ namespace PokeApp
 
         void OnItemAppearing(object sender, ItemVisibilityEventArgs e)
         {
+            if (Device.RuntimePlatform == Device.Android)
+            {
+                // android bug, crashes on scroll when keyboard is open
+                App.Shared.HideKeyboard();
+            }
+
             PokemonListItemModel p = ((PokemonListItemModel)e.Item);
             Logger.Info($"fired for {p.Id}-{p.Name}");
             MessagingCenter.Send<PokedexListPage, ItemVisibilityEventArgs>(this, PokedexListPageModel.MessagePage, e);
@@ -58,11 +64,12 @@ namespace PokeApp
                 {
                     PageWithQuery(null);
                 }
-                else
+                else if (Device.RuntimePlatform == Device.iOS)
                 {
                     Logger.Info(args.NewTextValue);
                     PageWithQuery(args.NewTextValue);
                 }
+
             }
         }
 

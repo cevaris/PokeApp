@@ -7,6 +7,7 @@ using PokeApp.Data;
 using PokeApp.iOS;
 using PokeApp.Utils;
 using SQLite;
+using UIKit;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(IShared_iOS))]
@@ -98,6 +99,11 @@ namespace PokeApp.iOS
 
         public void ShowBanner(string id)
         {
+        }
+
+        public void HideKeyboard()
+        {
+            UIApplication.SharedApplication.KeyWindow.EndEditing(true);
         }
 
         private void copyToLibrary(string inFilePath, string outFilePath)

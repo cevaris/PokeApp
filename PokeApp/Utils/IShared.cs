@@ -22,5 +22,6 @@ namespace PokeApp.Utils
         StreamWriter OpenWriter(string filename);
 
         void ShowBanner(string id);
+        void HideKeyboard();
     }
 }

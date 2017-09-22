@@ -38,7 +38,7 @@ namespace PokeApp.iOS
                 logger.Info($"found root controller {viewCtrl.ToString()}");
 
 
-                string bannerId = Secrets.BannerId;
+                string bannerId = Secrets.IOsBannerId;
                 if (App.IsDebug)
                 {
                     bannerId = Secrets.TestBannerId;

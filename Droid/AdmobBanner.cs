@@ -28,22 +28,16 @@ namespace PokeApp.Droid
 
                 ScreenLayout screenlayout = Resources.Configuration.ScreenLayout;
 
-                //var metrics = Resources.DisplayMetrics;
-                //var widthInDp = ConvertPixelsToDp(metrics.WidthPixels);
-                //var heightInDp = ConvertPixelsToDp(metrics.HeightPixels);
-                //AdSize adsSize = new AdSize(widthInDp, 50);
                 logger.Info($"screenLayout {screenlayout}");
 
                 adView = new AdView(Forms.Context);
 
-                adView.AdUnitId = Secrets.BannerId;
+                adView.AdUnitId = Secrets.DroidBannerId;
                 if (App.IsDebug)
                 {
                     adView.AdUnitId = Secrets.TestBannerId;
                 }
 
-                //adView.AdSize = adsSize;
-                //adView.AdSize = AdSize.SmartBanner;
                 adView.AdSize = AdSize.Banner;
 
                 var adBuilder = new AdRequest.Builder();

@@ -14,7 +14,7 @@ namespace PokeApp.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             CachedImageRenderer.Init();
-            MobileAds.Configure(Secrets.AppId);
+            MobileAds.Configure(Secrets.IOSAppId);
 
             global::Xamarin.Forms.Forms.Init();
 

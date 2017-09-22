@@ -21,7 +21,7 @@ namespace PokeApp.Droid
         protected override void OnCreate(Bundle bundle)
         {
             CachedImageRenderer.Init();
-            MobileAds.Initialize(ApplicationContext, Secrets.AppId);
+            MobileAds.Initialize(ApplicationContext, Secrets.DroidAppId);
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
